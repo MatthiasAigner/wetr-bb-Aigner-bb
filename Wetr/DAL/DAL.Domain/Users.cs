@@ -11,6 +11,7 @@ namespace DAL.Domain
         public string Station { get; set; }
        
 
+
         public ICollection<Stations> Stations { get; set; }
     }
 }
