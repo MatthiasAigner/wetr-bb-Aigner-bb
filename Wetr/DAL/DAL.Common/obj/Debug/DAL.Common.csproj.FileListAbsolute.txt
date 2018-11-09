@@ -1,0 +1,6 @@
+C:\Users\aigne\Desktop\Matthias\SWK5\Einheit4\Uebung04\DAL\DAL.Common\bin\Debug\DAL.Common.dll
+C:\Users\aigne\Desktop\Matthias\SWK5\Einheit4\Uebung04\DAL\DAL.Common\bin\Debug\DAL.Common.pdb
+C:\Users\aigne\Desktop\Matthias\SWK5\Einheit4\Uebung04\DAL\DAL.Common\obj\Debug\DAL.Common.csprojAssemblyReference.cache
+C:\Users\aigne\Desktop\Matthias\SWK5\Einheit4\Uebung04\DAL\DAL.Common\obj\Debug\DAL.Common.csproj.CoreCompileInputs.cache
+C:\Users\aigne\Desktop\Matthias\SWK5\Einheit4\Uebung04\DAL\DAL.Common\obj\Debug\DAL.Common.dll
+C:\Users\aigne\Desktop\Matthias\SWK5\Einheit4\Uebung04\DAL\DAL.Common\obj\Debug\DAL.Common.pdb

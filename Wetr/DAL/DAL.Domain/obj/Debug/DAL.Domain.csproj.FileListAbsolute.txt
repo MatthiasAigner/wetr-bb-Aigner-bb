@@ -1,0 +1,12 @@
+C:\Users\aigne\Desktop\Matthias\SWK5\Einheit4\Uebung04\DAL\DAL.Domain\bin\Debug\DAL.Domain.dll
+C:\Users\aigne\Desktop\Matthias\SWK5\Einheit4\Uebung04\DAL\DAL.Domain\bin\Debug\DAL.Domain.pdb
+C:\Users\aigne\Desktop\Matthias\SWK5\Einheit4\Uebung04\DAL\DAL.Domain\obj\Debug\DAL.Domain.csprojAssemblyReference.cache
+C:\Users\aigne\Desktop\Matthias\SWK5\Einheit4\Uebung04\DAL\DAL.Domain\obj\Debug\DAL.Domain.csproj.CoreCompileInputs.cache
+C:\Users\aigne\Desktop\Matthias\SWK5\Einheit4\Uebung04\DAL\DAL.Domain\obj\Debug\DAL.Domain.dll
+C:\Users\aigne\Desktop\Matthias\SWK5\Einheit4\Uebung04\DAL\DAL.Domain\obj\Debug\DAL.Domain.pdb
+C:\Users\aigne\source\repos\NewRepo\Wetr\DAL\DAL.Domain\bin\Debug\DAL.Domain.dll
+C:\Users\aigne\source\repos\NewRepo\Wetr\DAL\DAL.Domain\bin\Debug\DAL.Domain.pdb
+C:\Users\aigne\source\repos\NewRepo\Wetr\DAL\DAL.Domain\obj\Debug\DAL.Domain.csprojAssemblyReference.cache
+C:\Users\aigne\source\repos\NewRepo\Wetr\DAL\DAL.Domain\obj\Debug\DAL.Domain.csproj.CoreCompileInputs.cache
+C:\Users\aigne\source\repos\NewRepo\Wetr\DAL\DAL.Domain\obj\Debug\DAL.Domain.dll
+C:\Users\aigne\source\repos\NewRepo\Wetr\DAL\DAL.Domain\obj\Debug\DAL.Domain.pdb
