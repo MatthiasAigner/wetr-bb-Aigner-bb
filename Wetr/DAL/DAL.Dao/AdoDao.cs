@@ -10,7 +10,7 @@ using DAL.Domain;
 
 namespace DAL.Dao
 {
-    public class AdoPersonDao : IPersonDao
+    public class AdoDao : IDao
     {
         public static readonly RowMapper<Person> personMapper =
             row => new Person
@@ -20,10 +20,44 @@ namespace DAL.Dao
                 LastName = (string)row["last_name"],
                 DateOfBirth = (DateTime)row["date_of_birth"]
             };
+        public static readonly RowMapper<Communities> communitiesMapper =
+            row => new Communities
+            {
+                Community = (string)row["Community"],
+                Postalcode = (int)row["Postalcode"],
+                District = (string)row["District"],
+                Procince = (string)row["Procince"]
+            };
+        public static readonly RowMapper<Measurements> measurementsMapper =
+            row => new Measurements
+            {
+                Airtemperature = (int)row["Airtemperature"],
+                Airpressure = (double)row["Airpressure"],
+                Rainfall = (double)row["Rainfall"],
+                Humidity = (double)row["Humidity"],
+                WindSpeed = (double)row["WindSpeed"],
+                WindDirection = (string)row["WindDirection"],
+                Timestamp = (DateTime)row["Timestamp"]
+
+            };
+        public static readonly RowMapper<Stations> stationMapper =
+            row => new Stations
+            {
+                Station = (string)row["Station"],
+                StationTyp = (string)row["StationTyp"],
+                Coordinates = (string)row["Coordinates"],
+                Postalcode = (int)row["Postalcode"]
+            };
+        public static readonly RowMapper<Users> userMapper =
+            row => new Users
+            {
+                Username = (string)row["Username"],
+                Station = (string)row["Station"]
+            };
 
         private readonly AdoTemplate template;
 
-        public AdoPersonDao(IConnectionFactory connectionFactory)
+        public AdoDao(IConnectionFactory connectionFactory)
         {
             this.template = new AdoTemplate(connectionFactory);
         }

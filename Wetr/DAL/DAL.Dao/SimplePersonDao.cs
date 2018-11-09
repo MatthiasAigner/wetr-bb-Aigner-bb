@@ -7,7 +7,7 @@ using DAL.Domain;
 
 namespace DAL.Dao
 {
-    public class SimplePersonDao : IPersonDao
+    public class SimplePersonDao : IDao
     {
         private static readonly IList<Person> personList = new List<Person>
         {

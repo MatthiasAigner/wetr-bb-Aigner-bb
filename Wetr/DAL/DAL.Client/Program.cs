@@ -15,9 +15,9 @@ namespace DAL.Client {
     }
 
     class DALTester {
-        private IPersonDao personDao;
+        private IDao personDao;
 
-        public DALTester(IPersonDao personDao) {
+        public DALTester(IDao personDao) {
             this.personDao = personDao;
         }
 
@@ -134,7 +134,7 @@ namespace DAL.Client {
             tester1.TestFindAll();
 
             IConnectionFactory connectionFactory = DefaultConnectionFactory.FromConfiguration("PersonDbConnection");
-            DALTester tester2 = new DALTester(new AdoPersonDao(connectionFactory));
+            DALTester tester2 = new DALTester(new AdoDao(connectionFactory));
 
             
 

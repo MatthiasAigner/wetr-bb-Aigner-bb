@@ -10,3 +10,9 @@ C:\Users\aigne\source\repos\NewRepo\Wetr\DAL\DAL.Domain\obj\Debug\DAL.Domain.csp
 C:\Users\aigne\source\repos\NewRepo\Wetr\DAL\DAL.Domain\obj\Debug\DAL.Domain.csproj.CoreCompileInputs.cache
 C:\Users\aigne\source\repos\NewRepo\Wetr\DAL\DAL.Domain\obj\Debug\DAL.Domain.dll
 C:\Users\aigne\source\repos\NewRepo\Wetr\DAL\DAL.Domain\obj\Debug\DAL.Domain.pdb
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\DAL\DAL.Domain\bin\Debug\DAL.Domain.dll
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\DAL\DAL.Domain\bin\Debug\DAL.Domain.pdb
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\DAL\DAL.Domain\obj\Debug\DAL.Domain.csprojAssemblyReference.cache
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\DAL\DAL.Domain\obj\Debug\DAL.Domain.csproj.CoreCompileInputs.cache
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\DAL\DAL.Domain\obj\Debug\DAL.Domain.dll
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\DAL\DAL.Domain\obj\Debug\DAL.Domain.pdb

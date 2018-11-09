@@ -20,3 +20,14 @@ C:\Users\aigne\source\repos\NewRepo\Wetr\DAL\DAL.Dao\obj\Debug\DAL.Dao.csproj.Co
 C:\Users\aigne\source\repos\NewRepo\Wetr\DAL\DAL.Dao\obj\Debug\DAL.Dao.csproj.CopyComplete
 C:\Users\aigne\source\repos\NewRepo\Wetr\DAL\DAL.Dao\obj\Debug\DAL.Dao.dll
 C:\Users\aigne\source\repos\NewRepo\Wetr\DAL\DAL.Dao\obj\Debug\DAL.Dao.pdb
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\DAL\DAL.Dao\bin\Debug\DAL.Dao.dll
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\DAL\DAL.Dao\bin\Debug\DAL.Dao.pdb
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\DAL\DAL.Dao\bin\Debug\DAL.Common.dll
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\DAL\DAL.Dao\bin\Debug\DAL.Domain.dll
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\DAL\DAL.Dao\bin\Debug\DAL.Common.pdb
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\DAL\DAL.Dao\bin\Debug\DAL.Domain.pdb
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\DAL\DAL.Dao\obj\Debug\DAL.Dao.csprojAssemblyReference.cache
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\DAL\DAL.Dao\obj\Debug\DAL.Dao.csproj.CoreCompileInputs.cache
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\DAL\DAL.Dao\obj\Debug\DAL.Dao.csproj.CopyComplete
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\DAL\DAL.Dao\obj\Debug\DAL.Dao.dll
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\DAL\DAL.Dao\obj\Debug\DAL.Dao.pdb

@@ -7,7 +7,7 @@ using System.Threading.Tasks;
 
 namespace DAL.Dao
 {
-    public interface IPersonDao
+    public interface IDao
     {
         IEnumerable<Person> FindAll();
         Person FindById(int id);

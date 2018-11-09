@@ -16,7 +16,7 @@ namespace DAL.Domain
         public double Rainfall { get; set; } // mm/h
         public double Humidity { get; set; } // %
         public double WindSpeed { get; set; }// km/h
-        public Directions WindDirection { get; set; }
+        public /*Directions*/ string WindDirection { get; set; }
         public DateTime Timestamp { get; set; }
 
         public ICollection<Stations> Stations { get; set; }
