@@ -9,8 +9,9 @@ namespace DAL.Dao
 {
     public interface IStationsDao
     {
-        IEnumerable<Stations> FindAll();
-        Stations FindByName(string station);
-        bool Update(Stations station);
+        IEnumerable<Stations> FindAllStations();
+        Stations FindStationByName(string station);
+        bool InsertStation(Stations station);
+        bool DeleteStation(string station);
     }
 }

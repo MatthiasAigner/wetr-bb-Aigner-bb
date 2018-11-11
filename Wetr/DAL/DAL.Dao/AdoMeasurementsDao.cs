@@ -34,46 +34,20 @@ namespace DAL.Dao
             this.template = new AdoTemplate(connectionFactory);
         }
 
-        public IEnumerable<Measurements> FindAll()
+        public IEnumerable<Measurements> FindAllMeasurements()
         {
-        //    string connString = ConfigurationManager.ConnectionStrings["PersonDbConnection"].ConnectionString;
-        //    string providerName = ConfigurationManager.ConnectionStrings["PersonDbConnection"].ProviderName;
-
-        //    DbProviderFactory dbFactory = DbProviderFactories.GetFactory(providerName);
-
-        //    using (DbConnection connection = dbFactory.CreateConnection())
-        //    {
-        //        connection.ConnectionString = connString;
-        //        connection.Open();
-
-        //        using (DbCommand command = connection.CreateCommand())
-        //        {
-        //            command.CommandText = "select * from person";
-
-        //            var items = new List<Person>();
-        //            using (DbDataReader reader = command.ExecuteReader())
-        //            {
-        //                while (reader.Read())
-        //                {
-        //                    items.Add(
-        //                        new Person
-        //                        {
-        //                            Id = (int)reader["id"],
-        //                            FirstName = (string)reader["first_name"],
-        //                            LastName = (string)reader["last_name"],
-        //                            DateOfBirth = (DateTime)reader["date_of_birth"]
-        //                        }
-        //                     );
-        //                }
-        //            }
-        //            return items;
-        //        }                
-        //    }
-        
-        return template.Query("select * from Measurements", measurementMapper);
+            return template.Query("select * from Measurements", measurementMapper);
         }
 
-        public Measurements FindById(int id)
+        public Measurements FindAllMeasurementsByStation(string station)
+        {
+            return template.Query("select * from Measurements where Station=@station",
+                measurementMapper,
+                new[] { new SqlParameter("@station", station) }
+                ).SingleOrDefault();
+        }
+
+        public Measurements FindAllMeasurementsById(int id)
         {
             return template.Query("select * from Measurements where id=@id",
                 measurementMapper,
@@ -81,18 +55,32 @@ namespace DAL.Dao
                 ).SingleOrDefault();
         }
 
-        public bool Update(Measurements measurement)
+        public bool InsertMeasurement(Measurements measurement)
         {
-            //return template.Execute(
-            //    "update person set first_name=@fn, last_name=@ln, date_of_birth=@dob where id=@id",
-            //    new[]
-            //    {
-            //        new SqlParameter("@id", person.Id),
-            //        new SqlParameter("@fn", person.FirstName),
-            //        new SqlParameter("@ln", person.LastName),
-            //        new SqlParameter("@dob", person.DateOfBirth)
-            //    }) == 1;
-            return false;
+            return template.Execute(
+                "insert into Measurements values (@station, @airtemperature, @airpressure, @rainfall, @humidity, @windSpeed, @windDirection, @timestamp)",
+                new[]
+                {
+                    new SqlParameter("@station", measurement.Station),
+                    new SqlParameter("@airtemperature", measurement.Airtemperature),
+                    new SqlParameter("@airpressure", measurement.Airpressure),
+                    new SqlParameter("@rainfall", measurement.Rainfall),
+                    new SqlParameter("@humidity", measurement.Humidity),
+                    new SqlParameter("@windSpeed", measurement.WindSpeed),
+                    new SqlParameter("@windDirection", measurement.WindDirection),
+                    new SqlParameter("@timestamp", measurement.Timestamp),
+
+                }) == 1;
+        }
+
+        public bool DeleteMeasurement(int id)
+        {
+            return template.Execute(
+                "delete from Measurements where Id=@id",
+                new[]
+                {
+                    new SqlParameter("@id", id)
+                }) == 1;
         }
     }
 }

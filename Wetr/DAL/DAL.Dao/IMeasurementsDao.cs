@@ -9,8 +9,10 @@ namespace DAL.Dao
 {
     public interface IMeasurementsDao
     {
-        IEnumerable<Measurements> FindAll();
-        Measurements FindById(int id);
-        bool Update(Measurements measurment);
+        IEnumerable<Measurements> FindAllMeasurements();
+        Measurements FindAllMeasurementsByStation(string station);
+        Measurements FindAllMeasurementsById(int id);
+        bool InsertMeasurement(Measurements measurement);
+        bool DeleteMeasurement(int id);
     }
 }

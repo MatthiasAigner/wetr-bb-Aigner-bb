@@ -9,8 +9,7 @@ namespace DAL.Dao
 {
     public interface ICommunitiesDao
     {
-        IEnumerable<Communities> FindAll();
-        Communities FindByPostalcode(int postalcode);
-        bool Update(Communities community);
+        IEnumerable<Communities> FindAllCommunities();
+        Communities FindCommunityByPostalcode(int postalcode);
     }
 }

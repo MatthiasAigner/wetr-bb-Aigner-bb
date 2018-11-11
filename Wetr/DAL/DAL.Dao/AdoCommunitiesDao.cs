@@ -30,46 +30,12 @@ namespace DAL.Dao
             this.template = new AdoTemplate(connectionFactory);
         }
 
-        public IEnumerable<Communities> FindAll()
+        public IEnumerable<Communities> FindAllCommunities()
         {
-        //    string connString = ConfigurationManager.ConnectionStrings["PersonDbConnection"].ConnectionString;
-        //    string providerName = ConfigurationManager.ConnectionStrings["PersonDbConnection"].ProviderName;
-
-        //    DbProviderFactory dbFactory = DbProviderFactories.GetFactory(providerName);
-
-        //    using (DbConnection connection = dbFactory.CreateConnection())
-        //    {
-        //        connection.ConnectionString = connString;
-        //        connection.Open();
-
-        //        using (DbCommand command = connection.CreateCommand())
-        //        {
-        //            command.CommandText = "select * from person";
-
-        //            var items = new List<Person>();
-        //            using (DbDataReader reader = command.ExecuteReader())
-        //            {
-        //                while (reader.Read())
-        //                {
-        //                    items.Add(
-        //                        new Person
-        //                        {
-        //                            Id = (int)reader["id"],
-        //                            FirstName = (string)reader["first_name"],
-        //                            LastName = (string)reader["last_name"],
-        //                            DateOfBirth = (DateTime)reader["date_of_birth"]
-        //                        }
-        //                     );
-        //                }
-        //            }
-        //            return items;
-        //        }                
-        //    }
-        
-        return template.Query("select * from Communities", communityMapper);
+            return template.Query("select * from Communities", communityMapper);
         }
 
-        public Communities FindByPostalcode(int postalcode)
+        public Communities FindCommunityByPostalcode(int postalcode)
         {
             return template.Query("select * from Communities where postalcode=@postalcode",
                 communityMapper,
@@ -77,18 +43,6 @@ namespace DAL.Dao
                 ).SingleOrDefault();
         }
 
-        public bool Update(Communities community)
-        {
-            //return template.Execute(
-            //    "update person set first_name=@fn, last_name=@ln, date_of_birth=@dob where id=@id",
-            //    new[]
-            //    {
-            //        new SqlParameter("@id", person.Id),
-            //        new SqlParameter("@fn", person.FirstName),
-            //        new SqlParameter("@ln", person.LastName),
-            //        new SqlParameter("@dob", person.DateOfBirth)
-            //    }) == 1;
-            return false;
-        }
+        
     }
 }
