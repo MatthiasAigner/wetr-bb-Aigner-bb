@@ -11,17 +11,17 @@ namespace DAL.Domain
         {
         }
 
-        public Communities(string community, int postalcode, string district, string procince)
+        public Communities(string community, int postalcode, string district, string province)
         {
             this.Community = community;
             this.Postalcode = postalcode;
             this.District = district;
-            this.Procince = procince;
+            this.Province = province;
         }
 
         public string Community { get; set; }
         public int Postalcode { get; set; }
         public string District { get; set; }
-        public string Procince { get; set; }
+        public string Province { get; set; }
     }
 }

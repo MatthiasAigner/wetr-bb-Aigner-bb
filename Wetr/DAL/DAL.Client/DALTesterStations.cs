@@ -10,50 +10,55 @@ namespace DAL.Client
 {
     class DALTesterStations
     {
-        private IUsersDao userDao;
+        private IStationsDao stationDao;
 
-        public DALTesterStations(IUsersDao userDao)
+        public DALTesterStations(IStationsDao stationDao)
         {
-            this.userDao = userDao;
+            this.stationDao = stationDao;
         }
 
-        public void TestFindAllUsers()
+        public void TestFindAllStations()
         {
-            foreach (Users u in userDao.FindAllUsers())
+            foreach (Stations s in stationDao.FindAllStations())
             {
-                Console.WriteLine($"{u.Username,5} | {u.Station,-10} ");//| {p.LastName,-15} | {p.DateOfBirth,10:yyyy-MM-dd}");
+                Console.WriteLine($"Station: {s.Station,5} | " +
+                    $"StationTyp: {s.StationTyp,-10} | " +
+                    $"CoordinatesLongitude: {s.CoordinatesLongitude,5} | " +
+                    $"CoordinatesLatitude: {s.CoordinatesLatitude,-10} | " +
+                    $"Postalcode: {s.Postalcode,-10}");
             }
         }
 
-        public void TestFindUserByUsername(string username)
+        public void TestFindStationByName(string station)
         {
-            if (userDao.FindUserByUsername(username) != null)
-                Console.WriteLine($"FindByName({username}) -> {userDao.FindUserByUsername(username).Username,5} | {userDao.FindUserByUsername(username).Station,-10} ");
+            Stations s = stationDao.FindStationByName(station);
+            if (s != null)
+                Console.WriteLine($"FindStationByName({station}) -> " +
+                    $"Station: {s.Station,5} | " +
+                    $"StationTyp: {s.StationTyp,-10} | " +
+                    $"CoordinatesLongitude: {s.CoordinatesLongitude,5} | " +
+                    $"CoordinatesLatitude: {s.CoordinatesLatitude,-10} | " +
+                    $"Postalcode: {s.Postalcode,-10}");
             else
             {
-                Console.WriteLine($"FindByName({username}) -> null");
+                Console.WriteLine($"FindStationByName({station}) -> null");
             }
         }
 
-        public void TestInsertUser(string username, string station)
-        {
-            Users user = new Users(username, station);
-            userDao.InsertUser(user);
-            Console.WriteLine($"InsertUser({username},{station})");
+        public void TestInsertStation(Stations s)
+        {            
+            stationDao.InsertStation(s);
+            Console.WriteLine($"InsertUser({s.Station,5} | " +
+                $"StationTyp: {s.StationTyp,-10} | " +
+                $"CoordinatesLongitude: {s.CoordinatesLongitude,5} | " +
+                $"CoordinatesLatitude: {s.CoordinatesLatitude,-10} | " +
+                $"Postalcode: {s.Postalcode,-10})");
         }
 
-        public void TestDeleteUser(string username)
+        public void TestDeleteStation(string station)
         {
-            userDao.DeleteUser(username);
-            Console.WriteLine($"DeleteUser({username})");
+            stationDao.DeleteStation(station);
+            Console.WriteLine($"DeleteUser({station})");
         }
-
-
-
-
-
-
-
-
     }
 }

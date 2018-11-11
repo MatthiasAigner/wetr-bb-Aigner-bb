@@ -16,7 +16,7 @@ namespace DAL.Dao
         public static readonly RowMapper<Measurements> measurementMapper =
             row => new Measurements
             {
-                Airtemperature = (int)row["Airtemperature"],
+                Airtemperature = (double)row["Airtemperature"],
                 Airpressure = (double)row["Airpressure"],
                 Rainfall = (double)row["Rainfall"],
                 Humidity = (double)row["Humidity"],
@@ -47,7 +47,7 @@ namespace DAL.Dao
                 ).SingleOrDefault();
         }
 
-        public Measurements FindAllMeasurementsById(int id)
+        public Measurements FindMeasurementById(int id)
         {
             return template.Query("select * from Measurements where id=@id",
                 measurementMapper,

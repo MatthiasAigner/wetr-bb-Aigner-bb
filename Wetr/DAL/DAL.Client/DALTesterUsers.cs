@@ -21,25 +21,25 @@ namespace DAL.Client
         {
             foreach (Users u in userDao.FindAllUsers())
             {
-                Console.WriteLine($"{u.Username,5} | {u.Station,-10} ");//| {p.LastName,-15} | {p.DateOfBirth,10:yyyy-MM-dd}");
+                Console.WriteLine($"{u.Username,5} | {u.Station,-10} ");
             }
         }
 
         public void TestFindUserByUsername(string username)
         {
-            if (userDao.FindUserByUsername(username) != null)
-                Console.WriteLine($"FindByName({username}) -> {userDao.FindUserByUsername(username).Username,5} | {userDao.FindUserByUsername(username).Station,-10} ");
+            Users u = userDao.FindUserByUsername(username);
+            if (u != null)
+                Console.WriteLine($"FindByName({username}) -> {u.Username,5} | {u.Station,-10} ");
             else
             {
                 Console.WriteLine($"FindByName({username}) -> null");
             }
         }
 
-        public void TestInsertUser(string username, string station)
+        public void TestInsertUser(Users u)
         {
-            Users user = new Users(username, station);
-            userDao.InsertUser(user);
-            Console.WriteLine($"InsertUser({username},{station})");
+            userDao.InsertUser(u);
+            Console.WriteLine($"InsertUser({u.Username,5} | {u.Station,-10})");
         }
 
         public void TestDeleteUser(string username)

@@ -10,50 +10,91 @@ namespace DAL.Client
 {
     class DALTesterMeasurements
     {
-        private IUsersDao userDao;
+        private IMeasurementsDao measurementDao;
 
-        public DALTesterMeasurements(IUsersDao userDao)
+        public DALTesterMeasurements(IMeasurementsDao measurementDao)
         {
-            this.userDao = userDao;
+            this.measurementDao = measurementDao;
         }
 
-        public void TestFindAllUsers()
+        public void TestFindAllMeasurements()
         {
-            foreach (Users u in userDao.FindAllUsers())
+            foreach (Measurements m in measurementDao.FindAllMeasurements())
             {
-                Console.WriteLine($"{u.Username,5} | {u.Station,-10} ");//| {p.LastName,-15} | {p.DateOfBirth,10:yyyy-MM-dd}");
+                Console.WriteLine($"Station: {m.Station,5} | " +
+                    $"Airtemperature: {m.Airtemperature,-10} | " +
+                    $"Airpressure: {m.Airpressure,5} | " +
+                    $"Rainfall: {m.Rainfall,-10} | " +
+                    $"Humidity: {m.Humidity,-10} | " +
+                    $"WindSpeed: {m.WindSpeed,5} | " +
+                    $"WindDirection: {m.WindDirection,-10} | " +
+                    $"Timestamp: {m.Timestamp,-10}");
             }
         }
 
-        public void TestFindUserByUsername(string username)
+        public void TestFindAllMeasurementsByStation(string station)
         {
-            if (userDao.FindUserByUsername(username) != null)
-                Console.WriteLine($"FindByName({username}) -> {userDao.FindUserByUsername(username).Username,5} | {userDao.FindUserByUsername(username).Station,-10} ");
+            Measurements m = measurementDao.FindAllMeasurementsByStation(station);
+            if (m != null)
+                Console.WriteLine($"FindAllMeasurementsByStation({station}) -> " +
+                    $"Station: {m.Station,5} | " +
+                    $"Airtemperature: {m.Airtemperature,-10} | " +
+                    $"Airpressure: {m.Airpressure,5} | " +
+                    $"Rainfall: {m.Rainfall,-10} | " +
+                    $"Humidity: {m.Humidity,-10} | " +
+                    $"WindSpeed: {m.WindSpeed,5} | " +
+                    $"WindDirection: {m.WindDirection,-10} | " +
+                    $"Timestamp: {m.Timestamp,-10}");
             else
             {
-                Console.WriteLine($"FindByName({username}) -> null");
+                Console.WriteLine($"FindAllMeasurementsByStation({station}) -> null");
             }
         }
 
-        public void TestInsertUser(string username, string station)
+        public void TestFindMeasurementById(int id)
         {
-            Users user = new Users(username, station);
-            userDao.InsertUser(user);
-            Console.WriteLine($"InsertUser({username},{station})");
+            Measurements m = measurementDao.FindMeasurementById(id);
+            if (m != null)
+                Console.WriteLine($"FindMeasurementById({id}) -> Station: {m.Station,5} " +
+                    $"| Airtemperature: {m.Airtemperature,-10} | " +
+                    $"Airpressure: {m.Airpressure,5} | " +
+                    $"Rainfall: {m.Rainfall,-10} | " +
+                    $"Humidity: {m.Humidity,-10} | " +
+                    $"WindSpeed: {m.WindSpeed,5} | " +
+                    $"WindDirection: {m.WindDirection,-10} | " +
+                    $"Timestamp: {m.Timestamp,-10}");
+            else
+            {
+                Console.WriteLine($"FindAllMeasurementsById({id}) -> null");
+            }
         }
 
-        public void TestDeleteUser(string username)
+        public void TestInsertMeasurement(Measurements m)
         {
-            userDao.DeleteUser(username);
-            Console.WriteLine($"DeleteUser({username})");
+            measurementDao.InsertMeasurement(m);
+            Console.WriteLine($"InsertUser({m.Station,5} | " +
+                $"Airtemperature: {m.Airtemperature,-10} | " +
+                $"Airpressure: {m.Airpressure,5} | " +
+                $"Rainfall: {m.Rainfall,-10} | " +
+                $"Humidity: {m.Humidity,-10} | " +
+                $"WindSpeed: {m.WindSpeed,5} | " +
+                $"WindDirection: {m.WindDirection,-10} | " +
+                $"Timestamp: {m.Timestamp,-10})");
         }
 
-
-
-
-
-
-
-
+        public void TestDeleteMeasurement(int id)
+        {
+            measurementDao.DeleteMeasurement(id);
+            Console.WriteLine($"DeleteUser({id})");
+        }
     }
+
+
+
+
+
+
+
+
+
 }

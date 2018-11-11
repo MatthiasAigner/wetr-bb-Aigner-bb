@@ -19,7 +19,7 @@ namespace DAL.Dao
                 Community = (string)row["Community"],
                 Postalcode = (int)row["Postalcode"],
                 District = (string)row["District"],
-                Procince = (string)row["Procince"]
+                Province = (string)row["Province"]
             };
         
 

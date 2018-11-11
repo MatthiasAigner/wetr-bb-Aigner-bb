@@ -11,7 +11,7 @@ namespace DAL.Dao
     {
         IEnumerable<Measurements> FindAllMeasurements();
         Measurements FindAllMeasurementsByStation(string station);
-        Measurements FindAllMeasurementsById(int id);
+        Measurements FindMeasurementById(int id);
         bool InsertMeasurement(Measurements measurement);
         bool DeleteMeasurement(int id);
     }

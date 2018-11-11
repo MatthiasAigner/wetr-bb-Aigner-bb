@@ -10,50 +10,37 @@ namespace DAL.Client
 {
     class DALTesterCommunities
     {
-        private IUsersDao userDao;
+        private ICommunitiesDao communityDao;
 
-        public DALTesterCommunities(IUsersDao userDao)
+        public DALTesterCommunities(ICommunitiesDao communityDao)
         {
-            this.userDao = userDao;
+            this.communityDao = communityDao;
         }
 
-        public void TestFindAllUsers()
+        public void TestFindAllCommunities()
         {
-            foreach (Users u in userDao.FindAllUsers())
+            foreach (Communities c in communityDao.FindAllCommunities())
             {
-                Console.WriteLine($"{u.Username,5} | {u.Station,-10} ");//| {p.LastName,-15} | {p.DateOfBirth,10:yyyy-MM-dd}");
+                Console.WriteLine($"Community: {c.Community,5} | " +
+                    $"Postalcode: {c.Postalcode,-10} | " +
+                    $"District: {c.District,5} | " +
+                    $"Province: {c.Province,-10}");
             }
         }
 
-        public void TestFindUserByUsername(string username)
+        public void TestFindCommunityByPostalcode(int postalcode)
         {
-            if (userDao.FindUserByUsername(username) != null)
-                Console.WriteLine($"FindByName({username}) -> {userDao.FindUserByUsername(username).Username,5} | {userDao.FindUserByUsername(username).Station,-10} ");
+            Communities c = communityDao.FindCommunityByPostalcode(postalcode);
+            if (c != null)
+                Console.WriteLine($"FindStationByName({postalcode}) -> " +
+                    $"Community: {c.Community,5} | " +
+                    $"Postalcode: {c.Postalcode,-10} | " +
+                    $"District: {c.District,5} | " +
+                    $"Province: {c.Province,-10}");
             else
             {
-                Console.WriteLine($"FindByName({username}) -> null");
+                Console.WriteLine($"FindStationByName({postalcode}) -> null");
             }
-        }
-
-        public void TestInsertUser(string username, string station)
-        {
-            Users user = new Users(username, station);
-            userDao.InsertUser(user);
-            Console.WriteLine($"InsertUser({username},{station})");
-        }
-
-        public void TestDeleteUser(string username)
-        {
-            userDao.DeleteUser(username);
-            Console.WriteLine($"DeleteUser({username})");
-        }
-
-
-
-
-
-
-
-
+        }        
     }
 }
