@@ -16,8 +16,8 @@ namespace DAL.Dao
         public static readonly RowMapper<Communities> communityMapper =
             row => new Communities
             {
-                Community = (string)row["Community"],
                 Postalcode = (int)row["Postalcode"],
+                Community = (string)row["Community"],                
                 District = (string)row["District"],
                 Province = (string)row["Province"]
             };

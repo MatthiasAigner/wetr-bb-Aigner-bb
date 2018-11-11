@@ -72,7 +72,7 @@ namespace DAL.Client
         public void TestInsertMeasurement(Measurements m)
         {
             measurementDao.InsertMeasurement(m);
-            Console.WriteLine($"InsertUser({m.Station,5} | " +
+            Console.WriteLine($"InsertMeasurement({m.Station,5} | " +
                 $"Airtemperature: {m.Airtemperature,-10} | " +
                 $"Airpressure: {m.Airpressure,5} | " +
                 $"Rainfall: {m.Rainfall,-10} | " +

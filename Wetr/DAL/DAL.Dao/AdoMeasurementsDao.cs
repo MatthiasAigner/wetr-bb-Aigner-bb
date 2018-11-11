@@ -12,17 +12,19 @@ namespace DAL.Dao
 {
     public class AdoMeasurementsDao : IMeasurementsDao
     {
-        
+
         public static readonly RowMapper<Measurements> measurementMapper =
             row => new Measurements
             {
+                Station = (string)row["Station"],
+                Timestamp = (string)row["Timestamp"],
                 Airtemperature = (double)row["Airtemperature"],
                 Airpressure = (double)row["Airpressure"],
                 Rainfall = (double)row["Rainfall"],
                 Humidity = (double)row["Humidity"],
                 WindSpeed = (double)row["WindSpeed"],
                 WindDirection = (string)row["WindDirection"],
-                Timestamp = (DateTime)row["Timestamp"]
+                
 
             };
         
@@ -62,13 +64,14 @@ namespace DAL.Dao
                 new[]
                 {
                     new SqlParameter("@station", measurement.Station),
+                    new SqlParameter("@timestamp", measurement.Timestamp),
                     new SqlParameter("@airtemperature", measurement.Airtemperature),
                     new SqlParameter("@airpressure", measurement.Airpressure),
                     new SqlParameter("@rainfall", measurement.Rainfall),
                     new SqlParameter("@humidity", measurement.Humidity),
                     new SqlParameter("@windSpeed", measurement.WindSpeed),
-                    new SqlParameter("@windDirection", measurement.WindDirection),
-                    new SqlParameter("@timestamp", measurement.Timestamp),
+                    new SqlParameter("@windDirection", measurement.WindDirection)
+                    ,
 
                 }) == 1;
         }

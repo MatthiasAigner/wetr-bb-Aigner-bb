@@ -48,7 +48,7 @@ namespace DAL.Client
         public void TestInsertStation(Stations s)
         {            
             stationDao.InsertStation(s);
-            Console.WriteLine($"InsertUser({s.Station,5} | " +
+            Console.WriteLine($"InsertStation({s.Station,5} | " +
                 $"StationTyp: {s.StationTyp,-10} | " +
                 $"CoordinatesLongitude: {s.CoordinatesLongitude,5} | " +
                 $"CoordinatesLatitude: {s.CoordinatesLatitude,-10} | " +
