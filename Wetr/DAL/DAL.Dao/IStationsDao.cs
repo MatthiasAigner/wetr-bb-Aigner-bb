@@ -7,10 +7,10 @@ using System.Threading.Tasks;
 
 namespace DAL.Dao
 {
-    public interface IDao
+    public interface IStationsDao
     {
-        IEnumerable<Person> FindAll();
-        Person FindById(int id);
-        bool Update(Person person);
+        IEnumerable<Stations> FindAll();
+        Stations FindByName(string station);
+        bool Update(Stations station);
     }
 }

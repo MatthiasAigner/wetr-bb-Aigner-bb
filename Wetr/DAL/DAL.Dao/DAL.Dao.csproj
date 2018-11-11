@@ -42,10 +42,15 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="AdoDao.cs" />
-    <Compile Include="IDao.cs" />
+    <Compile Include="AdoCommunitiesDao.cs" />
+    <Compile Include="AdoMeasurementsDao.cs" />
+    <Compile Include="AdoStationsDao.cs" />
+    <Compile Include="AdoUsersDao.cs" />
+    <Compile Include="ICommunitiesDao.cs" />
+    <Compile Include="IMeasurementsDao.cs" />
+    <Compile Include="IStationsDao.cs" />
+    <Compile Include="IUsersDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
-    <Compile Include="SimplePersonDao.cs" />
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\DAL.Common\DAL.Common.csproj">

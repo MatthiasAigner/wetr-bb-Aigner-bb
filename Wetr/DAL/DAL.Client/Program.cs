@@ -15,37 +15,48 @@ namespace DAL.Client {
     }
 
     class DALTester {
-        private IDao personDao;
+        private IUsersDao userDao;
 
-        public DALTester(IDao personDao) {
-            this.personDao = personDao;
+        public DALTester(IUsersDao userDao) {
+            this.userDao = userDao;
         }
 
         public void TestFindAll() {
-            foreach(Person p in personDao.FindAll())
+            foreach(Users u in userDao.FindAll())
             {
-                Console.WriteLine($"{p.Id,5} | {p.FirstName,-10} | {p.LastName,-15} | {p.DateOfBirth,10:yyyy-MM-dd}");
+                Console.WriteLine($"{u.Username,5} | {u.Station,-10} ");//| {p.LastName,-15} | {p.DateOfBirth,10:yyyy-MM-dd}");
 
             }
         }
 
-        public void TestFindById() {
-            Person person1 = personDao.FindById(1);
-            Console.WriteLine($"FindById(1) -> {person1.ToStringOrNull()}");
-
-            Person person2 = personDao.FindById(99);
-            Console.WriteLine($"FindById(99) -> {person2.ToStringOrNull()}");
+        public void TestFindByName(string username) {
+            //Users user1 = personDao.FindById(1);
+            //Console.WriteLine($"FindByName({username}) -> {userDao.FindByName(username).ToStringOrNull()}");
+            if(userDao.FindByName(username) != null)
+                Console.WriteLine($"FindByName({username}) -> {userDao.FindByName(username).Username,5} | {userDao.FindByName(username).Station,-10} ");
+            else
+            {
+                Console.WriteLine($"FindByName({username}) -> null");
+            }
+            //Person person2 = personDao.FindById(99);
+            //Console.WriteLine($"FindById(99) -> {person2.ToStringOrNull()}");
         }
 
-        public void TestUpdate() {
-            Person person = personDao.FindById(1);
-            Console.WriteLine($"before update: person -> {person.ToStringOrNull()}");
-            person.DateOfBirth = DateTime.Now.AddYears(-100);
-            personDao.Update(person);
+        //public void TestUpdate() {
+        //    Person person = personDao.FindById(1);
+        //    Console.WriteLine($"before update: person -> {person.ToStringOrNull()}");
+        //    person.DateOfBirth = DateTime.Now.AddYears(-100);
+        //    personDao.Update(person);
 
-            person = personDao.FindById(1);
-            Console.WriteLine($"after update:  person -> {person.ToStringOrNull()}");
-        }
+        //    person = personDao.FindById(1);
+        //    Console.WriteLine($"after update:  person -> {person.ToStringOrNull()}");
+        //}
+
+
+
+
+
+
 
         //public void TestTransactions() {
         //    Person person1 = personDao.FindById(1);
@@ -128,24 +139,27 @@ namespace DAL.Client {
             // Here we create the component tree in the main programm.
             //
 
-            DALTester tester1 = new DALTester(new SimplePersonDao());
+            //DALTester tester1 = new DALTester(new SimplePersonDao());
 
-            PrintTitle("PersonDaoSimple.FindAll", 50);
-            tester1.TestFindAll();
+            //PrintTitle("PersonDaoSimple.FindAll", 50);
+            //tester1.TestFindAll();
 
-            IConnectionFactory connectionFactory = DefaultConnectionFactory.FromConfiguration("PersonDbConnection");
-            DALTester tester2 = new DALTester(new AdoDao(connectionFactory));
+            IConnectionFactory connectionFactory = DefaultConnectionFactory.FromConfiguration("PersonDbConnection"); //gehört noch umbenannt
+            DALTester tester2 = new DALTester(new AdoUsersDao(connectionFactory));
 
             
 
-            PrintTitle("PersonDao.FindAll", 50);
+            PrintTitle("UsersDao.FindAll", 50);
             tester2.TestFindAll();
 
-            PrintTitle("PersonDao.FindById", 50);
-            tester2.TestFindById();
+            PrintTitle("UsersDao.FindByName", 50);
+            tester2.TestFindByName("Use2");
 
-            PrintTitle("PersonDao.Update", 50);
-            tester2.TestUpdate();
+            PrintTitle("UsersDao.FindByName", 50);
+            tester2.TestFindByName("User2");
+
+            //PrintTitle("PersonDao.Update", 50);
+            //tester2.TestUpdate();
 
             PrintTitle("Transactions", 50);
             //tester2.TestTransactions();

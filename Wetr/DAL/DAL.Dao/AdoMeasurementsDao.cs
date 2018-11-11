@@ -10,25 +10,10 @@ using DAL.Domain;
 
 namespace DAL.Dao
 {
-    public class AdoDao : IDao
+    public class AdoMeasurementsDao : IMeasurementsDao
     {
-        public static readonly RowMapper<Person> personMapper =
-            row => new Person
-            {
-                Id = (int)row["id"],
-                FirstName = (string)row["first_name"],
-                LastName = (string)row["last_name"],
-                DateOfBirth = (DateTime)row["date_of_birth"]
-            };
-        public static readonly RowMapper<Communities> communitiesMapper =
-            row => new Communities
-            {
-                Community = (string)row["Community"],
-                Postalcode = (int)row["Postalcode"],
-                District = (string)row["District"],
-                Procince = (string)row["Procince"]
-            };
-        public static readonly RowMapper<Measurements> measurementsMapper =
+        
+        public static readonly RowMapper<Measurements> measurementMapper =
             row => new Measurements
             {
                 Airtemperature = (int)row["Airtemperature"],
@@ -40,29 +25,16 @@ namespace DAL.Dao
                 Timestamp = (DateTime)row["Timestamp"]
 
             };
-        public static readonly RowMapper<Stations> stationMapper =
-            row => new Stations
-            {
-                Station = (string)row["Station"],
-                StationTyp = (string)row["StationTyp"],
-                Coordinates = (string)row["Coordinates"],
-                Postalcode = (int)row["Postalcode"]
-            };
-        public static readonly RowMapper<Users> userMapper =
-            row => new Users
-            {
-                Username = (string)row["Username"],
-                Station = (string)row["Station"]
-            };
+        
 
         private readonly AdoTemplate template;
 
-        public AdoDao(IConnectionFactory connectionFactory)
+        public AdoMeasurementsDao(IConnectionFactory connectionFactory)
         {
             this.template = new AdoTemplate(connectionFactory);
         }
 
-        public IEnumerable<Person> FindAll()
+        public IEnumerable<Measurements> FindAll()
         {
         //    string connString = ConfigurationManager.ConnectionStrings["PersonDbConnection"].ConnectionString;
         //    string providerName = ConfigurationManager.ConnectionStrings["PersonDbConnection"].ProviderName;
@@ -98,28 +70,29 @@ namespace DAL.Dao
         //        }                
         //    }
         
-        return template.Query("select * from person", personMapper);
+        return template.Query("select * from Measurements", measurementMapper);
         }
 
-        public Person FindById(int id)
+        public Measurements FindById(int id)
         {
-            return template.Query("select * from person where id=@id",
-                personMapper,
+            return template.Query("select * from Measurements where id=@id",
+                measurementMapper,
                 new[] { new SqlParameter("@id", id) }
                 ).SingleOrDefault();
         }
 
-        public bool Update(Person person)
+        public bool Update(Measurements measurement)
         {
-            return template.Execute(
-                "update person set first_name=@fn, last_name=@ln, date_of_birth=@dob where id=@id",
-                new[]
-                {
-                    new SqlParameter("@id", person.Id),
-                    new SqlParameter("@fn", person.FirstName),
-                    new SqlParameter("@ln", person.LastName),
-                    new SqlParameter("@dob", person.DateOfBirth)
-                }) == 1;
+            //return template.Execute(
+            //    "update person set first_name=@fn, last_name=@ln, date_of_birth=@dob where id=@id",
+            //    new[]
+            //    {
+            //        new SqlParameter("@id", person.Id),
+            //        new SqlParameter("@fn", person.FirstName),
+            //        new SqlParameter("@ln", person.LastName),
+            //        new SqlParameter("@dob", person.DateOfBirth)
+            //    }) == 1;
+            return false;
         }
     }
 }
