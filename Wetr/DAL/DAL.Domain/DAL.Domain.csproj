@@ -43,7 +43,6 @@
   <ItemGroup>
     <Compile Include="Communities.cs" />
     <Compile Include="Measurements.cs" />
-    <Compile Include="Person.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Stations.cs" />
     <Compile Include="Users.cs" />

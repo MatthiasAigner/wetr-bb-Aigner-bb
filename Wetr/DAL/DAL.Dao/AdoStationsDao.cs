@@ -18,7 +18,8 @@ namespace DAL.Dao
             {
                 Station = (string)row["Station"],
                 StationTyp = (string)row["StationTyp"],
-                Coordinates = (string)row["Coordinates"],
+                CoordinatesLongitude = (double)row["CoordinatesLongitude"],
+                CoordinatesLatitude = (double)row["CoordinatesLatitude"],
                 Postalcode = (int)row["Postalcode"]
             };
        

@@ -8,49 +8,43 @@ using System.Threading.Tasks;
 
 namespace DAL.Client {
 
-    static class Extensions {
-        public static string ToStringOrNull<T>(this T value) {
-            return value == null ? "<null>" : value.ToString();
-        }
-    }
+    
 
-    class DALTester {
+    class DALTesterUsers {
         private IUsersDao userDao;
 
-        public DALTester(IUsersDao userDao) {
+        public DALTesterUsers(IUsersDao userDao) {
             this.userDao = userDao;
         }
 
-        public void TestFindAll() {
-            foreach(Users u in userDao.FindAll())
+        public void TestFindAllUsers() {
+            foreach(Users u in userDao.FindAllUsers())
             {
                 Console.WriteLine($"{u.Username,5} | {u.Station,-10} ");//| {p.LastName,-15} | {p.DateOfBirth,10:yyyy-MM-dd}");
-
             }
         }
 
-        public void TestFindByName(string username) {
-            //Users user1 = personDao.FindById(1);
-            //Console.WriteLine($"FindByName({username}) -> {userDao.FindByName(username).ToStringOrNull()}");
-            if(userDao.FindByName(username) != null)
-                Console.WriteLine($"FindByName({username}) -> {userDao.FindByName(username).Username,5} | {userDao.FindByName(username).Station,-10} ");
+        public void TestFindUserByUsername(string username) {
+            if(userDao.FindUserByUsername(username) != null)
+                Console.WriteLine($"FindByName({username}) -> {userDao.FindUserByUsername(username).Username,5} | {userDao.FindUserByUsername(username).Station,-10} ");
             else
             {
                 Console.WriteLine($"FindByName({username}) -> null");
             }
-            //Person person2 = personDao.FindById(99);
-            //Console.WriteLine($"FindById(99) -> {person2.ToStringOrNull()}");
         }
 
-        //public void TestUpdate() {
-        //    Person person = personDao.FindById(1);
-        //    Console.WriteLine($"before update: person -> {person.ToStringOrNull()}");
-        //    person.DateOfBirth = DateTime.Now.AddYears(-100);
-        //    personDao.Update(person);
+        public void TestInsertUser(string username, string station)
+        {
+            Users user = new Users(username,station);
+            userDao.InsertUser(user);
+            Console.WriteLine($"InsertUser({username},{station})");
+        }
 
-        //    person = personDao.FindById(1);
-        //    Console.WriteLine($"after update:  person -> {person.ToStringOrNull()}");
-        //}
+        public void TestDeleteUser(string username)
+        {
+            userDao.DeleteUser(username);
+            Console.WriteLine($"DeleteUser({username})");
+        }
 
 
 
@@ -144,25 +138,23 @@ namespace DAL.Client {
             //PrintTitle("PersonDaoSimple.FindAll", 50);
             //tester1.TestFindAll();
 
-            IConnectionFactory connectionFactory = DefaultConnectionFactory.FromConfiguration("PersonDbConnection"); //gehört noch umbenannt
-            DALTester tester2 = new DALTester(new AdoUsersDao(connectionFactory));
+            IConnectionFactory connectionFactory = DefaultConnectionFactory.FromConfiguration("WetrDbConnection");
+            DALTesterUsers userTester = new DALTesterUsers(new AdoUsersDao(connectionFactory));
 
             
 
             PrintTitle("UsersDao.FindAll", 50);
-            tester2.TestFindAll();
+            userTester.TestFindAllUsers();
 
-            PrintTitle("UsersDao.FindByName", 50);
-            tester2.TestFindByName("Use2");
+            PrintTitle("UsersDao.InsertUser", 50);
+            userTester.TestInsertUser("User999", "ENNS");
 
-            PrintTitle("UsersDao.FindByName", 50);
-            tester2.TestFindByName("User2");
+            PrintTitle("UsersDao.FindUserByUsername", 50);
+            userTester.TestFindUserByUsername("User999");
 
-            //PrintTitle("PersonDao.Update", 50);
-            //tester2.TestUpdate();
+            PrintTitle("UsersDao.DeleteUser", 50);
+            userTester.TestDeleteUser("User999");
 
-            PrintTitle("Transactions", 50);
-            //tester2.TestTransactions();
 
             Console.ReadKey();
         }

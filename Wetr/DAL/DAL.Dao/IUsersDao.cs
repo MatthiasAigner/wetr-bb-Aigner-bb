@@ -9,8 +9,9 @@ namespace DAL.Dao
 {
     public interface IUsersDao
     {
-        IEnumerable<Users> FindAll();
-        Users FindByName(string user);
-        bool Update(Users user);
+        IEnumerable<Users> FindAllUsers();
+        Users FindUserByUsername(string username);
+        bool InsertUser(Users user);
+        bool DeleteUser(string username);
     }
 }
