@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Wetr.Domainclasses;
 
-namespace Wetr.DAL.Dao
+namespace Wetr.BL.Server
 {
-    public interface ICommunitiesDao
+    public interface ICommunities
     {
         IEnumerable<Communities> FindAllCommunities();
         Communities FindCommunityByPostalcode(int postalcode);

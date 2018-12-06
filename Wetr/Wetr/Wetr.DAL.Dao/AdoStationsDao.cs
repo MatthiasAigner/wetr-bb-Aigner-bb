@@ -52,6 +52,14 @@ namespace Wetr.DAL.Dao
                 ).SingleOrDefault();
         }
 
+        public IEnumerable<Stations> FindStationByPostalcode(int postalcode)
+        {
+            return template.Query("select * from Stations where Postalcode=@postalcode",
+                stationMapper,
+                new[] { new SqlParameter("@postalcode", postalcode) }
+                );
+        }
+
         public bool InsertStation(Stations station)
         {
             return template.Execute(

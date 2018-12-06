@@ -13,6 +13,7 @@ namespace Wetr.DAL.Dao
         IEnumerable<Stations> FindAllStations();
         Stations FindStationByName(string station);
         Stations FindStationById(int id);
+        IEnumerable<Stations> FindStationByPostalcode(int postalcode);
         bool InsertStation(Stations station);
         bool DeleteStation(string station);
     }

@@ -25,7 +25,7 @@ namespace Wetr.DAL.Client
             DALTesterCommunities communityTester = new DALTesterCommunities(new AdoCommunitiesDao(connectionFactory));
             DALTesterMeasurements measurementTester = new DALTesterMeasurements(new AdoMeasurementsDao(connectionFactory));
             DALTesterStations stationTester = new DALTesterStations(new AdoStationsDao(connectionFactory));
-            DALTesterUsers userTester = new DALTesterUsers(new AdoUsersDao(connectionFactory));
+            DALTesterUsers userTester = new DALTesterUsers(new AdoDistrictDao(connectionFactory));
 
             PrintTitle("CommunitiesDao.FindAllCommunities", 50);
             communityTester.TestFindAllCommunities();

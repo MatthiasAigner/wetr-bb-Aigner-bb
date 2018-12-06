@@ -41,11 +41,18 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ICommunitiesDao.cs" />
-    <Compile Include="IMeasurementsDao.cs" />
-    <Compile Include="IStationsDao.cs" />
-    <Compile Include="IUsersDao.cs" />
+    <Compile Include="ICommunities.cs" />
+    <Compile Include="IDistrict.cs" />
+    <Compile Include="IMeasurements.cs" />
+    <Compile Include="IStations.cs" />
+    <Compile Include="IUsers.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Wetr.Domainclasses\Wetr.Domainclasses.csproj">
+      <Project>{4ad62876-2957-4620-9dfb-c74a399421bf}</Project>
+      <Name>Wetr.Domainclasses</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

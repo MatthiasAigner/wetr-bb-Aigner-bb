@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Wetr.Domainclasses;
 
-namespace Wetr.DAL.Dao
+namespace Wetr.BL.Server
 {
-    public interface IUsersDao
+    public interface IUsers
     {
         IEnumerable<Users> FindAllUsers();
         Users FindUserByUsername(string username);
