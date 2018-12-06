@@ -1,0 +1,49 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio 15
+VisualStudioVersion = 15.0.28307.136
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wetr.DAL.Client", "Wetr.DAL.Client\Wetr.DAL.Client.csproj", "{C0806949-8B2A-45F6-A50E-596E8F75FEBB}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wetr.DAL.Common", "Wetr.DAL.Common\Wetr.DAL.Common.csproj", "{09E63542-1EF8-414A-BEA9-033BFE38CBAD}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wetr.DAL.Dao", "Wetr.DAL.Dao\Wetr.DAL.Dao.csproj", "{72CF605F-8A51-474E-89CB-941A7294B38E}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wetr.Domainclasses", "Wetr.Domainclasses\Wetr.Domainclasses.csproj", "{4AD62876-2957-4620-9DFB-C74A399421BF}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wetr.BL.Server", "Wetr.BL.Server\Wetr.BL.Server.csproj", "{3023ADF2-DB7F-472B-B7EB-0D5FEE052DC7}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C0806949-8B2A-45F6-A50E-596E8F75FEBB}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C0806949-8B2A-45F6-A50E-596E8F75FEBB}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C0806949-8B2A-45F6-A50E-596E8F75FEBB}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C0806949-8B2A-45F6-A50E-596E8F75FEBB}.Release|Any CPU.Build.0 = Release|Any CPU
+		{09E63542-1EF8-414A-BEA9-033BFE38CBAD}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{09E63542-1EF8-414A-BEA9-033BFE38CBAD}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{09E63542-1EF8-414A-BEA9-033BFE38CBAD}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{09E63542-1EF8-414A-BEA9-033BFE38CBAD}.Release|Any CPU.Build.0 = Release|Any CPU
+		{72CF605F-8A51-474E-89CB-941A7294B38E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{72CF605F-8A51-474E-89CB-941A7294B38E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{72CF605F-8A51-474E-89CB-941A7294B38E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{72CF605F-8A51-474E-89CB-941A7294B38E}.Release|Any CPU.Build.0 = Release|Any CPU
+		{4AD62876-2957-4620-9DFB-C74A399421BF}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{4AD62876-2957-4620-9DFB-C74A399421BF}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{4AD62876-2957-4620-9DFB-C74A399421BF}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{4AD62876-2957-4620-9DFB-C74A399421BF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{3023ADF2-DB7F-472B-B7EB-0D5FEE052DC7}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{3023ADF2-DB7F-472B-B7EB-0D5FEE052DC7}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{3023ADF2-DB7F-472B-B7EB-0D5FEE052DC7}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{3023ADF2-DB7F-472B-B7EB-0D5FEE052DC7}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {66D446EB-C336-44E1-9ED9-C7919DEF67DA}
+	EndGlobalSection
+EndGlobal

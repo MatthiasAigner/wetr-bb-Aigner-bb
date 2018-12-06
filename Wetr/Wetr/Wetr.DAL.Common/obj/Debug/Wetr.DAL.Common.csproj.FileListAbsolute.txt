@@ -1,0 +1,6 @@
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.DAL.Common\obj\Debug\Wetr.DAL.Common.csprojAssemblyReference.cache
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.DAL.Common\obj\Debug\Wetr.DAL.Common.csproj.CoreCompileInputs.cache
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.DAL.Common\bin\Debug\Wetr.DAL.Common.dll
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.DAL.Common\bin\Debug\Wetr.DAL.Common.pdb
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.DAL.Common\obj\Debug\Wetr.DAL.Common.dll
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.DAL.Common\obj\Debug\Wetr.DAL.Common.pdb

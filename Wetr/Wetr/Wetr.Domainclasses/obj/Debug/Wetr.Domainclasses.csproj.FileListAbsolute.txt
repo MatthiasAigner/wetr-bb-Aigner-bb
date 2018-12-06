@@ -1,0 +1,6 @@
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Domainclasses\obj\Debug\Wetr.Domainclasses.csprojAssemblyReference.cache
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Domainclasses\obj\Debug\Wetr.Domainclasses.csproj.CoreCompileInputs.cache
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Domainclasses\bin\Debug\Wetr.Domainclasses.dll
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Domainclasses\bin\Debug\Wetr.Domainclasses.pdb
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Domainclasses\obj\Debug\Wetr.Domainclasses.dll
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Domainclasses\obj\Debug\Wetr.Domainclasses.pdb
