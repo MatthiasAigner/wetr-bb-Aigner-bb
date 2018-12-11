@@ -8,7 +8,7 @@ using Wetr.Domainclasses;
 
 namespace Wetr.BL.Server
 {
-    public interface IStations
+    public interface IStationsServer
     {
         IEnumerable<Stations> FindAllStations();
         Stations FindStationByName(string station);

@@ -6,12 +6,13 @@ using System.Text;
 using System.Threading.Tasks;
 using Wetr.Domainclasses;
 
-namespace Wetr.DAL.Dao
+namespace Wetr.BL.Server
 {
-    public interface ICommunitiesDao
+    public interface ICommunitiesServer
     {
         IEnumerable<Communities> FindAllCommunities();
-        IEnumerable<Communities> FindCommunitiesByDistrict(string district);
         Communities FindCommunityByPostalcode(int postalcode);
-    } 
+        IEnumerable<Communities> FindCommunitiesByDistrict(string district);
+
+    }
 }

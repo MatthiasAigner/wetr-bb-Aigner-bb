@@ -41,14 +41,23 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="ICommunities.cs" />
-    <Compile Include="IDistrict.cs" />
-    <Compile Include="IMeasurements.cs" />
-    <Compile Include="IStations.cs" />
-    <Compile Include="IUsers.cs" />
+    <Compile Include="ICommunitiesServer.cs" />
+    <Compile Include="IDistrictServer.cs" />
+    <Compile Include="IMeasurementsServer.cs" />
+    <Compile Include="IStationsServer.cs" />
+    <Compile Include="IUsersServer.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="DistrictServer.cs" />
+    <Compile Include="CommunitiesServer.cs" />
+    <Compile Include="MeasurementsServer.cs" />
+    <Compile Include="UsersServer.cs" />
+    <Compile Include="StationsServer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Wetr.DAL.Dao\Wetr.DAL.Dao.csproj">
+      <Project>{72cf605f-8a51-474e-89cb-941a7294b38e}</Project>
+      <Name>Wetr.DAL.Dao</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Wetr.Domainclasses\Wetr.Domainclasses.csproj">
       <Project>{4ad62876-2957-4620-9dfb-c74a399421bf}</Project>
       <Name>Wetr.Domainclasses</Name>

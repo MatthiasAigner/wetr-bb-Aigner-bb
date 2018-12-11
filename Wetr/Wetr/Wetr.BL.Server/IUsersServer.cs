@@ -8,7 +8,7 @@ using Wetr.Domainclasses;
 
 namespace Wetr.BL.Server
 {
-    public interface IUsers
+    public interface IUsersServer
     {
         IEnumerable<Users> FindAllUsers();
         Users FindUserByUsername(string username);

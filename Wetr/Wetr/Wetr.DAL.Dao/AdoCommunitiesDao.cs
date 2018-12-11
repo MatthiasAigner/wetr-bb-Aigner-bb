@@ -19,7 +19,7 @@ namespace Wetr.DAL.Dao
                 Postalcode = (int)row["Postalcode"],
                 Community = (string)row["Community"],                
                 District = (string)row["District"],
-                //Province = (string)row["Province"]
+                
             };
 
         private readonly AdoTemplate template;
@@ -33,6 +33,15 @@ namespace Wetr.DAL.Dao
         {
             return template.Query("select * from Communities", communityMapper);
         }
+
+        public IEnumerable<Communities> FindCommunitiesByDistrict(string district)
+        {
+            return template.Query("select * from Communities where district=@district",
+                communityMapper,
+                new[] { new SqlParameter("@district", district) }
+                );
+        }
+    
 
         public Communities FindCommunityByPostalcode(int postalcode)
         {

@@ -6,9 +6,9 @@ using System.Text;
 using System.Threading.Tasks;
 using Wetr.Domainclasses;
 
-namespace Wetr.DAL.Dao
+namespace Wetr.BL.Server
 {
-    public interface IMeasurementsDao
+    public interface IMeasurementsServer
     {
         IEnumerable<Measurements> FindAllMeasurements();
         IEnumerable<Measurements> FindAllMeasurementsByStation(string station);
@@ -27,5 +27,4 @@ namespace Wetr.DAL.Dao
         double FindAvgWindspeedByStationInTimeInterval(Stations station, DateTime begin, DateTime end);
         bool InsertMeasurement(Measurements measurement);
         bool DeleteMeasurement(int id);
-    }
-} 
+    } 

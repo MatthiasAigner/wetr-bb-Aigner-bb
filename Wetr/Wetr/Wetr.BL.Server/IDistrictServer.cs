@@ -8,9 +8,9 @@ using Wetr.Domainclasses;
 
 namespace Wetr.BL.Server
 {
-    public interface ICommunities
+    public interface IDistrictServer
     {
-        IEnumerable<Communities> FindAllCommunities();
-        Communities FindCommunityByPostalcode(int postalcode);
-    } 
-}
+        IEnumerable<Districts> FindDistrictsByProvince(string province);
+        
+    }
+} 
