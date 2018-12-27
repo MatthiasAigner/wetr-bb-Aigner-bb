@@ -27,4 +27,5 @@ namespace Wetr.BL.Server
         double FindAvgWindspeedByStationInTimeInterval(Stations station, DateTime begin, DateTime end);
         bool InsertMeasurement(Measurements measurement);
         bool DeleteMeasurement(int id);
-    } 
+    }
+}

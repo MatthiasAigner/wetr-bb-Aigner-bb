@@ -24,7 +24,7 @@ namespace Wetr.Domainclasses
             this.WindDirection = windDirection;            
         }
 
-        public int Id { get; set; }
+        //public int Id { get; set; }
         public string Station { get; set; }
         public DateTime Timestamp { get; set; }
         public double Airtemperature { get; set; } // °C

@@ -1,0 +1,79 @@
+﻿<Window x:Class="MediaAnnotator.GUI.View.AnnotatorWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:MediaAnnotator.GUI.View"
+        mc:Ignorable="d"
+        xmlns:test="clr-namespace:MediaAnnotator.GUI.ViewModel.Test"
+
+        d:DataContext="{d:DesignInstance test:SampleMediaFolderCollectionVM, IsDesignTimeCreatable=True}"	
+        Title="Media Annotator" Height="450" Width="800">
+
+    <Window.Resources>
+        <Style TargetType="{x:Type GridSplitter}">
+            <Setter Property="Background" Value="RosyBrown"/>
+        </Style>
+        <Style x:Key="imgBorderStyle" TargetType="{x:Type Border}">
+            <Setter Property="Margin" Value="2" />
+            <Setter Property="Padding" Value="3" />
+        </Style>
+    </Window.Resources>
+    
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="1*"/>
+
+
+            <ColumnDefinition Width="2*"/>
+
+
+        </Grid.ColumnDefinitions>
+        <ListBox Grid.Column="0" HorizontalContentAlignment="Stretch" 
+                 ItemsSource="{Binding Path=Folders}"  
+                 SelectedItem="{Binding Path=CurrentFolder, Mode=TwoWay}">
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock FontSize="9pt">
+                        <TextBlock Text="{Binding Path=Name}"/>
+                        (<TextBlock Text="{Binding Path=ElementCount}"/>)
+                    </TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <GridSplitter Grid.Column="0" Width="3" HorizontalAlignment="Right" VerticalAlignment="Stretch"/>
+        <Grid Grid.Column="1" DataContext="{Binding Path=CurrentFolder}">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="3*"/>
+                <RowDefinition Height="Auto"/>
+                <RowDefinition Height="2*"/>
+            </Grid.RowDefinitions>
+            <ListBox Grid.Row="0" BorderThickness="0" ItemsSource="{Binding Path=Items}" 
+                     SelectedItem="{Binding Path=CurrentItem, Mode=TwoWay}"
+                     ScrollViewer.HorizontalScrollBarVisibility="Disabled">
+                <ListBox.ItemTemplate>
+                    <DataTemplate>
+                        <Border Style="{StaticResource imgBorderStyle}">
+                            <Image Source="{Binding Path=Url}"/>
+                        </Border>
+                    </DataTemplate>
+                </ListBox.ItemTemplate>
+
+                <ListBox.ItemsPanel>
+                    <ItemsPanelTemplate>
+                        <WrapPanel Orientation="Horizontal" ItemHeight="{Binding ElementName=SliderPicHeight, Path=Value}"/>
+                    </ItemsPanelTemplate>
+                </ListBox.ItemsPanel>
+            </ListBox>
+            <StackPanel Grid.Row="1" Orientation="Horizontal" HorizontalAlignment="Center">
+                <TextBlock Margin="5" Text="Picture Height:"/>
+                <Slider Name="SliderPicHeight" Margin="5" Width="200" Value="50" Minimum="20" 
+                        Maximum="150" TickFrequency="5" TickPlacement="BottomRight" IsSnapToTickEnabled="True" />
+            </StackPanel>
+            <GridSplitter Grid.Row="1" Height="3" HorizontalAlignment="Stretch" VerticalAlignment="Bottom" ResizeBehavior="PreviousAndNext"/>
+
+            <local:MediaEditor Grid.Row="2" DataContext="{Binding Path=CurrentItem}"/>
+        </Grid>
+    </Grid>
+</Window>

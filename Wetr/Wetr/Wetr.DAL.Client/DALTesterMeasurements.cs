@@ -35,9 +35,11 @@ namespace Wetr.DAL.Client
 
         public void TestFindAllMeasurementsByStation(string station)
         {
-            Measurements m = measurementDao.FindAllMeasurementsByStation(station);
-            if (m != null)
-                Console.WriteLine($"FindAllMeasurementsByStation({station}) -> " +
+            IEnumerable<Measurements> measurements = measurementDao.FindAllMeasurementsByStation(station);
+            if (measurements != null)
+                foreach (Measurements m in measurements)
+                {
+                    Console.WriteLine($"FindAllMeasurementsByStation({station}) -> " +
                     $"Station: {m.Station,5} | " +
                     $"Airtemperature: {m.Airtemperature,-10} | " +
                     $"Airpressure: {m.Airpressure,5} | " +
@@ -46,6 +48,7 @@ namespace Wetr.DAL.Client
                     $"WindSpeed: {m.WindSpeed,5} | " +
                     $"WindDirection: {m.WindDirection,-10} | " +
                     $"Timestamp: {m.Timestamp,-10}");
+                }
             else
             {
                 Console.WriteLine($"FindAllMeasurementsByStation({station}) -> null");

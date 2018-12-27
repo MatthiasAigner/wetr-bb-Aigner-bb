@@ -1,0 +1,13 @@
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.BL.Server\obj\Debug\Wetr.BL.Server.csprojAssemblyReference.cache
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.BL.Server\obj\Debug\Wetr.BL.Server.csproj.CoreCompileInputs.cache
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.BL.Server\bin\Debug\Wetr.BL.Server.dll
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.BL.Server\bin\Debug\Wetr.BL.Server.pdb
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.BL.Server\bin\Debug\Wetr.DAL.Dao.dll
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.BL.Server\bin\Debug\Wetr.Domainclasses.dll
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.BL.Server\bin\Debug\Wetr.DAL.Common.dll
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.BL.Server\bin\Debug\Wetr.DAL.Dao.pdb
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.BL.Server\bin\Debug\Wetr.Domainclasses.pdb
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.BL.Server\bin\Debug\Wetr.DAL.Common.pdb
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.BL.Server\obj\Debug\Wetr.BL.Server.csproj.CopyComplete
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.BL.Server\obj\Debug\Wetr.BL.Server.dll
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.BL.Server\obj\Debug\Wetr.BL.Server.pdb

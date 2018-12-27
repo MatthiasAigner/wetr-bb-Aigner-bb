@@ -18,7 +18,7 @@ namespace Wetr.DAL.Dao
             {
                 Postalcode = (int)row["Postalcode"],
                 Community = (string)row["Community"],                
-                District = (string)row["District"],
+                District = (string)row["District"]
                 
             };
 

@@ -1,0 +1,36 @@
+﻿<Window x:Class="Wetr.Simulator.View.AddStations"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Wetr.Simulator.View"
+        mc:Ignorable="d"
+        Title="AddStations" Height="450" Width="400">
+
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50"/>
+            
+        </Grid.RowDefinitions>
+        <ListBox  Name="lbAllStations" Grid.Row="0" HorizontalContentAlignment="Stretch" MinHeight="300"
+                 ItemsSource="{Binding AllStations}"  >
+
+            <ListBox.ItemTemplate>
+                <DataTemplate>
+                    <TextBlock FontSize="9pt">
+                        <TextBlock Text="{Binding Station}"/>
+                        
+                    </TextBlock>
+                </DataTemplate>
+            </ListBox.ItemTemplate>
+        </ListBox>
+        <Button Name="btAdd" Grid.Row="1" Content="Hinzufügen" 
+                HorizontalAlignment="Left"  Margin="20,0,0,20"  VerticalAlignment="Bottom" 
+                Width="100" Click="BtAdd_Click"/>
+        <Button Name ="btCancel" Grid.Row="1" Content="Abbrechen" HorizontalAlignment="Right"  
+                Margin="0,0,20,20"  VerticalAlignment="Bottom" Width="100"
+                Click="BtCancel_Click"/>
+
+    </Grid>
+</Window>

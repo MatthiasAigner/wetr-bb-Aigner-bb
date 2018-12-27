@@ -16,7 +16,7 @@ namespace Wetr.DAL.Dao
         public static readonly RowMapper<Measurements> measurementMapper =
             row => new Measurements
             {
-                Id = (int)row["Id"],
+                //Id = (int)row["Id"],
                 Station = (string)row["Station"],
                 Timestamp = (DateTime)row["Timestamp"],
                 Airtemperature = (double)row["Airtemperature"],

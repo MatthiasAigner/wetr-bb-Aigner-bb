@@ -17,6 +17,9 @@ namespace Wetr.DAL.Dao
             row => new Users
             {
                 Username = (string)row["Username"],
+                Firstname = (string)row["Firstname"],
+                Lastname = (string)row["Lastname"],
+                Emailadress = (string)row["Emailadress"],
                 Station = (string)row["Station"]
             };
 
@@ -45,10 +48,13 @@ namespace Wetr.DAL.Dao
         public bool InsertUser(Users user)
         {
             return template.Execute(
-                "insert into Users values (@username, @station)",
+                "insert into Users values (@username, @firstname, @lastname, @emailadress, @station)",
                 new[]
                 {
                     new SqlParameter("@username", user.Username),
+                    new SqlParameter("@firstname", user.Firstname),
+                    new SqlParameter("@lastname", user.Lastname),
+                    new SqlParameter("@emailadress", user.Emailadress),
                     new SqlParameter("@station", user.Station)
 
                 }) == 1;

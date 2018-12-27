@@ -20,7 +20,7 @@ namespace Wetr.Domainclasses
             this.Postalcode = postalcode;
         }
 
-        public int Id { get; set; }
+        //public int Id { get; set; }
         public string Station { get; set; }
         public string StationTyp { get; set; }
         public double CoordinatesLongitude { get; set; }

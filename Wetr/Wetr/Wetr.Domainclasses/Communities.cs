@@ -11,17 +11,17 @@ namespace Wetr.Domainclasses
         {
         }
 
-        public Communities(int postalcode, string community, string district, string province)
+        public Communities(int postalcode, string community, string district)
         {
             this.Postalcode = postalcode;
             this.Community = community;            
             this.District = district;
-            this.Province = province;
+            
         }
 
         public int Postalcode { get; set; }
         public string Community { get; set; }
         public string District { get; set; }
-        public string Province { get; set; }
+        
     }
 } 

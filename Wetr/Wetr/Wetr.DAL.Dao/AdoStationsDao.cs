@@ -16,11 +16,11 @@ namespace Wetr.DAL.Dao
         public static readonly RowMapper<Stations> stationMapper =
             row => new Stations { 
            
-                Id = (int) row["Id"],
+                //Id = (int) row["Id"],
                 Station = (string)row["Station"],
                 StationTyp = (string)row["StationTyp"],
-                CoordinatesLongitude = (double)row["CoordinatesLongitude"],
-                CoordinatesLatitude = (double)row["CoordinatesLatitude"],
+                CoordinatesLongitude = (double)row["CoordinatesLon"],
+                CoordinatesLatitude = (double)row["CoordinatesLat"],
                 Postalcode = (int)row["Postalcode"]
             };        
 

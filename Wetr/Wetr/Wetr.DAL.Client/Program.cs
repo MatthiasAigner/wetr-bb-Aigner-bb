@@ -27,40 +27,40 @@ namespace Wetr.DAL.Client
             DALTesterStations stationTester = new DALTesterStations(new AdoStationsDao(connectionFactory));
             DALTesterUsers userTester = new DALTesterUsers(new AdoUsersDao(connectionFactory));
 
-            PrintTitle("CommunitiesDao.FindAllCommunities", 50);
-            communityTester.TestFindAllCommunities();
+            //PrintTitle("CommunitiesDao.FindAllCommunities", 50);
+            //communityTester.TestFindAllCommunities();
 
             PrintTitle("CommunitiesDao.FindCommunityByPostalcode", 50);
             communityTester.TestFindCommunityByPostalcode(4040);
 
 
-            PrintTitle("MeasurementsDao.FindAllMeasurements", 50);
-            measurementTester.TestFindAllMeasurements();
-
+            //PrintTitle("MeasurementsDao.FindAllMeasurements", 50);
+            //measurementTester.TestFindAllMeasurements();
+            
             PrintTitle("MeasurementsDao.InsertMeasurement", 50);
             measurementTester.TestInsertMeasurement(new Measurements("ENNS", DateTime.Now, 20.9, 955.8, 5.5, 56.7, 1.2, "South"));
 
             PrintTitle("MeasurementsDao.FindMeasurementByStation", 50);
             measurementTester.TestFindAllMeasurementsByStation("ENNS");
 
-            PrintTitle("MeasurementsDao.FindMeasurementById", 50);
-            measurementTester.TestFindMeasurementById(1);
+            //PrintTitle("MeasurementsDao.FindMeasurementById", 50);
+            //measurementTester.TestFindMeasurementById(1);
 
-            PrintTitle("MeasurementsDao.DeleteMeasurement", 50);
-            measurementTester.TestDeleteMeasurement(1);
+            //PrintTitle("MeasurementsDao.DeleteMeasurement", 50);
+            //measurementTester.TestDeleteMeasurement(1);
 
 
             PrintTitle("StationDao.FindAllStations", 50);
             stationTester.TestFindAllStations();
 
             PrintTitle("StationDao.InsertStation", 50);
-            stationTester.TestInsertStation(new Stations("TestStation", "Typ1", 17.2, 46.3, 4040));
+            stationTester.TestInsertStation(new Stations("TestStation", "TAWES", 17.2, 46.3, 4040));
 
             PrintTitle("StationDao.FindStationByName", 50);
             stationTester.TestFindStationByName("TestStation");
 
-            PrintTitle("StationDao.FindStationById", 50);
-            stationTester.TestFindStationById(1);
+            //PrintTitle("StationDao.FindStationById", 50);
+            //stationTester.TestFindStationById(1);
 
             PrintTitle("StationDao.DeleteStation", 50);
             stationTester.TestDeleteStation("TestStation");
@@ -70,7 +70,7 @@ namespace Wetr.DAL.Client
             userTester.TestFindAllUsers();
 
             PrintTitle("UsersDao.InsertUser", 50);
-            userTester.TestInsertUser(new Users("User999", "ENNS"));
+            userTester.TestInsertUser(new Users("User999", "Hans", "Lustig", "HansLustig@gmx.at", "ENNS"));
 
             PrintTitle("UsersDao.FindUserByUsername", 50);
             userTester.TestFindUserByUsername("User999");
@@ -78,7 +78,7 @@ namespace Wetr.DAL.Client
             PrintTitle("UsersDao.DeleteUser", 50);
             userTester.TestDeleteUser("User999");
 
-            //InsertALotOfMeasurments();
+            //InsertALotOfMeasurments();*/
             Console.ReadKey();
         }
 

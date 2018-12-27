@@ -24,8 +24,7 @@ namespace Wetr.DAL.Client
             {
                 Console.WriteLine($"Community: {c.Community,5} | " +
                     $"Postalcode: {c.Postalcode,-10} | " +
-                    $"District: {c.District,5} | " +
-                    $"Province: {c.Province,-10}");
+                    $"District: {c.District,5} ");
             }
         }
 
@@ -36,8 +35,7 @@ namespace Wetr.DAL.Client
                 Console.WriteLine($"FindStationByPostalcode({postalcode}) -> " +
                     $"Community: {c.Community,5} | " +
                     $"Postalcode: {c.Postalcode,-10} | " +
-                    $"District: {c.District,5} | " +
-                    $"Province: {c.Province,-10}");
+                    $"District: {c.District,5} ");
             else
             {
                 Console.WriteLine($"FindStationByPostalcode({postalcode}) -> null");
