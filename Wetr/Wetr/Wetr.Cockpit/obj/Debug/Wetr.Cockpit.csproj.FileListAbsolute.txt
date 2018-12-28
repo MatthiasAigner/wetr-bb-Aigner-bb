@@ -1,7 +1,6 @@
 C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Cockpit\obj\Debug\Wetr.Cockpit.csprojAssemblyReference.cache
 C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Cockpit\obj\Debug\App.g.cs
 C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Cockpit\obj\Debug\Wetr.Cockpit_MarkupCompile.cache
-C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Cockpit\obj\Debug\Wetr.Cockpit_MarkupCompile.lref
 C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Cockpit\bin\Debug\Wetr.Cockpit.exe.config
 C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Cockpit\bin\Debug\Wetr.Cockpit.exe
 C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Cockpit\bin\Debug\Wetr.Cockpit.pdb

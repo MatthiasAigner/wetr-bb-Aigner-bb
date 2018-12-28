@@ -4,9 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        
-        
-        xmlns:local="clr-namespace:Wetr.Simulator"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="Simulator" Height="650" Width="1200" MinHeight="600" MinWidth="770" >
@@ -15,7 +12,6 @@
             <Setter Property="Background" Value="RosyBrown"/>
         </Style>
     </Window.Resources>
-
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -172,11 +168,6 @@
                  Margin="20,210,20,20" VerticalAlignment="Stretch" >
             
         </Canvas>-->
-        
-
-
-
+    
     </Grid>
-
-
 </Window>

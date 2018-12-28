@@ -1,19 +1,8 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Collections.ObjectModel;
-using System.ComponentModel;
 using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 using System.Windows;
 using System.Windows.Controls;
-using System.Windows.Data;
-using System.Windows.Documents;
-using System.Windows.Input;
-using System.Windows.Media;
-using System.Windows.Media.Imaging;
-using System.Windows.Navigation;
-using System.Windows.Shapes;
 using System.Windows.Threading;
 using Wetr.Domainclasses;
 using Wetr.Simulator.View;
@@ -30,10 +19,6 @@ namespace Wetr.Simulator
 
         private DispatcherTimer dt = new DispatcherTimer();
 
-        //public double valueOfValueRangeTo;
-
-        //public event PropertyChangedEventHandler PropertyChanged;
-
         public MainWindow()
         {
             MeasurementsCollection = new ObservableCollection<Measurements>();
@@ -42,11 +27,6 @@ namespace Wetr.Simulator
             InitializeComponent();
 
         }
-
-
-
-
-
 
         public void AddSimulatedStations(Stations addedStation)
         {
@@ -136,8 +116,6 @@ namespace Wetr.Simulator
             set { }
         }
 
-
-
         private void BtAddStation_Click(object sender, RoutedEventArgs e)
         {
             AddStations addStations = new AddStations(this);
@@ -197,12 +175,8 @@ namespace Wetr.Simulator
             set { }
         }
 
-
-
         private Measurements GenerateMeasurements()
         {
-
-
             int[] Array = {3,4,2,5,5,6,3,2,1,0,-2,-3,-4,-5,-4,-3,-2,
                 0,2,3,4,5,5,5,6,5,5,6,4,4,5,6,7,6,5,4,5,6,7,7,7,8,8,
                 9,9,9,8,6,5,6,7,8,9,9,10,9,8,8,9,10,11,12,12,13,12,12,
@@ -278,16 +252,13 @@ namespace Wetr.Simulator
                 case 8:
                     windDirection = "Northwest";
                     break;
-
             }
             if (MeasurementsCollection.LastOrDefault() != null)
             {
-
-
                 switch (cbMeasurement.SelectedIndex)
                 {
                     case 0: //Lufttemperatur 
-                        airTemp = Math.Round((lastMeasurement.Airtemperature + (random.NextDouble() - 0.5) * generateTimeInterval * 0.5 / 60) ,1);
+                        airTemp = Math.Round((lastMeasurement.Airtemperature + (random.NextDouble() - 0.5) * generateTimeInterval * 0.5 / 60), 1);
                         break;
                     case 1: //Luftdruck
                         airpressure = Math.Round((lastMeasurement.Airpressure + (random.NextDouble() - 0.5) * generateTimeInterval * 2 / 60), 1);
@@ -304,16 +275,11 @@ namespace Wetr.Simulator
                         if (humidity > 100.0)
                             humidity = 100.0;
                         break;
-
                 }
             }
-
-
-
             Stations station = (Stations)lbStations.SelectedItem;
             Measurements res = new Measurements(station.Station, currentDate, airTemp, airpressure, rainfall, humidity, windspeed, windDirection);
             return res;
-
         }
 
         private void BtStartSimulator_Click(object sender, RoutedEventArgs e)
@@ -329,10 +295,7 @@ namespace Wetr.Simulator
         {
             Measurements generatedMeasurement = new Measurements();
             generatedMeasurement = GenerateMeasurements();
-            
             MeasurementsCollection.Add(generatedMeasurement);
-
-
             DateTime startDate = (DateTime)dpStartDate.SelectedDate.Value;
             DateTime startTime = ((DateTime)tpStartTime.Value);
             startDate = startDate.AddHours(startTime.Hour);
@@ -341,7 +304,6 @@ namespace Wetr.Simulator
             DateTime endTime = ((DateTime)tpEndTime.Value);
             endDate = endDate.AddHours(endTime.Hour);
             endDate = endDate.AddMinutes(endTime.Minute);
-
             if (generatedMeasurement.Timestamp > endDate || endDate < startDate)
             {
                 dt.Stop();

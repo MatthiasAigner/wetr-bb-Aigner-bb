@@ -21,13 +21,11 @@ namespace Wetr.Simulator.View
     /// Interaction logic for AddStations.xaml
     /// </summary>
     public partial class AddStations : Window
-    {
-        
+    {        
         private MainWindow mainWindow;
         public AddStations(MainWindow mainWindow)
         {
-            this.mainWindow = mainWindow;
-            
+            this.mainWindow = mainWindow;            
             DataContext = this;
             InitializeComponent();
         }
@@ -50,9 +48,7 @@ namespace Wetr.Simulator.View
                 ocs.Add(new Stations("ENNS", "", 0.0, 0.0, 0));
                 return ocs;
             }
-        }
-
-        
+        }        
 
         private void BtCancel_Click(object sender, RoutedEventArgs e)
         {
@@ -64,7 +60,6 @@ namespace Wetr.Simulator.View
             if(lbAllStations.SelectedItem != null)
                 mainWindow.AddSimulatedStations((Stations)lbAllStations.SelectedItem);
             this.Close();
-
         }
     }
 }

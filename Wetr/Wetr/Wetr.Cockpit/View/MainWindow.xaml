@@ -4,9 +4,6 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        
-        xmlns:local="clr-namespace:Wetr.Cockpit"
-        
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="Cockpit" Height="650" Width="850" MinHeight="600" MinWidth="850">
@@ -15,7 +12,6 @@
             <Setter Property="Background" Value="RosyBrown"/>
         </Style>
     </Window.Resources>
-
 
     <Grid>
         <Grid.ColumnDefinitions>
@@ -34,8 +30,7 @@
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock FontSize="9pt">
-                        <TextBlock Text="{Binding Path=Station}"/>
-                        
+                        <TextBlock Text="{Binding Path=Station}"/>                        
                     </TextBlock>
                 </DataTemplate>
             </ListBox.ItemTemplate>
@@ -84,12 +79,9 @@
                   Margin="20,240,20,20" VerticalAlignment="Top" ItemsSource="{Binding Measurements}" >
 
         </DataGrid>
-
-
         <Label Name="lbFilter" Grid.Column="1" Content="Filtern nach:" 
                HorizontalAlignment="Left" Margin="280,50,0,0" VerticalAlignment="Top" 
                />
-
         <ComboBox  Name="cbFilter" Grid.Column="1" HorizontalAlignment="Left" 
                    Height="25" Margin="280,80,0,0"  VerticalAlignment="Top" 
                    Width="200" >
@@ -100,9 +92,6 @@
             <ComboBoxItem Content="Bundesland"/>
         </ComboBox>
 
-
-
-
         <Label Name="lbFrequency" Content="Radius:" Grid.Column="1" 
                HorizontalAlignment="Left" Margin="490,50,0,0" VerticalAlignment="Top" 
                IsEnabled="False"/>
@@ -111,24 +100,14 @@
                            Margin="490,80,0,0"  VerticalAlignment="Top" Width="55"
                            IsEnabled="False"/>
 
-        <DataGrid Name ="dgResults" Grid.Column="1" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" 
+        <!--<DataGrid Name ="dgResults" Grid.Column="1" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" 
                   Margin="292,122,0,0" VerticalAlignment="Top" Width="274"  >
             <DataGridTextColumn Header="Messwert">
-
             </DataGridTextColumn>
             <DataGridTextColumn Header="Minimum"></DataGridTextColumn>
             <DataGridTextColumn Header="Durchschnitt"></DataGridTextColumn>
             <DataGridTextColumn Header="Maximum"></DataGridTextColumn>
-
-        </DataGrid>
-
-
-
-
-
-
-
+        </DataGrid>-->
 
     </Grid>
-
 </Window>

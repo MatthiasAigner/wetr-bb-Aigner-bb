@@ -1,9 +1,4 @@
-﻿
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
+﻿using System.Collections.Generic;
 using Wetr.Domainclasses;
 
 namespace Wetr.BL.Server
@@ -13,6 +8,5 @@ namespace Wetr.BL.Server
         IEnumerable<Communities> FindAllCommunities();
         Communities FindCommunityByPostalcode(int postalcode);
         IEnumerable<Communities> FindCommunitiesByDistrict(string district);
-
     }
 }

@@ -1,14 +1,10 @@
-﻿
-using System;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System;
 using Wetr.DAL.Common;
 using Wetr.DAL.Dao;
 using Wetr.Domainclasses;
 
 namespace Wetr.DAL.Client
 {
-
     class Program
     {
         private static void PrintTitle(string text = "", int length = 60, char ch = '-')
@@ -20,7 +16,6 @@ namespace Wetr.DAL.Client
 
         private static void Main()
         {
-
             IConnectionFactory connectionFactory = DefaultConnectionFactory.FromConfiguration("WetrDbConnection");
             DALTesterCommunities communityTester = new DALTesterCommunities(new AdoCommunitiesDao(connectionFactory));
             DALTesterMeasurements measurementTester = new DALTesterMeasurements(new AdoMeasurementsDao(connectionFactory));
@@ -155,11 +150,9 @@ namespace Wetr.DAL.Client
                     case 8:
                         windDirection = "Northwest";
                         break;
-
                 }
                 int randomId = random.Next(1, 120);
                 IConnectionFactory connectionFactory = DefaultConnectionFactory.FromConfiguration("WetrDbConnection");
-
                 AdoMeasurementsDao measurementDao = new AdoMeasurementsDao(connectionFactory);
                 AdoStationsDao stationDao = new AdoStationsDao(connectionFactory);
                 Stations randomStation = stationDao.FindStationById(randomId);
