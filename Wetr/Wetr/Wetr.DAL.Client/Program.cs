@@ -78,7 +78,7 @@ namespace Wetr.DAL.Client
             PrintTitle("UsersDao.DeleteUser", 50);
             userTester.TestDeleteUser("User999");
 
-            InsertALotOfMeasurments();*/
+            //InsertALotOfMeasurments();
             Console.ReadKey();
         }
 
@@ -116,18 +116,17 @@ namespace Wetr.DAL.Client
                 int randomMin = random.Next(0, 59);
                 int randomSec = random.Next(0, 59);
                 DateTime randomDate = new DateTime(2018, 1, 1);
-                randomDate.AddDays(randomDay);
-                randomDate.AddHours(randomHour);
-                randomDate.AddMinutes(randomMin);
-                randomDate.AddSeconds(randomSec);
-
-                double airTemp = Array[randomDay - 1] + offsetTemp - Math.Abs(randomDate.Hour - 12.0) * 0.7;
-                double airpressure = 970 + offsetPressure;
-                double rainfall = random.NextDouble() * 50 - 25;
+                randomDate = randomDate.AddDays(randomDay);
+                randomDate = randomDate.AddHours(randomHour);
+                randomDate = randomDate.AddMinutes(randomMin);
+                randomDate = randomDate.AddSeconds(randomSec);                
+                double airTemp = Math.Round((Array[randomDay - 1] + offsetTemp - Math.Abs(randomDate.Hour - 12.0) * 0.7) , 1);
+                double airpressure = Math.Round((970 + offsetPressure) , 1);
+                double rainfall = Math.Round((random.NextDouble() * 50 - 25) , 1);
                 if (rainfall < 0.0)
                     rainfall = 0.0;
-                double humidity = 55 + offsetHumidity;
-                double windspeed = random.NextDouble() * 50;
+                double humidity = Math.Round((55 + offsetHumidity) , 1);
+                double windspeed = Math.Round((random.NextDouble() * 50) , 1);
                 int windDirectionRandom = random.Next(1, 8);
                 string windDirection = "";
                 switch (windDirectionRandom)

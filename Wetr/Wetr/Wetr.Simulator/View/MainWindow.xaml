@@ -9,7 +9,7 @@
         xmlns:local="clr-namespace:Wetr.Simulator"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="Simulator" Height="650" Width="1200" MinHeight="600" MinWidth="770">
+        Title="Simulator" Height="650" Width="1200" MinHeight="600" MinWidth="770" >
     <Window.Resources>
         <Style TargetType="{x:Type GridSplitter}">
             <Setter Property="Background" Value="RosyBrown"/>
@@ -25,7 +25,7 @@
         </Grid.ColumnDefinitions>
 
 
-        <ListBox Grid.Column="0" HorizontalContentAlignment="Stretch" 
+        <ListBox Name="lbStations" Grid.Column="0" HorizontalContentAlignment="Stretch" 
                  ItemsSource="{Binding SimulatedStations}"  >
 
             <ListBox.ItemTemplate>
@@ -162,6 +162,12 @@
                   Margin="20,240,20,20" VerticalAlignment="Top" ItemsSource="{Binding Measurements}" >
 
         </DataGrid>
+        <Button Name="btStartSimulator" Content="Start Simulator" Grid.Column="1" 
+                HorizontalAlignment="Left" Margin="20,200,0,0" VerticalAlignment="Top" 
+                Width="100" Click="BtStartSimulator_Click"/>
+        <Button Name="btStopSimulator" Content="Stop Simulator" Grid.Column="1" 
+                HorizontalAlignment="Left" Margin="150,200,0,0" VerticalAlignment="Top" 
+                Width="100" Click="BtStopSimulator_Click" IsEnabled="False"/>
         <!--<Canvas Name="Chart" Grid.Column="1" HorizontalAlignment="Stretch" 
                  Margin="20,210,20,20" VerticalAlignment="Stretch" >
             

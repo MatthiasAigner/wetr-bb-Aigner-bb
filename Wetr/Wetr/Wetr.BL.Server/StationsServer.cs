@@ -12,7 +12,7 @@ namespace Wetr.BL.Server
 {
     public class StationsServer : IStationsServer
     {
-        private static readonly IConnectionFactory connectionFactory = new DefaultConnectionFactory("System.Data.SqlClient", "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\aigne\\source\\repos\\Db\\Wetr_db.mdf;Integrated Security=True;Connect Timeout=30");
+        private static readonly IConnectionFactory connectionFactory = DefaultConnectionFactory.FromConfiguration("WetrDbConnection");
         private IStationsDao stationsDao = new AdoStationsDao(connectionFactory);
         private ICommunitiesDao communitiesDao;
         private IDistrictDao districtsDao;
