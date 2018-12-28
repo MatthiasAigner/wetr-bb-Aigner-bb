@@ -14,6 +14,7 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.Windows.Threading;
 using Wetr.Domainclasses;
 using Wetr.Simulator.View;
 
@@ -22,12 +23,15 @@ namespace Wetr.Simulator
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window , INotifyPropertyChanged
+    public partial class MainWindow : Window //, INotifyPropertyChanged
     {
         public ObservableCollection<Stations> SimulatedStations { get; set; }
-        public double valueOfValueRangeTo;
+        public IEnumerable<Measurements> MeasurementsCollection { get; set; }
 
-        public event PropertyChangedEventHandler PropertyChanged;
+        private DispatcherTimer dispatcherTimer = new DispatcherTimer();
+        //public double valueOfValueRangeTo;
+
+        //public event PropertyChangedEventHandler PropertyChanged;
 
         public MainWindow()
         {
@@ -181,5 +185,22 @@ namespace Wetr.Simulator
                 lbValueRangeToUnit.Content = ValueRangeUnit;
             }
         }
+
+        //private IEnumerable<Measurements> Measurements
+        //{
+        //    get
+        //    {
+                
+        //    }
+        //    set { }
+        //}
+
+        private Measurements GenerateMeasurements()
+        {
+            Measurements lastMeasurement = MeasurementsCollection.LastOrDefault();
+            return new Measurements();
+
+        }
+
     }
 }

@@ -78,7 +78,7 @@ namespace Wetr.DAL.Client
             PrintTitle("UsersDao.DeleteUser", 50);
             userTester.TestDeleteUser("User999");
 
-            //InsertALotOfMeasurments();*/
+            InsertALotOfMeasurments();*/
             Console.ReadKey();
         }
 
@@ -158,7 +158,7 @@ namespace Wetr.DAL.Client
                         break;
 
                 }
-                int randomId = random.Next(1, 70);
+                int randomId = random.Next(1, 120);
                 IConnectionFactory connectionFactory = DefaultConnectionFactory.FromConfiguration("WetrDbConnection");
 
                 AdoMeasurementsDao measurementDao = new AdoMeasurementsDao(connectionFactory);

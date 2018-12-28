@@ -3,17 +3,21 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Wetr.DAL.Common;
 using Wetr.DAL.Dao;
+
 using Wetr.Domainclasses;
 
 namespace Wetr.BL.Server
 {
-    class StationsServer : IStationsServer
+    public class StationsServer : IStationsServer
     {
-        private IStationsDao stationsDao;
+        private static readonly IConnectionFactory connectionFactory = new DefaultConnectionFactory("System.Data.SqlClient", "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\aigne\\source\\repos\\Db\\Wetr_db.mdf;Integrated Security=True;Connect Timeout=30");
+        private IStationsDao stationsDao = new AdoStationsDao(connectionFactory);
         private ICommunitiesDao communitiesDao;
         private IDistrictDao districtsDao;
 
+        
 
         public bool DeleteStation(string station)
         {

@@ -55,6 +55,10 @@
     <Compile Include="StationsServer.cs" />
   </ItemGroup>
   <ItemGroup>
+    <ProjectReference Include="..\Wetr.DAL.Common\Wetr.DAL.Common.csproj">
+      <Project>{09E63542-1EF8-414A-BEA9-033BFE38CBAD}</Project>
+      <Name>Wetr.DAL.Common</Name>
+    </ProjectReference>
     <ProjectReference Include="..\Wetr.DAL.Dao\Wetr.DAL.Dao.csproj">
       <Project>{72cf605f-8a51-474e-89cb-941a7294b38e}</Project>
       <Name>Wetr.DAL.Dao</Name>

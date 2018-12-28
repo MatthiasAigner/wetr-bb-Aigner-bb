@@ -3,14 +3,17 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using Wetr.DAL.Common;
 using Wetr.DAL.Dao;
 using Wetr.Domainclasses;
 
 namespace Wetr.BL.Server
 {
-    class MeasurementsServer : IMeasurementsServer
+    public class MeasurementsServer : IMeasurementsServer
     {
-        private IMeasurementsDao measurementsDao;
+        private static readonly IConnectionFactory connectionFactory = new DefaultConnectionFactory("System.Data.SqlClient", "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\aigne\\source\\repos\\Db\\Wetr_db.mdf;Integrated Security=True;Connect Timeout=30");
+        
+        private IMeasurementsDao measurementsDao = new AdoMeasurementsDao(connectionFactory);
 
         public bool DeleteMeasurement(int id)
         {

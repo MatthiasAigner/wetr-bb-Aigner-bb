@@ -4,17 +4,16 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{27E75B5F-01C0-4788-B281-59ED347FE9A8}</ProjectGuid>
+    <ProjectGuid>{756E594A-54A0-4876-A3EF-80D4F7E82B16}</ProjectGuid>
     <OutputType>WinExe</OutputType>
-    <RootNamespace>Wetr.Simulator</RootNamespace>
-    <AssemblyName>Wetr.Simulator</AssemblyName>
+    <RootNamespace>Wetr.Cockpit</RootNamespace>
+    <AssemblyName>Wetr.Cockpit</AssemblyName>
     <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
     <ProjectTypeGuids>{60dc8134-eba5-43b8-bcc9-bb4bc16c2548};{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}</ProjectTypeGuids>
     <WarningLevel>4</WarningLevel>
     <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
     <Deterministic>true</Deterministic>
-    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -74,10 +73,6 @@
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
     </ApplicationDefinition>
-    <Page Include="View\AddStations.xaml">
-      <SubType>Designer</SubType>
-      <Generator>MSBuild:Compile</Generator>
-    </Page>
     <Page Include="View\MainWindow.xaml">
       <Generator>MSBuild:Compile</Generator>
       <SubType>Designer</SubType>
@@ -86,11 +81,9 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
-    <Compile Include="View\AddStations.xaml.cs">
-      <DependentUpon>AddStations.xaml</DependentUpon>
-    </Compile>
     <Compile Include="View\MainWindow.xaml.cs">
       <DependentUpon>MainWindow.xaml</DependentUpon>
+      <SubType>Code</SubType>
     </Compile>
   </ItemGroup>
   <ItemGroup>
@@ -122,7 +115,7 @@
   </ItemGroup>
   <ItemGroup>
     <ProjectReference Include="..\Wetr.BL.Server\Wetr.BL.Server.csproj">
-      <Project>{3023ADF2-DB7F-472B-B7EB-0D5FEE052DC7}</Project>
+      <Project>{3023adf2-db7f-472b-b7eb-0d5fee052dc7}</Project>
       <Name>Wetr.BL.Server</Name>
     </ProjectReference>
     <ProjectReference Include="..\Wetr.Domainclasses\Wetr.Domainclasses.csproj">
@@ -130,6 +123,5 @@
       <Name>Wetr.Domainclasses</Name>
     </ProjectReference>
   </ItemGroup>
-  <ItemGroup />
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>

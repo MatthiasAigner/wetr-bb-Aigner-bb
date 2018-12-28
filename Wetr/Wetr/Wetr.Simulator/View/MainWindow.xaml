@@ -157,10 +157,15 @@
             <ComboBoxItem Content="Zunehmende Luftfeuchtigkeit"/>
             <ComboBoxItem Content="Zunehmende Windgeschwindigkeit"/>
         </ComboBox>
-        <Canvas Name="Chart" Grid.Column="1" HorizontalAlignment="Stretch" 
+
+        <DataGrid Name ="dgMeasurements" Grid.Column="1" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" 
+                  Margin="20,240,20,20" VerticalAlignment="Top" ItemsSource="{Binding Measurements}" >
+
+        </DataGrid>
+        <!--<Canvas Name="Chart" Grid.Column="1" HorizontalAlignment="Stretch" 
                  Margin="20,210,20,20" VerticalAlignment="Stretch" >
             
-        </Canvas>
+        </Canvas>-->
         
 
 

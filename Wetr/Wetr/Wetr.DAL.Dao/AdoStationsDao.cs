@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
 using System.Configuration;
 using System.Data.Common;
 using System.Linq;
@@ -26,6 +27,7 @@ namespace Wetr.DAL.Dao
 
         private readonly AdoTemplate template;
 
+       
         public AdoStationsDao(IConnectionFactory connectionFactory)
         {
             this.template = new AdoTemplate(connectionFactory);
@@ -33,8 +35,9 @@ namespace Wetr.DAL.Dao
 
         public IEnumerable<Stations> FindAllStations()
         {
-        return template.Query("select * from Stations", stationMapper);
+        return template.Query("select * from Stations", stationMapper).ToList();
         }
+        
 
         public Stations FindStationByName(string station)
         {
