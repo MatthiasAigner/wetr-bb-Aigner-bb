@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Collections.ObjectModel;
+using System.ComponentModel;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -21,9 +22,12 @@ namespace Wetr.Simulator
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow : Window , INotifyPropertyChanged
     {
         public ObservableCollection<Stations> SimulatedStations { get; set; }
+        public double valueOfValueRangeTo;
+
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public MainWindow()
         {
@@ -50,48 +54,132 @@ namespace Wetr.Simulator
                 SimulatedStations.Add(addedStation);
         }
 
-        public int minValueRange()
+        public int minValueRange //for Slider
         {
-            switch (cbMeasurement.SelectedValue)
+            get
             {
-                case "Lufttemperatur":
-                    return -20;
-                case "Luftdruck":
-                    return 900;
-                case "Regenmenge":
-                    return 0;
-                case "Luftfeuchtigkeit":
-                    return 0;
-                case "Windgeschwindigkeit":
-                    return 0;
-                default:
-                    return 0;
+                switch (cbMeasurement.SelectedIndex)
+                {
+                    case 0: // Lufttemperatur
+                        return -25;
+                    case 1: // Luftdruck
+                        return 813;
+                    case 2: // Regenmenge
+                        return 0;
+                    case 3: // Luftfeuchtigkeit
+                        return 0;
+                    case 4: // Windgeschwindigkeit
+                        return 0;
+                    default:
+                        return 0;
+                }
+            }
+            set { }
+        }
+
+        public int maxValueRange //for Slider
+        {
+            get
+            {
+                switch (cbMeasurement.SelectedIndex)
+                {
+                    case 0: // Lufttemperatur
+                        return 45;
+                    case 1: // Luftdruck:
+                        return 1213;
+                    case 2: // Regenmenge
+                        return 35;
+                    case 3: // Luftfeuchtigkeit
+                        return 100;
+                    case 4: // Windgeschwindigkeit
+                        return 160;
+                    default:
+                        return 10;
+                }
             }
         }
 
-        public int maxValueRange()
+        public string ValueRangeUnit //for Slider
         {
-            switch (cbMeasurement.SelectedValue)
+            get
             {
-                case "Lufttemperatur":
-                    return 40;
-                case "Luftdruck":
-                    return 1100;
-                case "Regenmenge":
-                    return 30;
-                case "Luftfeuchtigkeit":
-                    return 100;
-                case "Windgeschwindigkeit":
-                    return 130;
-                default:
-                    return 0;
+                switch (cbMeasurement.SelectedIndex)
+                {
+                    case 0: // Lufttemperatur
+                        return "°C";
+                    case 1: // Luftdruck:
+                        return "hPa";
+                    case 2: // Regenmenge
+                        return "mm/h";
+                    case 3: // Luftfeuchtigkeit
+                        return "%";
+                    case 4: // Windgeschwindigkeit
+                        return "km/h";
+                    default:
+                        return "";
+                }
             }
         }
+
+        public double StartValue //for Slider
+        {
+            get
+            {
+                return (minValueRange + maxValueRange) / 2.0;
+            }
+            set { }
+        }
+
+        
 
         private void BtAddStation_Click(object sender, RoutedEventArgs e)
         {
             AddStations addStations = new AddStations(this);
             addStations.Show();
+        }
+
+        private void DudValueRangeTo_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            slValueRangeTo.Value = Math.Round((double)dudValueRangeTo.Value,1);
+        }
+
+        private void SlValueRangeTo_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            dudValueRangeTo.Value = Math.Round((double)slValueRangeTo.Value,1);
+        }
+
+        private void DudValueRangeFrom_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            slValueRangeFrom.Value = Math.Round((double)dudValueRangeFrom.Value,1);
+        }
+
+        private void SlValueRangeFrom_ValueChanged(object sender, RoutedPropertyChangedEventArgs<double> e)
+        {
+            dudValueRangeFrom.Value = Math.Round((double)slValueRangeFrom.Value,1);
+        }
+
+        private void CbStrategy_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void CbMeasurement_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (dudValueRangeFrom != null && dudValueRangeTo != null)
+            {
+                slValueRangeFrom.Minimum = minValueRange;
+                slValueRangeTo.Minimum = minValueRange;
+                slValueRangeFrom.Maximum = maxValueRange;
+                slValueRangeTo.Maximum = maxValueRange;
+                dudValueRangeFrom.Value = StartValue;
+                dudValueRangeTo.Value = StartValue;
+                dudValueRangeFrom.Minimum = minValueRange;
+                dudValueRangeTo.Minimum = minValueRange;
+                dudValueRangeFrom.Maximum = maxValueRange;
+                dudValueRangeTo.Maximum = maxValueRange;
+                lbValueRangeFromUnit.Content = ValueRangeUnit;
+                lbValueRangeToUnit.Content = ValueRangeUnit;
+            }
         }
     }
 }

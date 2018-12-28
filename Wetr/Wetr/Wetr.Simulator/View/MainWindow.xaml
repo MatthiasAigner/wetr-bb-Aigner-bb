@@ -4,12 +4,12 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        xmlns:ViewModel="clr-namespace:Wetr.Simulator.ViewModel"
+        
         
         xmlns:local="clr-namespace:Wetr.Simulator"
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
-        Title="Simulator" Height="650" Width="1200" MinHeight="600" MinWidth="750">
+        Title="Simulator" Height="650" Width="1200" MinHeight="600" MinWidth="770">
     <Window.Resources>
         <Style TargetType="{x:Type GridSplitter}">
             <Setter Property="Background" Value="RosyBrown"/>
@@ -21,7 +21,7 @@
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="200"/>
             <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="250"/>
+            <ColumnDefinition Width="270"/>
         </Grid.ColumnDefinitions>
 
 
@@ -94,7 +94,7 @@
                />
         <ComboBox  Name="cbMeasurement" Grid.Column="2" HorizontalAlignment="Left" 
                    Height="25" Margin="20,180,0,0"  VerticalAlignment="Top" 
-                   Width="120" >
+                   Width="200" SelectionChanged="CbMeasurement_SelectionChanged">
             <ComboBoxItem Content="Lufttemperatur" IsSelected="True"/>
             <ComboBoxItem Content="Luftdruck"/>
             <ComboBoxItem Content="Regenmenge"/>
@@ -117,19 +117,38 @@
                />
         <Slider Name="slValueRangeFrom" Grid.Column="2" HorizontalAlignment="Left" 
                 Margin="20,340,0,0" VerticalAlignment="Top" Width="150"
-                />
+                Minimum="{Binding minValueRange}" Maximum="{Binding maxValueRange}" ValueChanged="SlValueRangeFrom_ValueChanged"  
+                IsSnapToTickEnabled="True" TickFrequency="0.1"/>
+        
+        <xctk:DoubleUpDown Name="dudValueRangeFrom" Grid.Column="2" HorizontalAlignment="Left" 
+                           Margin="170,340,0,0"  VerticalAlignment="Top" Width="55"
+                           Minimum="{Binding minValueRange}" Maximum="{Binding maxValueRange}"
+                           DefaultValue="{Binding StartValue}" DisplayDefaultValueOnEmptyText="True"
+                           ValueChanged="DudValueRangeFrom_ValueChanged"/>
+        <Label Name="lbValueRangeFromUnit" Content="{Binding ValueRangeUnit}" Grid.Column="2" 
+               HorizontalAlignment="Left" Margin="225,340,0,0" VerticalAlignment="Top"
+               />
         <Label Name="lbValueRangeTo" Content="Wertebereich bis:" Grid.Column="2" 
                HorizontalAlignment="Left" Margin="20,390,0,0" VerticalAlignment="Top"
                />
         <Slider Name="slValueRangeTo" Grid.Column="2" HorizontalAlignment="Left" 
                 Margin="20,420,0,0" VerticalAlignment="Top" Width="150"
-                />
+                Minimum="{Binding minValueRange}" Maximum="{Binding maxValueRange}" ValueChanged="SlValueRangeTo_ValueChanged"  
+                IsSnapToTickEnabled="True" TickFrequency="0.1"/>
+        <xctk:DoubleUpDown Name="dudValueRangeTo" Grid.Column="2" HorizontalAlignment="Left" 
+                           Margin="170,420,0,0"  VerticalAlignment="Top" Width="55"
+                           Minimum="{Binding minValueRange}" Maximum="{Binding maxValueRange}"
+                           DefaultValue="{Binding StartValue}" DisplayDefaultValueOnEmptyText="True"
+                           ValueChanged="DudValueRangeTo_ValueChanged"/>
+        <Label Name="lbValueRangeToUnit" Content="{Binding ValueRangeUnit}" Grid.Column="2" 
+               HorizontalAlignment="Left" Margin="225,420,0,0" VerticalAlignment="Top"
+               />
         <Label Name="lbStrategy" Content="Strategy:" Grid.Column="2" 
                HorizontalAlignment="Left" Margin="20,470,0,0" VerticalAlignment="Top"
                />
         <ComboBox Name="cbStrategy" Grid.Column="2" HorizontalAlignment="Left" 
                   Height="25" Margin="20,500,0,0"  VerticalAlignment="Top" 
-                  Width="120" >
+                  Width="200" SelectionChanged="CbStrategy_SelectionChanged">
             <ComboBoxItem Content="Linear" IsSelected="True"/>
             <ComboBoxItem Content="Zufällig"/>
             <ComboBoxItem Content="Lufttemperaturverlauf eines Tages"/>
@@ -142,7 +161,7 @@
                  Margin="20,210,20,20" VerticalAlignment="Stretch" >
             
         </Canvas>
-
+        
 
 
 
