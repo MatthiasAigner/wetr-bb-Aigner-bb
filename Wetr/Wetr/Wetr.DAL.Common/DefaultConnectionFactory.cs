@@ -27,7 +27,7 @@ namespace Wetr.DAL.Common
             return new DefaultConnectionFactory(providerName, connectionString);
         }
 
-        public DefaultConnectionFactory(string providerName, string connectionString)
+        public DefaultConnectionFactory(string providerName = "System.Data.SqlClient", string connectionString = "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\aigne\\source\\repos\\Db\\Wetr_db.mdf;Integrated Security=True;Connect Timeout=30")
         {
             this.ConnectionString = connectionString;
             this.ProviderName = providerName;

@@ -17,6 +17,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wetr.Simulator", "Wetr.Simu
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wetr.Cockpit", "Wetr.Cockpit\Wetr.Cockpit.csproj", "{756E594A-54A0-4876-A3EF-80D4F7E82B16}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wetr.WebService", "Wetr.WebService\Wetr.WebService.csproj", "{318F2C04-B9FE-456B-8CAA-73DD6362D4FA}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wetr.WebService.Tests", "Wetr.WebService.Tests\Wetr.WebService.Tests.csproj", "{2D18394E-8789-47A2-BA8A-4347F6B925CC}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -51,6 +55,14 @@ Global
 		{756E594A-54A0-4876-A3EF-80D4F7E82B16}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{756E594A-54A0-4876-A3EF-80D4F7E82B16}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{756E594A-54A0-4876-A3EF-80D4F7E82B16}.Release|Any CPU.Build.0 = Release|Any CPU
+		{318F2C04-B9FE-456B-8CAA-73DD6362D4FA}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{318F2C04-B9FE-456B-8CAA-73DD6362D4FA}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{318F2C04-B9FE-456B-8CAA-73DD6362D4FA}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{318F2C04-B9FE-456B-8CAA-73DD6362D4FA}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D18394E-8789-47A2-BA8A-4347F6B925CC}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D18394E-8789-47A2-BA8A-4347F6B925CC}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D18394E-8789-47A2-BA8A-4347F6B925CC}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D18394E-8789-47A2-BA8A-4347F6B925CC}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

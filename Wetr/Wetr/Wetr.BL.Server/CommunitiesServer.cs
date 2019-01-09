@@ -1,12 +1,14 @@
 ﻿using System.Collections.Generic;
 using Wetr.Domainclasses;
 using Wetr.DAL.Dao;
+using Wetr.DAL.Common;
 
 namespace Wetr.BL.Server
 {
     class CommunitiesServer : ICommunitiesServer
     {
-        private ICommunitiesDao communityDao;
+        private static readonly IConnectionFactory connectionFactory = new DefaultConnectionFactory();
+        private ICommunitiesDao communityDao = new AdoCommunitiesDao(connectionFactory);
 
         public IEnumerable<Communities> FindAllCommunities()
         {

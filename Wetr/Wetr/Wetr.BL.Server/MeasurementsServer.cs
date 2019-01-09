@@ -11,8 +11,7 @@ namespace Wetr.BL.Server
 {
     public class MeasurementsServer : IMeasurementsServer
     {
-        private static readonly IConnectionFactory connectionFactory = new DefaultConnectionFactory("System.Data.SqlClient", "Data Source=(LocalDB)\\MSSQLLocalDB;AttachDbFilename=C:\\Users\\aigne\\source\\repos\\Db\\Wetr_db.mdf;Integrated Security=True;Connect Timeout=30");
-        //private static readonly IConnectionFactory connectionFactory = DefaultConnectionFactory.FromConfiguration("WetrDbConnection");
+        private static readonly IConnectionFactory connectionFactory = new DefaultConnectionFactory();
         private IMeasurementsDao measurementsDao = new AdoMeasurementsDao(connectionFactory);
 
         public bool DeleteMeasurement(int id)

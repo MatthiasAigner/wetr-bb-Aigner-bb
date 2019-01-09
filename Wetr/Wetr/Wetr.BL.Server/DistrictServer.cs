@@ -1,4 +1,5 @@
 ﻿using System.Collections.Generic;
+using Wetr.DAL.Common;
 using Wetr.DAL.Dao;
 using Wetr.Domainclasses;
 
@@ -6,7 +7,8 @@ namespace Wetr.BL.Server
 {
     class DistrictServer : IDistrictServer        
     {
-        private IDistrictDao districtDao;
+        private static readonly IConnectionFactory connectionFactory = new DefaultConnectionFactory();
+        private IDistrictDao districtDao = new AdoDistrictDao(connectionFactory);
 
         public IEnumerable<Districts> FindDistrictsByProvince(string province)
         {
