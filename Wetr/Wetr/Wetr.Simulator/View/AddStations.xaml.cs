@@ -14,41 +14,33 @@ using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Wetr.BL.Server;
 using Wetr.Domainclasses;
+using Wetr.CSharpClient;
+using System.ComponentModel;
 
 namespace Wetr.Simulator.View
 {
     /// <summary>
     /// Interaction logic for AddStations.xaml
     /// </summary>
-    public partial class AddStations : Window
-    {        
+    public partial class AddStations : Window, INotifyPropertyChanged
+    {
+        private Client client = new Client();
+        private List<Stations> stationList = new List<Stations>();
         private MainWindow mainWindow;
+
+        public event PropertyChangedEventHandler PropertyChanged;
+
         public AddStations(MainWindow mainWindow)
         {
-            this.mainWindow = mainWindow;            
+            GetAllStations = new NotifyTaskCompletion<List<Stations>>(client.GetAllStations(new System.Net.Http.HttpClient()));
+            this.mainWindow = mainWindow;
             DataContext = this;
             InitializeComponent();
         }
 
-        public ObservableCollection<Stations> AllStations
-        {
-            get //kommt später von REST-Service
-            {
-                ObservableCollection<Stations> ocs = new ObservableCollection<Stations>();
-                ocs.Add(new Stations("ANDAU", "", 0.0, 0.0, 0));
-                ocs.Add(new Stations("BERNSTEIN", "", 0.0, 0.0, 0));
-                ocs.Add(new Stations("BRUCKNEUDORF", "", 0.0, 0.0, 0));
-                ocs.Add(new Stations("GÜSSING", "", 0.0, 0.0, 0));
-                ocs.Add(new Stations("LUTZMANNSBURG", "", 0.0, 0.0, 0));
-                ocs.Add(new Stations("MATTERSBURG", "", 0.0, 0.0, 0));
-                ocs.Add(new Stations("PODERSDORF", "", 0.0, 0.0, 0));
-                ocs.Add(new Stations("RECHNITZ  ", "", 0.0, 0.0, 0));
-                ocs.Add(new Stations("WÖRTERBERG", "", 0.0, 0.0, 0));
-                ocs.Add(new Stations("ARRIACH", "", 0.0, 0.0, 0));
-                ocs.Add(new Stations("ENNS", "", 0.0, 0.0, 0));
-                return ocs;
-            }
-        }        
+
+        public NotifyTaskCompletion<List<Stations>> GetAllStations { get; set; }
+
 
         private void BtCancel_Click(object sender, RoutedEventArgs e)
         {

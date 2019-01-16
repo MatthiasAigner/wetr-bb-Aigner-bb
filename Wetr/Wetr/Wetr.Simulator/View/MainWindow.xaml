@@ -4,31 +4,36 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:sys="clr-namespace:System;assembly=mscorlib"
-        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
+        xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"            
+        xmlns:lvc="clr-namespace:LiveCharts.Wpf;assembly=LiveCharts.Wpf"
+        
         mc:Ignorable="d"
-        Title="Simulator" Height="650" Width="1200" MinHeight="600" MinWidth="770" >
+        Title="Simulator" Height="650" Width="1200" MinHeight="600" MinWidth="970" >
     <Window.Resources>
         <Style TargetType="{x:Type GridSplitter}">
             <Setter Property="Background" Value="RosyBrown"/>
         </Style>
+
+
     </Window.Resources>
 
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="200"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="270"/>
+            <ColumnDefinition Width="200" MinWidth="170"/>
+            <ColumnDefinition Width="*" MinWidth="550"/>
+            <ColumnDefinition Width="270" MinWidth="270"/>
         </Grid.ColumnDefinitions>
-
+        <Label Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" 
+               Content="Wetterstationen:" FontSize="20" Margin="0,15"
+               />
 
         <ListBox Name="lbStations" Grid.Column="0" HorizontalContentAlignment="Stretch" 
-                 ItemsSource="{Binding SimulatedStations}"  >
+                 ItemsSource="{Binding SimulatedStations}" Margin="0,70,0,100" SelectionChanged="LbStations_SelectionChanged">
 
             <ListBox.ItemTemplate>
                 <DataTemplate>
                     <TextBlock FontSize="9pt">
-                        <TextBlock Text="{Binding Station}"/>
-                        
+                        <TextBlock Text="{Binding Station}"/>                        
                     </TextBlock>
                 </DataTemplate>
             </ListBox.ItemTemplate>
@@ -37,42 +42,95 @@
                 Margin="20,20,20,50" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" 
                 Click="BtAddStation_Click"/>
         <Button Name="btDeleteStation" Grid.Column="0" Content="Station löschen" HorizontalAlignment="Stretch" 
-                Margin="20,20,20,20" VerticalAlignment="Bottom" HorizontalContentAlignment="Center"
+                Margin="20,20,20,20" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" Click="BtDeleteStation_Click"
                 />
         <GridSplitter Grid.Column="0" Width="3" HorizontalAlignment="Right" VerticalAlignment="Stretch"/>
         <Label Name="lbStartDate"  Grid.Column="1" Content="Startdatum:" 
                HorizontalAlignment="Left" Margin="20,50,0,0" VerticalAlignment="Top"
                />
-        <DatePicker Name="dpStartDate" Grid.Column="1" SelectedDateFormat="Short" 
+        <Grid Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="230" MinHeight="230"/>
+                <RowDefinition Height="2*"/>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+
+            <Label Name="lbSimulatedStation"  Grid.Column="0" HorizontalAlignment="Center" VerticalAlignment="Top" 
+               Content="Keine Wetterstation ausgewählt!!!" FontSize="20" Margin="0,15"
+               />
+            <DatePicker Name="dpStartDate" Grid.Row="0" SelectedDateFormat="Short" 
                     IsTodayHighlighted="True"  Width="100" Height="25" HorizontalAlignment="Left" 
-                    Margin="20,80,0,0" VerticalAlignment="Top" FirstDayOfWeek="Monday" 
+                    Margin="20,80,0,0" VerticalAlignment="Top" FirstDayOfWeek="Monday" SelectedDateChanged="DpStartDate_SelectedDateChanged"
                     SelectedDate="{x:Static sys:DateTime.Today}"
                     />
-        <Label Name="lbEndDate"  Grid.Column="1" Content="Enddatum:" 
-               HorizontalAlignment="Left" Margin="20,130,0,0" VerticalAlignment="Top"
+            <Label Name="lbEndDate"  Grid.Row="0" Content="Enddatum:" 
+               HorizontalAlignment="Left" Margin="20,120,0,0" VerticalAlignment="Top"
                />
-        <DatePicker Name="dpEndDate" Grid.Column="1" SelectedDateFormat="Short" 
+            <DatePicker Name="dpEndDate" Grid.Row="0" SelectedDateFormat="Short" 
                     IsTodayHighlighted="True"  Width="100" Height="25" HorizontalAlignment="Left" 
-                    Margin="20,160,0,0" VerticalAlignment="Top" FirstDayOfWeek="Monday" 
+                    Margin="20,150,0,0" VerticalAlignment="Top" FirstDayOfWeek="Monday" SelectedDateChanged="DpEndDate_SelectedDateChanged"
                     SelectedDate="{x:Static sys:DateTime.Today}" 
                     />
-        <Label Name="lbStartTime"  Grid.Column="1" Content="Startzeit:" 
+            <Label Name="lbStartTime"  Grid.Row="0" Content="Startzeit:" 
                HorizontalAlignment="Left" Margin="150,50,0,0" VerticalAlignment="Top"
                />
-        <xctk:TimePicker Name="tpStartTime" Grid.Column="1"   Width="100" Height="25"
+            <xctk:TimePicker Name="tpStartTime" Grid.Row="0"   Width="100" Height="25"
                   HorizontalAlignment="Left" Margin="150,80,0,0" VerticalAlignment="Top"
-                  DefaultValue="00:00" DisplayDefaultValueOnEmptyText="True"
+                  DefaultValue="00:00" DisplayDefaultValueOnEmptyText="True" ValueChanged="TpStartTime_ValueChanged"
                   />
-        <Label Name="lbEndTime"  Grid.Column="1" Content="Endzeit:" 
-               HorizontalAlignment="Left" Margin="150,130,0,0" VerticalAlignment="Top"
+            <Label Name="lbEndTime"  Grid.Row="0" Content="Endzeit:" 
+               HorizontalAlignment="Left" Margin="150,120,0,0" VerticalAlignment="Top"
                />
-        <xctk:TimePicker Name="tpEndTime" Grid.Column="1"   Width="100" Height="25"
-                  HorizontalAlignment="Left" Margin="150,160,0,0" VerticalAlignment="Top"
-                  DefaultValue="00:00" DisplayDefaultValueOnEmptyText="True"
+            <xctk:TimePicker Name="tpEndTime" Grid.Row="0"   Width="100" Height="25"
+                  HorizontalAlignment="Left" Margin="150,150,0,0" VerticalAlignment="Top"
+                  DefaultValue="00:00" DisplayDefaultValueOnEmptyText="True" ValueChanged="TpEndTime_ValueChanged"
                   />
+            <Label Name="lbDateTimeError"  Grid.Row="0" Content="Endzeit muss später als Startzeit sein!" 
+               HorizontalAlignment="Left" Margin="20,180,0,0" VerticalAlignment="Top" Foreground="Red"
+               />
+
+            <Button Name="btStartSimulator" Content="Start Simulator" Grid.Row="0" 
+                HorizontalAlignment="Left" Margin="300,80,0,0" VerticalAlignment="Top" 
+                Width="100" Click="BtStartSimulator_Click" IsEnabled="False"
+                />
+            <Button Name="btStopSimulator" Content="Stop Simulator" Grid.Row="0" 
+                HorizontalAlignment="Left" Margin="430,80,0,0" VerticalAlignment="Top" 
+                Width="100" Click="BtStopSimulator_Click" IsEnabled="False"
+                    />
+            <Button x:Name="btSendData" Content="Datensatz an RestService senden" Grid.Row="0" 
+            HorizontalAlignment="Left" Margin="300,130,0,0" VerticalAlignment="Top" 
+            Width="230" Click="BtSendData_Click" IsEnabled="False"
+                    />
+
+            <GridSplitter Grid.Row="0" Height="3" HorizontalAlignment="Stretch" 
+                      VerticalAlignment="Bottom"
+                      />
+
+            <lvc:CartesianChart Name="MyChart" Grid.Row="1" Series="{Binding ChartData}" Margin="10,10,10,10">
+                <lvc:CartesianChart.AxisY>
+                    <lvc:Axis Name="MyYAxis" Title="Messwert" LabelFormatter="{Binding YFormatter}"></lvc:Axis>
+                </lvc:CartesianChart.AxisY>
+                <lvc:CartesianChart.AxisX>
+                    <lvc:Axis Title="Zeit" Labels="{Binding Labels}"></lvc:Axis>
+                </lvc:CartesianChart.AxisX>
+            </lvc:CartesianChart>
+
+            <GridSplitter Grid.Row="1" Height="3" HorizontalAlignment="Stretch" 
+                      VerticalAlignment="Bottom"
+                      />
+            
+            <DataGrid Name ="dgMeasurements" Grid.Row="2"
+                HorizontalAlignment="Left" HorizontalContentAlignment="Stretch"
+                Margin="10,10,10,10" VerticalAlignment="Top"
+                />
+
+        </Grid>
+
         <GridSplitter Grid.Column="1" Width="3" HorizontalAlignment="Right" 
                       VerticalAlignment="Stretch"
                       />
+
+        
         <Label Name="lbSpeed" Grid.Column="2" Content="Geschwindigkeit:" 
                HorizontalAlignment="Left" Margin="20,50,0,0" VerticalAlignment="Top" 
                />
@@ -115,7 +173,7 @@
                 Margin="20,340,0,0" VerticalAlignment="Top" Width="150"
                 Minimum="{Binding minValueRange}" Maximum="{Binding maxValueRange}" ValueChanged="SlValueRangeFrom_ValueChanged"  
                 IsSnapToTickEnabled="True" TickFrequency="0.1"/>
-        
+
         <xctk:DoubleUpDown Name="dudValueRangeFrom" Grid.Column="2" HorizontalAlignment="Left" 
                            Margin="170,340,0,0"  VerticalAlignment="Top" Width="55"
                            Minimum="{Binding minValueRange}" Maximum="{Binding maxValueRange}"
@@ -147,27 +205,14 @@
                   Width="200" SelectionChanged="CbStrategy_SelectionChanged">
             <ComboBoxItem Content="Linear" IsSelected="True"/>
             <ComboBoxItem Content="Zufällig"/>
-            <ComboBoxItem Content="Lufttemperaturverlauf eines Tages"/>
-            <ComboBoxItem Content="Tiefdruck zu Hochdruck"/>
-            <ComboBoxItem Content="Zunehmende Regenmenge"/>
-            <ComboBoxItem Content="Zunehmende Luftfeuchtigkeit"/>
-            <ComboBoxItem Content="Zunehmende Windgeschwindigkeit"/>
+            <ComboBoxItem Content="Konkav"/>
+            <ComboBoxItem Content="Konvex"/>
         </ComboBox>
 
-        <DataGrid Name ="dgMeasurements" Grid.Column="1" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" 
-                  Margin="20,240,20,20" VerticalAlignment="Top" ItemsSource="{Binding Measurements}" >
-
-        </DataGrid>
-        <Button Name="btStartSimulator" Content="Start Simulator" Grid.Column="1" 
-                HorizontalAlignment="Left" Margin="20,200,0,0" VerticalAlignment="Top" 
-                Width="100" Click="BtStartSimulator_Click"/>
-        <Button Name="btStopSimulator" Content="Stop Simulator" Grid.Column="1" 
-                HorizontalAlignment="Left" Margin="150,200,0,0" VerticalAlignment="Top" 
-                Width="100" Click="BtStopSimulator_Click" IsEnabled="False"/>
         <!--<Canvas Name="Chart" Grid.Column="1" HorizontalAlignment="Stretch" 
                  Margin="20,210,20,20" VerticalAlignment="Stretch" >
             
         </Canvas>-->
-    
+
     </Grid>
 </Window>

@@ -6,27 +6,43 @@ using System.Windows.Controls;
 using System.Windows.Threading;
 using Wetr.Domainclasses;
 using Wetr.Simulator.View;
+using LiveCharts;
+using LiveCharts.Wpf;
+using System.ComponentModel;
 
 namespace Wetr.Simulator
 {
     /// <summary>
     /// Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window //, INotifyPropertyChanged
+    public partial class MainWindow : Window, INotifyPropertyChanged
     {
         public ObservableCollection<Stations> SimulatedStations { get; set; }
         public ObservableCollection<Measurements> MeasurementsCollection;
-
+        public ObservableCollection<Measurements> RoundedMeasurementsCollection;
+        public SeriesCollection ChartData { get; set; }
+        public LineSeries ChartDataLine;
+        public ChartValues<double> MyChartValues;
         private DispatcherTimer dt = new DispatcherTimer();
+        private int selectedStationIndex;
+        public event PropertyChangedEventHandler PropertyChanged;
 
         public MainWindow()
         {
-            MeasurementsCollection = new ObservableCollection<Measurements>();
-            SimulatedStations = new ObservableCollection<Stations>();
-            DataContext = this;
-            InitializeComponent();
 
+            MeasurementsCollection = new ObservableCollection<Measurements>();
+            RoundedMeasurementsCollection = new ObservableCollection<Measurements>();
+            SimulatedStations = new ObservableCollection<Stations>();
+            dt.Tick += dtTicker;
+            InitializeComponent();
+            MyChartValues = new ChartValues<double>();
+            ChartDataLine = new LineSeries();
+            ChartDataLine.Title = "Messwert:";
+            ChartDataLine.Values = MyChartValues;
+            ChartData = new SeriesCollection { ChartDataLine };
+            DataContext = this;
         }
+
 
         public void AddSimulatedStations(Stations addedStation)
         {
@@ -37,7 +53,19 @@ namespace Wetr.Simulator
                     alreadyAdded = true;
             }
             if (!alreadyAdded)
+            {
                 SimulatedStations.Add(addedStation);
+                lbStations.SelectedIndex = SimulatedStations.Count - 1;
+            }
+        }
+
+        public void deleteSimulatedStation()
+        {
+            if (lbStations.SelectedIndex >= 0)
+            {
+                SimulatedStations.RemoveAt(lbStations.SelectedIndex);
+                lbStations.SelectedIndex = 0;
+            }
         }
 
         public int minValueRange //for Slider
@@ -166,14 +194,183 @@ namespace Wetr.Simulator
             }
         }
 
-        private ObservableCollection<Measurements> Measurements
+        //private ObservableCollection<Measurements> Measurements
+        //{
+        //    get
+        //    {
+        //        return MeasurementsCollection;
+        //    }
+        //    set { }
+        //}
+
+
+
+        private void BtStartSimulator_Click(object sender, RoutedEventArgs e)
         {
-            get
+            if (!DateImputsIsValid())
             {
-                return MeasurementsCollection;
+                MessageBox.Show("Endzeit muss später als Startzeit sein!", "Error", MessageBoxButton.OKCancel);
             }
-            set { }
+            else
+            {
+                RoundedMeasurementsCollection.Clear();
+                MeasurementsCollection.Clear();
+                MyChartValues.Clear();
+                Measurements generatedMeasurement = GenerateMeasurements();
+                MeasurementsCollection.Add(generatedMeasurement);
+                AddChartValue(generatedMeasurement);
+                AddMeasurementToRoundedMeasurementCollection(generatedMeasurement);
+                dgMeasurements.ItemsSource = RoundedMeasurementsCollection;
+                double generateSpeed = 1.0;
+                if ((bool)rbSpeed1.IsChecked)
+                    generateSpeed = 0.5;
+                else if ((bool)rbSpeed3.IsChecked)
+                    generateSpeed = 10.0;
+                dt.Interval = TimeSpan.FromSeconds((double)dudFrequency.Value / generateSpeed);
+                dt.Start();
+                btStartSimulator.IsEnabled = false;
+                btStopSimulator.IsEnabled = true;
+                btSendData.IsEnabled = false;
+                UITimeInput(false);
+                UIRightColumnEnabled(false);
+            }
         }
+
+
+
+        private void AddChartValue(Measurements generatedMeasurement)
+        {
+            switch (cbMeasurement.SelectedIndex)
+            {
+                case 0: //Lufttemperatur
+                    MyChartValues.Add(generatedMeasurement.Airtemperature);
+                    ChartDataLine.Title = "Lufttemperatur [°C]";
+                    MyYAxis.Title = "Lufttemperatur [°C]";
+                    break;
+                case 1: //Luftdruck
+                    MyChartValues.Add(generatedMeasurement.Airpressure);
+                    ChartDataLine.Title = "Luftdruck [hPa]";
+                    MyYAxis.Title = "Luftdruck [hPa]";
+                    break;
+                case 2: //Regenmenge
+                    MyChartValues.Add(generatedMeasurement.Rainfall);
+                    ChartDataLine.Title = "Regenmenge [mm/h]";
+                    MyYAxis.Title = "Regenmenge [mm/h]";
+                    break;
+                case 3: //Luftfeuchtigkeit
+                    MyChartValues.Add(generatedMeasurement.Humidity);
+                    ChartDataLine.Title = "Luftfeuchtigkeit [%]";
+                    MyYAxis.Title = "Luftfeuchtigkeit [%]";
+                    break;
+                case 4: //Windgeschwindigkeit
+                    MyChartValues.Add(generatedMeasurement.WindSpeed);
+                    ChartDataLine.Title = "Windgeschwindigkeit [km/h]";
+                    MyYAxis.Title = "Windgeschwindigkeit [km/h]";
+                    break;
+            }
+        }
+
+        private void AddMeasurementToRoundedMeasurementCollection(Measurements generatedMeasurement)
+        {
+            Measurements roundedMeasurement = new Measurements();
+            roundedMeasurement.Station = generatedMeasurement.Station;
+            roundedMeasurement.Timestamp = generatedMeasurement.Timestamp;
+            roundedMeasurement.Airtemperature = Math.Round(generatedMeasurement.Airtemperature, 1);
+            roundedMeasurement.Airpressure = Math.Round(generatedMeasurement.Airpressure, 1);
+            roundedMeasurement.Rainfall = Math.Round(generatedMeasurement.Rainfall, 1);
+            roundedMeasurement.Humidity = Math.Round(generatedMeasurement.Humidity, 1);
+            roundedMeasurement.WindSpeed = Math.Round(generatedMeasurement.WindSpeed, 1);
+            roundedMeasurement.WindDirection = generatedMeasurement.WindDirection;
+            RoundedMeasurementsCollection.Add(roundedMeasurement);
+        }
+
+        private void dtTicker(object sender, EventArgs e)
+        {
+            Measurements generatedMeasurement = GenerateMeasurements();
+            MeasurementsCollection.Add(generatedMeasurement);
+            AddMeasurementToRoundedMeasurementCollection(generatedMeasurement);
+            AddChartValue(generatedMeasurement);
+            DateTime startDateTime = (DateTime)dpStartDate.SelectedDate.Value;
+            DateTime startTime = ((DateTime)tpStartTime.Value);
+            startDateTime = startDateTime.AddHours(startTime.Hour);
+            startDateTime = startDateTime.AddMinutes(startTime.Minute);
+            DateTime endDateTime = (DateTime)dpEndDate.SelectedDate.Value;
+            DateTime endTime = ((DateTime)tpEndTime.Value);
+            endDateTime = endDateTime.AddHours(endTime.Hour);
+            endDateTime = endDateTime.AddMinutes(endTime.Minute);
+            if (generatedMeasurement.Timestamp.AddSeconds((double)dudFrequency.Value) > endDateTime || endDateTime <= startDateTime)
+            {
+                dt.Stop();
+                btStartSimulator.IsEnabled = true;
+                btSendData.IsEnabled = true;
+                btStopSimulator.IsEnabled = false;
+                UIRightColumnEnabled(true);
+            }
+            dgMeasurements.ItemsSource = RoundedMeasurementsCollection;
+        }
+
+
+
+        private void BtStopSimulator_Click(object sender, RoutedEventArgs e)
+        {
+            dt.Stop();
+            btStartSimulator.IsEnabled = true;
+            btStopSimulator.IsEnabled = false;
+            btSendData.IsEnabled = true;
+            UITimeInput(true);
+            UIRightColumnEnabled(true);
+        }
+
+        private void BtSendData_Click(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+
+
+        private void BtDeleteStation_Click(object sender, RoutedEventArgs e)
+        {
+            deleteSimulatedStation();
+        }
+
+        private void LbStations_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+            selectedStationIndex = lbStations.SelectedIndex;
+            if (selectedStationIndex < 0)
+            {
+                noStationSelected();
+            }
+            else
+            {
+                newStationSelected();
+            }
+        }
+
+        private void newStationSelected()
+        {
+            lbSimulatedStation.Content = "Simulierte Wetterstation: " + SimulatedStations.ElementAt(selectedStationIndex).Station;
+            btStartSimulator.IsEnabled = true;
+            btStopSimulator.IsEnabled = false;
+            btSendData.IsEnabled = false;
+            MeasurementsCollection.Clear();
+            RoundedMeasurementsCollection.Clear();
+            MyChartValues.Clear();
+            UITimeInput(true);
+            UIRightColumnEnabled(true);
+        }
+
+        private void noStationSelected()
+        {
+            lbSimulatedStation.Content = "Keine Wetterstation ausgewählt!!!";
+            btStartSimulator.IsEnabled = false;
+            btStopSimulator.IsEnabled = false;
+            btSendData.IsEnabled = false;
+            MeasurementsCollection.Clear();
+            RoundedMeasurementsCollection.Clear();
+            MyChartValues.Clear();
+        }
+
+
 
         private Measurements GenerateMeasurements()
         {
@@ -199,123 +396,489 @@ namespace Wetr.Simulator
 
             Random random = new Random();
             double generateTimeInterval = (double)dudFrequency.Value;
-            double offsetTemp = random.NextDouble() * 4 - 2;
-            double offsetPressure = random.NextDouble() * 40 - 20;
-            double offsetHumidity = random.NextDouble() * 20 - 10;
+
             Measurements lastMeasurement = MeasurementsCollection.LastOrDefault();
-            DateTime currentDate;
+            double startValue = (double)dudValueRangeFrom.Value;
+            double endValue = (double)dudValueRangeTo.Value;
+            DateTime startDateTime = (DateTime)dpStartDate.SelectedDate.Value;
+            DateTime startTime = ((DateTime)tpStartTime.Value);
+            startDateTime = startDateTime.AddHours(startTime.Hour);
+            startDateTime = startDateTime.AddMinutes(startTime.Minute);
+            DateTime endDateTime = (DateTime)dpEndDate.SelectedDate.Value;
+            DateTime endTime = ((DateTime)tpEndTime.Value);
+            endDateTime = endDateTime.AddHours(endTime.Hour);
+            endDateTime = endDateTime.AddMinutes(endTime.Minute);
+            DateTime currentTime;
             if (lastMeasurement == null)
             {
-                currentDate = (DateTime)dpStartDate.SelectedDate.Value;
-                DateTime time = ((DateTime)tpStartTime.Value);
-                currentDate = currentDate.AddHours(time.Hour);
-                currentDate = currentDate.AddMinutes(time.Minute);
+                currentTime = startDateTime;
             }
             else
             {
-                currentDate = lastMeasurement.Timestamp;
+                currentTime = lastMeasurement.Timestamp;
                 lastMeasurement = MeasurementsCollection.LastOrDefault();
+                currentTime = currentTime.AddSeconds(generateTimeInterval);
             }
-            currentDate = currentDate.AddSeconds(generateTimeInterval);
-            double airTemp = Math.Round((Array[currentDate.DayOfYear - 1] + offsetTemp - Math.Abs(currentDate.Hour - 12.0) * 0.7), 1);
-            double airpressure = Math.Round((970 + offsetPressure), 1);
-            double rainfall = Math.Round((random.NextDouble() * 50 - 25), 1);
-            if (rainfall < 0.0)
-                rainfall = 0.0;
-            double humidity = Math.Round((55 + offsetHumidity), 1);
-            double windspeed = Math.Round((random.NextDouble() * 50), 1);
-            int windDirectionRandom = random.Next(1, 8);
+
+            double airTemp = 0.0;
+            double airpressure = 0.0;
+            double rainfall = 0.0;
+            double humidity = 0.0;
+            double windspeed = 0.0;
             string windDirection = "";
-            switch (windDirectionRandom)
+            if (MeasurementsCollection.Count == 0)
             {
-                case 1:
-                    windDirection = "North";
-                    break;
-                case 2:
-                    windDirection = "Northeast";
-                    break;
-                case 3:
-                    windDirection = "East";
-                    break;
-                case 4:
-                    windDirection = "Southeast";
-                    break;
-                case 5:
-                    windDirection = "South";
-                    break;
-                case 6:
-                    windDirection = "Southwest";
-                    break;
-                case 7:
-                    windDirection = "West";
-                    break;
-                case 8:
-                    windDirection = "Northwest";
-                    break;
-            }
-            if (MeasurementsCollection.LastOrDefault() != null)
-            {
-                switch (cbMeasurement.SelectedIndex)
+                double offsetTemp = (random.NextDouble() * 4 - 2);
+                double offsetPressure = random.NextDouble() * 40 - 20;
+                double offsetHumidity = random.NextDouble() * 20 - 10;
+                airTemp = Array[currentTime.DayOfYear - 1] + offsetTemp - Math.Abs(currentTime.Hour - 12.0) * 0.7;
+                airpressure = 970 + offsetPressure;
+                rainfall = random.NextDouble() * 50 - 25;
+                if (rainfall < 0.0)
+                    rainfall = 0.0;
+                humidity = 55 + offsetHumidity;
+                windspeed = random.NextDouble() * 50;
+                int windDirectionRandom = random.Next(1, 8); ;
+                switch (windDirectionRandom)
                 {
-                    case 0: //Lufttemperatur 
-                        airTemp = Math.Round((lastMeasurement.Airtemperature + (random.NextDouble() - 0.5) * generateTimeInterval * 0.5 / 60), 1);
+                    case 1:
+                        windDirection = "North";
                         break;
-                    case 1: //Luftdruck
-                        airpressure = Math.Round((lastMeasurement.Airpressure + (random.NextDouble() - 0.5) * generateTimeInterval * 2 / 60), 1);
+                    case 2:
+                        windDirection = "Northeast";
                         break;
-                    case 2: //Regenmenge
-                        rainfall = Math.Round((lastMeasurement.Rainfall + (random.NextDouble() - 0.5) * generateTimeInterval * 2 / 60), 1);
-                        if (rainfall < 0.0)
-                            rainfall = 0.0;
+                    case 3:
+                        windDirection = "East";
                         break;
-                    case 3: //Luftfeuchtigkeit
-                        humidity = Math.Round((lastMeasurement.Humidity + (random.NextDouble() - 0.5) * generateTimeInterval * 1 / 60), 1);
-                        if (humidity < 0.0)
-                            humidity = 0.0;
-                        if (humidity > 100.0)
-                            humidity = 100.0;
+                    case 4:
+                        windDirection = "Southeast";
+                        break;
+                    case 5:
+                        windDirection = "South";
+                        break;
+                    case 6:
+                        windDirection = "Southwest";
+                        break;
+                    case 7:
+                        windDirection = "West";
+                        break;
+                    case 8:
+                        windDirection = "Northwest";
                         break;
                 }
             }
-            Stations station = (Stations)lbStations.SelectedItem;
-            Measurements res = new Measurements(station.Station, currentDate, airTemp, airpressure, rainfall, humidity, windspeed, windDirection);
+            else
+            {
+                airTemp = lastMeasurement.Airtemperature + (random.NextDouble() - 0.5) * generateTimeInterval * 0.5 / 60;
+                airpressure = lastMeasurement.Airpressure + (random.NextDouble() - 0.5) * generateTimeInterval * 2 / 60;
+                rainfall = lastMeasurement.Rainfall + (random.NextDouble() - 0.5) * generateTimeInterval * 5 / 60;
+                if (rainfall < 0.0)
+                    rainfall = 0.0;
+                humidity = lastMeasurement.Humidity + (random.NextDouble() - 0.5) * generateTimeInterval * 3 / 60;
+                if (humidity < 0.0)
+                    humidity = 0.0;
+                if (humidity > 100.0)
+                    humidity = 100.0;
+                windspeed = lastMeasurement.WindSpeed + (random.NextDouble() - 0.5) * generateTimeInterval * 10 / 60;
+                string lastWindDirection = lastMeasurement.WindDirection;
+                double randomnumber = random.NextDouble();
+                switch (lastWindDirection)
+                {
+                    case "North":
+                        windDirection = "North";
+                        if (randomnumber < 0.1)
+                            windDirection = "Northwest";
+                        if (randomnumber > 0.9)
+                            windDirection = "Northeast";
+                        break;
+                    case "Northeast":
+                        windDirection = "Northeast";
+                        if (randomnumber < 0.1)
+                            windDirection = "North";
+                        if (randomnumber > 0.9)
+                            windDirection = "East";
+                        break;
+                    case "East":
+                        windDirection = "East";
+                        if (randomnumber < 0.1)
+                            windDirection = "Northeast";
+                        if (randomnumber > 0.9)
+                            windDirection = "Southeast";
+                        break;
+                    case "Southeast":
+                        windDirection = "Southeast";
+                        if (randomnumber < 0.1)
+                            windDirection = "East";
+                        if (randomnumber > 0.9)
+                            windDirection = "South";
+                        break;
+                    case "South":
+                        windDirection = "South";
+                        if (randomnumber < 0.1)
+                            windDirection = "Southeast";
+                        if (randomnumber > 0.9)
+                            windDirection = "Southwest";
+                        break;
+                    case "Southwest":
+                        windDirection = "Southwest";
+                        if (randomnumber < 0.1)
+                            windDirection = "South";
+                        if (randomnumber > 0.9)
+                            windDirection = "West";
+                        break;
+                    case "West":
+                        windDirection = "West";
+                        if (randomnumber < 0.1)
+                            windDirection = "Southwest";
+                        if (randomnumber > 0.9)
+                            windDirection = "Northwest";
+                        break;
+                    case "Northwest":
+                        windDirection = "Northwest";
+                        if (randomnumber < 0.1)
+                            windDirection = "West";
+                        if (randomnumber > 0.9)
+                            windDirection = "North";
+                        break;
+                }
+            }
+
+            double minValue;
+            double maxValue;
+            switch (cbMeasurement.SelectedIndex)
+            {
+
+                case 0: //Lufttemperatur 
+                    //airTemp = Math.Round((lastMeasurement.Airtemperature + (random.NextDouble() - 0.5) * generateTimeInterval * 0.5 / 60), 1);
+                    switch (cbStrategy.SelectedIndex)
+                    {
+                        case 0: //Linear
+                            airTemp = generateNextLinearValue(startValue, endValue, startDateTime, endDateTime, currentTime);
+                            break;
+                        case 1: //Zufällig
+                            airTemp = generateNextRandomValue(startValue, endValue);
+                            break;
+                        case 2: //Konkav                            
+                            if (startValue <= endValue)
+                            {
+                                minValue = startValue;
+                                maxValue = endValue;
+                            }
+                            else
+                            {
+                                minValue = endValue;
+                                maxValue = startValue;
+                            }
+                            airTemp = generateNextKonkavValue(minValue, maxValue, startDateTime, endDateTime, currentTime);
+                            break;
+                        case 3: //Konvex
+                            if (startValue <= endValue)
+                            {
+                                minValue = startValue;
+                                maxValue = endValue;
+                            }
+                            else
+                            {
+                                minValue = endValue;
+                                maxValue = startValue;
+                            }
+                            airTemp = generateNextKonvexValue(minValue, maxValue, startDateTime, endDateTime, currentTime);
+                            break;
+                    }
+                    break;
+                case 1: //Luftdruck
+                    switch (cbStrategy.SelectedIndex)
+                    {
+                        case 0: //Linear
+                            airpressure = generateNextLinearValue(startValue, endValue, startDateTime, endDateTime, currentTime);
+                            break;
+                        case 1: //Zufällig
+                            airpressure = generateNextRandomValue(startValue, endValue);
+                            break;
+                        case 2: //Konkav                            
+                            if (startValue <= endValue)
+                            {
+                                minValue = startValue;
+                                maxValue = endValue;
+                            }
+                            else
+                            {
+                                minValue = endValue;
+                                maxValue = startValue;
+                            }
+                            airpressure = generateNextKonkavValue(minValue, maxValue, startDateTime, endDateTime, currentTime);
+                            break;
+                        case 3: //Konvex
+                            if (startValue <= endValue)
+                            {
+                                minValue = startValue;
+                                maxValue = endValue;
+                            }
+                            else
+                            {
+                                minValue = endValue;
+                                maxValue = startValue;
+                            }
+                            airpressure = generateNextKonvexValue(minValue, maxValue, startDateTime, endDateTime, currentTime);
+                            break;
+                    }
+                    break;
+                case 2: //Regenmenge
+                    switch (cbStrategy.SelectedIndex)
+                    {
+                        case 0: //Linear
+                            rainfall = generateNextLinearValue(startValue, endValue, startDateTime, endDateTime, currentTime);
+                            break;
+                        case 1: //Zufällig
+                            rainfall = generateNextRandomValue(startValue, endValue);
+                            break;
+                        case 2: //Konkav                            
+                            if (startValue <= endValue)
+                            {
+                                minValue = startValue;
+                                maxValue = endValue;
+                            }
+                            else
+                            {
+                                minValue = endValue;
+                                maxValue = startValue;
+                            }
+                            rainfall = generateNextKonkavValue(minValue, maxValue, startDateTime, endDateTime, currentTime);
+                            break;
+                        case 3: //Konvex
+                            if (startValue <= endValue)
+                            {
+                                minValue = startValue;
+                                maxValue = endValue;
+                            }
+                            else
+                            {
+                                minValue = endValue;
+                                maxValue = startValue;
+                            }
+                            rainfall = generateNextKonvexValue(minValue, maxValue, startDateTime, endDateTime, currentTime);
+                            break;
+                    }
+                    break;
+                case 3: //Luftfeuchtigkeit
+                    switch (cbStrategy.SelectedIndex)
+                    {
+                        case 0: //Linear
+                            humidity = generateNextLinearValue(startValue, endValue, startDateTime, endDateTime, currentTime);
+                            break;
+                        case 1: //Zufällig
+                            humidity = generateNextRandomValue(startValue, endValue);
+                            break;
+                        case 2: //Konkav                            
+                            if (startValue <= endValue)
+                            {
+                                minValue = startValue;
+                                maxValue = endValue;
+                            }
+                            else
+                            {
+                                minValue = endValue;
+                                maxValue = startValue;
+                            }
+                            humidity = generateNextKonkavValue(minValue, maxValue, startDateTime, endDateTime, currentTime);
+                            break;
+                        case 3: //Konvex
+                            if (startValue <= endValue)
+                            {
+                                minValue = startValue;
+                                maxValue = endValue;
+                            }
+                            else
+                            {
+                                minValue = endValue;
+                                maxValue = startValue;
+                            }
+                            humidity = generateNextKonvexValue(minValue, maxValue, startDateTime, endDateTime, currentTime);
+                            break;
+                    }
+                    break;
+                case 4: //Windgeschwindigkeit
+                    switch (cbStrategy.SelectedIndex)
+                    {
+                        case 0: //Linear
+                            windspeed = generateNextLinearValue(startValue, endValue, startDateTime, endDateTime, currentTime);
+                            break;
+                        case 1: //Zufällig
+                            windspeed = generateNextRandomValue(startValue, endValue);
+                            break;
+                        case 2: //Konkav                            
+                            if (startValue <= endValue)
+                            {
+                                minValue = startValue;
+                                maxValue = endValue;
+                            }
+                            else
+                            {
+                                minValue = endValue;
+                                maxValue = startValue;
+                            }
+                            windspeed = generateNextKonkavValue(minValue, maxValue, startDateTime, endDateTime, currentTime);
+                            break;
+                        case 3: //Konvex
+                            if (startValue <= endValue)
+                            {
+                                minValue = startValue;
+                                maxValue = endValue;
+                            }
+                            else
+                            {
+                                minValue = endValue;
+                                maxValue = startValue;
+                            }
+                            windspeed = generateNextKonvexValue(minValue, maxValue, startDateTime, endDateTime, currentTime);
+                            break;
+                    }
+                    break;
+            }
+
+
+            Stations station = (Stations)lbStations?.SelectedItem;
+            Measurements res = new Measurements(station?.Station, currentTime, airTemp, airpressure, rainfall, humidity, windspeed, windDirection);
             return res;
         }
 
-        private void BtStartSimulator_Click(object sender, RoutedEventArgs e)
+        private double generateNextLinearValue(double startValue, double endValue, DateTime startTime, DateTime endTime, DateTime currTime)
         {
-            dt.Interval = TimeSpan.FromSeconds((double)dudFrequency.Value);
-            dt.Tick += dtTicker;
-            dt.Start();
-            btStartSimulator.IsEnabled = false;
-            btStopSimulator.IsEnabled = true;
+            TimeSpan deltaStartTimeCurrTime = currTime - startTime;
+            TimeSpan deltaStartTimeEndTime = endTime - startTime;
+            return startValue + deltaStartTimeCurrTime.TotalSeconds * (endValue - startValue) / deltaStartTimeEndTime.TotalSeconds;
         }
 
-        private void dtTicker(object sender, EventArgs e)
+        private double generateNextRandomValue(double startValue, double endValue)
         {
-            Measurements generatedMeasurement = new Measurements();
-            generatedMeasurement = GenerateMeasurements();
-            MeasurementsCollection.Add(generatedMeasurement);
-            DateTime startDate = (DateTime)dpStartDate.SelectedDate.Value;
+            Random random = new Random();
+            return startValue + random.NextDouble() * (endValue - startValue);
+
+        }
+
+        private double generateNextKonkavValue(double minValue, double maxValue, DateTime startTime, DateTime endTime, DateTime currTime)
+        {
+            TimeSpan deltaStartTimeEndTime = endTime - startTime;
+            TimeSpan deltaStartTimeCurrTime = currTime - startTime;
+            return ((minValue - maxValue) * 4 * (deltaStartTimeCurrTime.TotalSeconds - deltaStartTimeEndTime.TotalSeconds / 2) * (deltaStartTimeCurrTime.TotalSeconds - deltaStartTimeEndTime.TotalSeconds / 2)) / (deltaStartTimeEndTime.TotalSeconds * deltaStartTimeEndTime.TotalSeconds) + maxValue;
+        }
+
+        private double generateNextKonvexValue(double minValue, double maxValue, DateTime startTime, DateTime endTime, DateTime currTime)
+        {
+            TimeSpan deltaStartTimeEndTime = endTime - startTime;
+            TimeSpan deltaStartTimeCurrTime = currTime - startTime;
+            return ((maxValue - minValue) * 4 * (deltaStartTimeCurrTime.TotalSeconds - deltaStartTimeEndTime.TotalSeconds / 2) * (deltaStartTimeCurrTime.TotalSeconds - deltaStartTimeEndTime.TotalSeconds / 2)) / (deltaStartTimeEndTime.TotalSeconds * deltaStartTimeEndTime.TotalSeconds) + minValue;
+        }
+
+        private void UIRightColumnEnabled(bool enabled)
+        {
+            rbSpeed1.IsEnabled = enabled;
+            rbSpeed2.IsEnabled = enabled;
+            rbSpeed3.IsEnabled = enabled;
+            cbMeasurement.IsEnabled = enabled;
+            cbStrategy.IsEnabled = enabled;
+            slValueRangeFrom.IsEnabled = enabled;
+            slValueRangeTo.IsEnabled = enabled;
+            dudFrequency.IsEnabled = enabled;
+            dudValueRangeFrom.IsEnabled = enabled;
+            dudValueRangeTo.IsEnabled = enabled;
+            lbSpeed.IsEnabled = enabled;
+            lbMeasurement.IsEnabled = enabled;
+            lbFrequency.IsEnabled = enabled;
+            lbValueRangeFrom.IsEnabled = enabled;
+            lbValueRangeTo.IsEnabled = enabled;
+            lbStrategy.IsEnabled = enabled;
+        }
+
+        private bool DateImputsIsValid()
+        {
+            if (dpStartDate == null || dpEndDate == null || tpStartTime == null || tpEndTime == null)
+                return false;
+            DateTime startDateTime = (DateTime)dpStartDate.SelectedDate.Value;
             DateTime startTime = ((DateTime)tpStartTime.Value);
-            startDate = startDate.AddHours(startTime.Hour);
-            startDate = startDate.AddMinutes(startTime.Minute);
-            DateTime endDate = (DateTime)dpEndDate.SelectedDate.Value;
+            startDateTime = startDateTime.AddHours(startTime.Hour);
+            startDateTime = startDateTime.AddMinutes(startTime.Minute);
+            DateTime endDateTime = (DateTime)dpEndDate.SelectedDate.Value;
             DateTime endTime = ((DateTime)tpEndTime.Value);
-            endDate = endDate.AddHours(endTime.Hour);
-            endDate = endDate.AddMinutes(endTime.Minute);
-            if (generatedMeasurement.Timestamp > endDate || endDate < startDate)
-            {
-                dt.Stop();
-            }
-            dgMeasurements.ItemsSource = Measurements;
+            endDateTime = endDateTime.AddHours(endTime.Hour);
+            endDateTime = endDateTime.AddMinutes(endTime.Minute);
+            TimeSpan deltaTime = endDateTime - startDateTime;
+            if (deltaTime.TotalSeconds > 0)
+                return true;
+            else
+                return false;
         }
 
-        private void BtStopSimulator_Click(object sender, RoutedEventArgs e)
+        private void UITimeInput(bool enable)
         {
-            dt.Stop();
-            btStartSimulator.IsEnabled = true;
-            btStopSimulator.IsEnabled = false;
+            dpStartDate.IsEnabled = enable;
+            dpEndDate.IsEnabled = enable;
+            tpStartTime.IsEnabled = enable;
+            tpEndTime.IsEnabled = enable;
+            lbStartDate.IsEnabled = enable;
+            lbStartTime.IsEnabled = enable;
+            lbEndDate.IsEnabled = enable;
+            lbEndTime.IsEnabled = enable;
+        }
+
+        private void TpStartTime_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (lbDateTimeError != null)
+            {
+                if (DateImputsIsValid())
+                {
+                    lbDateTimeError.Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    lbDateTimeError.Visibility = Visibility.Visible;
+                }
+            }
+        }
+
+        private void TpEndTime_ValueChanged(object sender, RoutedPropertyChangedEventArgs<object> e)
+        {
+            if (lbDateTimeError != null)
+            {
+                if (DateImputsIsValid())
+                {
+                    lbDateTimeError.Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    lbDateTimeError.Visibility = Visibility.Visible;
+                }
+            }
+        }
+
+        private void DpStartDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lbDateTimeError != null)
+            {
+                if (DateImputsIsValid())
+                {
+                    lbDateTimeError.Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    lbDateTimeError.Visibility = Visibility.Visible;
+                }
+            }
+        }
+
+        private void DpEndDate_SelectedDateChanged(object sender, SelectionChangedEventArgs e)
+        {
+            if (lbDateTimeError != null)
+            {
+                if (DateImputsIsValid())
+                {
+                    lbDateTimeError.Visibility = Visibility.Hidden;
+                }
+                else
+                {
+                    lbDateTimeError.Visibility = Visibility.Visible;
+                }
+            }
         }
     }
 }

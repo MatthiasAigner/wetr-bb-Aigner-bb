@@ -1,0 +1,13 @@
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\APIClient\obj\Debug\APIClient.csprojAssemblyReference.cache
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\APIClient\obj\Debug\APIClient.csproj.CoreCompileInputs.cache
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\APIClient\bin\Debug\APIClient.exe.config
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\APIClient\bin\Debug\APIClient.exe
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\APIClient\bin\Debug\APIClient.pdb
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\APIClient\bin\Debug\Newtonsoft.Json.dll
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\APIClient\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\APIClient\bin\Debug\Newtonsoft.Json.pdb
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\APIClient\bin\Debug\Newtonsoft.Json.xml
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\APIClient\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\APIClient\obj\Debug\APIClient.csproj.CopyComplete
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\APIClient\obj\Debug\APIClient.exe
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\APIClient\obj\Debug\APIClient.pdb

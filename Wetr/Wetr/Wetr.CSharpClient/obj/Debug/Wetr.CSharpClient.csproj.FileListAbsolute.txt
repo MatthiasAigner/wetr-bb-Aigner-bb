@@ -1,0 +1,14 @@
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.CSharpClient\obj\Debug\Wetr.CSharpClient.csprojAssemblyReference.cache
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.CSharpClient\obj\Debug\Wetr.CSharpClient.csproj.CoreCompileInputs.cache
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.CSharpClient\obj\Debug\CurrencyConverter.CSharpClient.exe
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.CSharpClient\obj\Debug\CurrencyConverter.CSharpClient.pdb
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.CSharpClient\bin\Debug\CurrencyConverter.CSharpClient.exe.config
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.CSharpClient\bin\Debug\CurrencyConverter.CSharpClient.exe
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.CSharpClient\bin\Debug\CurrencyConverter.CSharpClient.pdb
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.CSharpClient\bin\Debug\Newtonsoft.Json.dll
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.CSharpClient\bin\Debug\System.Net.Http.Formatting.dll
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.CSharpClient\bin\Debug\Wetr.Domainclasses.dll
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.CSharpClient\bin\Debug\Wetr.Domainclasses.pdb
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.CSharpClient\bin\Debug\System.Net.Http.Formatting.xml
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.CSharpClient\obj\Debug\Wetr.CSharpClient.csproj.CopyComplete
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.CSharpClient\bin\Debug\Newtonsoft.Json.xml

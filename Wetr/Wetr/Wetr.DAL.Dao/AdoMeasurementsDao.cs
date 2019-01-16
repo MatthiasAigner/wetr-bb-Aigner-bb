@@ -123,47 +123,119 @@ namespace Wetr.DAL.Dao
 
         public double FindMinTempByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
         {
-            throw new NotImplementedException();
+            var result = template.Query("select MIN(Temperatures) from Measurements where Station=@station, Timestamp>=@begin, Timestamp<=@end",
+                measurementMapper,
+                new[]
+                {
+                    new SqlParameter("@station", station),
+                    new SqlParameter("@begin", begin),
+                    new SqlParameter("@end", end)
+                }).SingleOrDefault();
+            return Convert.ToDouble(result);
         }
 
         public double FindAvgTempByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
         {
-            throw new NotImplementedException();
+            var result = template.Query("select MAX(Temperatures) from Measurements where Station=@station, Timestamp>=@begin, Timestamp<=@end",
+                measurementMapper,
+                new[]
+                {
+                    new SqlParameter("@station", station),
+                    new SqlParameter("@begin", begin),
+                    new SqlParameter("@end", end)
+                }).SingleOrDefault();
+            return Convert.ToDouble(result);
         }
 
         public double FindMaxRainfallByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
         {
-            throw new NotImplementedException();
+            var result = template.Query("select AVG(Rainfall) from Measurements where Station=@station, Timestamp>=@begin, Timestamp<=@end",
+                measurementMapper,
+                new[]
+                {
+                    new SqlParameter("@station", station),
+                    new SqlParameter("@begin", begin),
+                    new SqlParameter("@end", end)
+                }).SingleOrDefault();
+            return Convert.ToDouble(result);
         }
 
         public double FindMinRainfallByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
         {
-            throw new NotImplementedException();
+            var result = template.Query("select MIN(Rainfall) from Measurements where Station=@station, Timestamp>=@begin, Timestamp<=@end",
+                measurementMapper,
+                new[]
+                {
+                    new SqlParameter("@station", station),
+                    new SqlParameter("@begin", begin),
+                    new SqlParameter("@end", end)
+                }).SingleOrDefault();
+            return Convert.ToDouble(result);
         }
 
         public double FindAvgRainfallByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
         {
-            throw new NotImplementedException();
+            var result = template.Query("select AVG(Rainfall) from Measurements where Station=@station, Timestamp>=@begin, Timestamp<=@end",
+                measurementMapper,
+                new[]
+                {
+                    new SqlParameter("@station", station),
+                    new SqlParameter("@begin", begin),
+                    new SqlParameter("@end", end)
+                }).SingleOrDefault();
+            return Convert.ToDouble(result);
         }
 
         public double FindSumRainfallByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
         {
-            throw new NotImplementedException();
+            var result = template.Query("select SUM(Rainfall) from Measurements where Station=@station, Timestamp>=@begin, Timestamp<=@end",
+                measurementMapper,
+                new[]
+                {
+                    new SqlParameter("@station", station),
+                    new SqlParameter("@begin", begin),
+                    new SqlParameter("@end", end)
+                }).SingleOrDefault();
+            return Convert.ToDouble(result);
         }
 
         public double FindMaxWindspeedByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
         {
-            throw new NotImplementedException();
+            var result = template.Query("select MAX(Windspeed) from Measurements where Station=@station, Timestamp>=@begin, Timestamp<=@end",
+                measurementMapper,
+                new[]
+                {
+                    new SqlParameter("@station", station),
+                    new SqlParameter("@begin", begin),
+                    new SqlParameter("@end", end)
+                }).SingleOrDefault();
+            return Convert.ToDouble(result);
         }
 
         public double FindMinWindspeedByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
         {
-            throw new NotImplementedException();
+            var result = template.Query("select MIN(Windspeed) from Measurements where Station=@station, Timestamp>=@begin, Timestamp<=@end",
+                measurementMapper,
+                new[]
+                {
+                    new SqlParameter("@station", station),
+                    new SqlParameter("@begin", begin),
+                    new SqlParameter("@end", end)
+                }).SingleOrDefault();
+            return Convert.ToDouble(result);
         }
 
         public double FindAvgWindspeedByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
         {
-            throw new NotImplementedException();
+            var result = template.Query("select AVG(Windspeed) from Measurements where Station=@station, Timestamp>=@begin, Timestamp<=@end",
+                measurementMapper,
+                new[]
+                {
+                    new SqlParameter("@station", station),
+                    new SqlParameter("@begin", begin),
+                    new SqlParameter("@end", end)
+                }).SingleOrDefault();
+            return Convert.ToDouble(result);
         }
     }
 }

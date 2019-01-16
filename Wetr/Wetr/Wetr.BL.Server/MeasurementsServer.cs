@@ -31,42 +31,42 @@ namespace Wetr.BL.Server
 
         public IEnumerable<Measurements> FindAllMeasurementsByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
         {
-            throw new NotImplementedException();
+            return measurementsDao.FindAllMeasurementsByStationInTimeInterval(station, begin, end);
         }
 
         public IEnumerable<Measurements> FindAllMeasurementsInTimeInterval(DateTime begin, DateTime end)
         {
-            throw new NotImplementedException();
+            return measurementsDao.FindAllMeasurementsInTimeInterval(begin, end);
         }
 
         public double FindAvgRainfallByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
         {
-            throw new NotImplementedException();
+            return measurementsDao.FindAvgRainfallByStationInTimeInterval(station, begin, end);
         }
 
         public double FindAvgTempByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
         {
-            throw new NotImplementedException();
+            return measurementsDao.FindAvgTempByStationInTimeInterval(station, begin, end);
         }
 
         public double FindAvgWindspeedByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
         {
-            throw new NotImplementedException();
+            return measurementsDao.FindAvgWindspeedByStationInTimeInterval(station, begin, end);
         }
 
         public double FindMaxRainfallByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
         {
-            throw new NotImplementedException();
+            return measurementsDao.FindMaxRainfallByStationInTimeInterval(station, begin, end);
         }
 
         public double FindMaxTempByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
         {
-            throw new NotImplementedException();
+            return measurementsDao.FindMaxTempByStationInTimeInterval(station, begin, end);
         }
 
         public double FindMaxWindspeedByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
         {
-            throw new NotImplementedException();
+            return FindMaxWindspeedByStationInTimeInterval(station, begin, end);
         }
 
         public Measurements FindMeasurementById(int id)
@@ -76,22 +76,22 @@ namespace Wetr.BL.Server
 
         public double FindMinRainfallByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
         {
-            throw new NotImplementedException();
+            return measurementsDao.FindMinRainfallByStationInTimeInterval(station, begin, end);
         }
 
         public double FindMinTempByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
         {
-            throw new NotImplementedException();
+            return measurementsDao.FindMinTempByStationInTimeInterval(station, begin, end);
         }
 
         public double FindMinWindspeedByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
         {
-            throw new NotImplementedException();
+            return measurementsDao.FindMinWindspeedByStationInTimeInterval(station, begin, end);
         }
 
         public double FindSumRainfallByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
         {
-            throw new NotImplementedException();
+            return measurementsDao.FindSumRainfallByStationInTimeInterval(station, begin, end);
         }
 
         public bool InsertMeasurement(Measurements measurement)
