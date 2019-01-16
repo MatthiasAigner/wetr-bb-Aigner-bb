@@ -2,6 +2,7 @@
 using System.Windows;
 using System.Windows.Controls;
 using Wetr.BL.Server;
+using Wetr.Cockpit.View;
 using Wetr.Domainclasses;
 
 namespace Wetr.Cockpit
@@ -16,7 +17,8 @@ namespace Wetr.Cockpit
         public MainWindow()
         {     
             DataContext = this;
-            InitializeComponent();            
+            InitializeComponent();
+            dgMeasurements.ItemsSource = Measurements;
         }
         
         public IEnumerable<Stations> Stations
@@ -42,6 +44,17 @@ namespace Wetr.Cockpit
         {
             if(dgMeasurements != null)
                 dgMeasurements.ItemsSource = Measurements;
+        }
+
+        private void LbFilters_SelectionChanged(object sender, SelectionChangedEventArgs e)
+        {
+
+        }
+
+        private void BtAddStation_Click(object sender, RoutedEventArgs e)
+        {
+            AddStation addStation = new AddStation(this);
+            addStation.Show();
         }
     }
 }

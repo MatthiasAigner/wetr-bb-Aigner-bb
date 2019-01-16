@@ -48,7 +48,6 @@ C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Simulator\bin\Debug
 C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Simulator\bin\Debug\LiveCharts.xml
 C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Simulator\bin\Debug\LiveCharts.Wpf.pdb
 C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Simulator\bin\Debug\LiveCharts.Wpf.xml
-C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Simulator\obj\Debug\GeneratedInternalTypeHelper.g.cs
 C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Simulator\bin\Debug\System.Net.Http.Formatting.dll
 C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Simulator\bin\Debug\System.Net.Http.Formatting.xml
 C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Simulator\bin\Debug\System.Net.Http.Extensions.dll

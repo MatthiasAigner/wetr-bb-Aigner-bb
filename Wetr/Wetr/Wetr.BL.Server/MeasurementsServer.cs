@@ -98,5 +98,17 @@ namespace Wetr.BL.Server
         {
             return measurementsDao.InsertMeasurement(measurement);
         }
+
+        public bool InsertMeasurements(IEnumerable<Measurements> measurements)
+        {
+            bool successful = true;
+            foreach(Measurements measurement in measurements)
+            {
+                successful = InsertMeasurement(measurement);
+                if (!successful)
+                    return false;
+            }
+            return true;
+        }
     }
 }

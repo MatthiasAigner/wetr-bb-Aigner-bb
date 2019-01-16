@@ -9,6 +9,8 @@ using Wetr.Simulator.View;
 using LiveCharts;
 using LiveCharts.Wpf;
 using System.ComponentModel;
+using System.Net.Http;
+using LiveCharts.Configurations;
 
 namespace Wetr.Simulator
 {
@@ -17,32 +19,37 @@ namespace Wetr.Simulator
     /// </summary>
     public partial class MainWindow : Window, INotifyPropertyChanged
     {
+
         public ObservableCollection<Stations> SimulatedStations { get; set; }
         public ObservableCollection<Measurements> MeasurementsCollection;
         public ObservableCollection<Measurements> RoundedMeasurementsCollection;
         public SeriesCollection ChartData { get; set; }
         public LineSeries ChartDataLine;
-        public ChartValues<double> MyChartValues;
+        public ChartValues<ChartValuePairs> MyChartValues;
         private DispatcherTimer dt = new DispatcherTimer();
         private int selectedStationIndex;
         public event PropertyChangedEventHandler PropertyChanged;
 
         public MainWindow()
         {
-
+            var dayConfig = Mappers.Xy<ChartValuePairs>()
+                .X(dayModel => (double)dayModel.Time.Ticks / TimeSpan.FromSeconds(10).Ticks)
+                .Y(dayModel => dayModel.Value);
             MeasurementsCollection = new ObservableCollection<Measurements>();
             RoundedMeasurementsCollection = new ObservableCollection<Measurements>();
             SimulatedStations = new ObservableCollection<Stations>();
             dt.Tick += dtTicker;
             InitializeComponent();
-            MyChartValues = new ChartValues<double>();
+            MyChartValues = new ChartValues<ChartValuePairs>();
             ChartDataLine = new LineSeries();
             ChartDataLine.Title = "Messwert:";
             ChartDataLine.Values = MyChartValues;
-            ChartData = new SeriesCollection { ChartDataLine };
+            Formatter = Time => new System.DateTime((long)(Time * TimeSpan.FromSeconds(10).Ticks)).ToString("hh:mm:ss");
+            ChartData = new SeriesCollection(dayConfig) { ChartDataLine };
             DataContext = this;
+            dgMeasurements.ItemsSource = RoundedMeasurementsCollection;
         }
-
+        public Func<double, string> Formatter { get; set; }
 
         public void AddSimulatedStations(Stations addedStation)
         {
@@ -88,7 +95,6 @@ namespace Wetr.Simulator
                         return 0;
                 }
             }
-            set { }
         }
 
         public int maxValueRange //for Slider
@@ -170,11 +176,6 @@ namespace Wetr.Simulator
             dudValueRangeFrom.Value = Math.Round((double)slValueRangeFrom.Value, 1);
         }
 
-        private void CbStrategy_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-
-        }
-
         private void CbMeasurement_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
             if (dudValueRangeFrom != null && dudValueRangeTo != null)
@@ -193,17 +194,6 @@ namespace Wetr.Simulator
                 lbValueRangeToUnit.Content = ValueRangeUnit;
             }
         }
-
-        //private ObservableCollection<Measurements> Measurements
-        //{
-        //    get
-        //    {
-        //        return MeasurementsCollection;
-        //    }
-        //    set { }
-        //}
-
-
 
         private void BtStartSimulator_Click(object sender, RoutedEventArgs e)
         {
@@ -236,34 +226,32 @@ namespace Wetr.Simulator
             }
         }
 
-
-
         private void AddChartValue(Measurements generatedMeasurement)
         {
             switch (cbMeasurement.SelectedIndex)
             {
                 case 0: //Lufttemperatur
-                    MyChartValues.Add(generatedMeasurement.Airtemperature);
+                    MyChartValues.Add(new ChartValuePairs(generatedMeasurement.Timestamp, generatedMeasurement.Airtemperature));
                     ChartDataLine.Title = "Lufttemperatur [°C]";
                     MyYAxis.Title = "Lufttemperatur [°C]";
                     break;
                 case 1: //Luftdruck
-                    MyChartValues.Add(generatedMeasurement.Airpressure);
+                    MyChartValues.Add(new ChartValuePairs(generatedMeasurement.Timestamp, generatedMeasurement.Airpressure));
                     ChartDataLine.Title = "Luftdruck [hPa]";
                     MyYAxis.Title = "Luftdruck [hPa]";
                     break;
                 case 2: //Regenmenge
-                    MyChartValues.Add(generatedMeasurement.Rainfall);
+                    MyChartValues.Add(new ChartValuePairs(generatedMeasurement.Timestamp, generatedMeasurement.Rainfall));
                     ChartDataLine.Title = "Regenmenge [mm/h]";
                     MyYAxis.Title = "Regenmenge [mm/h]";
                     break;
                 case 3: //Luftfeuchtigkeit
-                    MyChartValues.Add(generatedMeasurement.Humidity);
+                    MyChartValues.Add(new ChartValuePairs(generatedMeasurement.Timestamp, generatedMeasurement.Humidity));
                     ChartDataLine.Title = "Luftfeuchtigkeit [%]";
                     MyYAxis.Title = "Luftfeuchtigkeit [%]";
                     break;
                 case 4: //Windgeschwindigkeit
-                    MyChartValues.Add(generatedMeasurement.WindSpeed);
+                    MyChartValues.Add(new ChartValuePairs(generatedMeasurement.Timestamp, generatedMeasurement.WindSpeed));
                     ChartDataLine.Title = "Windgeschwindigkeit [km/h]";
                     MyYAxis.Title = "Windgeschwindigkeit [km/h]";
                     break;
@@ -304,6 +292,7 @@ namespace Wetr.Simulator
                 btStartSimulator.IsEnabled = true;
                 btSendData.IsEnabled = true;
                 btStopSimulator.IsEnabled = false;
+                UITimeInput(true);
                 UIRightColumnEnabled(true);
             }
             dgMeasurements.ItemsSource = RoundedMeasurementsCollection;
@@ -323,10 +312,20 @@ namespace Wetr.Simulator
 
         private void BtSendData_Click(object sender, RoutedEventArgs e)
         {
-
+            if (RoundedMeasurementsCollection.Count > 0)
+            {
+                HttpClient client = new HttpClient();
+                client.BaseAddress = new Uri("http://localhost:5000/");
+                var response = client.PostAsJsonAsync("api/InsertMeasurements", RoundedMeasurementsCollection).Result;
+                if (response.IsSuccessStatusCode)
+                {
+                    MessageBox.Show("Senden der Daten war erfolgreich!", "Success", MessageBoxButton.OKCancel);
+                    btSendData.IsEnabled = false;
+                }
+                else
+                    MessageBox.Show("Senden der Daten ist fehlgeschlagen!", "Error", MessageBoxButton.OKCancel);
+            }
         }
-
-
 
         private void BtDeleteStation_Click(object sender, RoutedEventArgs e)
         {
@@ -369,8 +368,6 @@ namespace Wetr.Simulator
             RoundedMeasurementsCollection.Clear();
             MyChartValues.Clear();
         }
-
-
 
         private Measurements GenerateMeasurements()
         {

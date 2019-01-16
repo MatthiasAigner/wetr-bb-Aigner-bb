@@ -73,7 +73,7 @@ namespace Wetr.BL.Server
             return result;
         }
 
-        public IEnumerable<Stations> FindStationByRegion(double lon, double lat, double radius) //radius in km; lon und lat in Grad
+        public IEnumerable<Stations> FindStationByRegion(double lon, double lat, double radius) //radius in km; lon and lat in Grad
         {
             List<Stations> result = new List<Stations>();
             IEnumerable<Stations> allStations = stationsDao.FindAllStations();

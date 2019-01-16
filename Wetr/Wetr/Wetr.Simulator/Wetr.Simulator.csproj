@@ -108,6 +108,7 @@
       <DependentUpon>App.xaml</DependentUpon>
       <SubType>Code</SubType>
     </Compile>
+    <Compile Include="ChartValuePairs.cs" />
     <Compile Include="ExtensionMethods.cs" />
     <Compile Include="JSONInterpreter.cs" />
     <Compile Include="NotifyTaskCompletion.cs" />

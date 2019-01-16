@@ -37,3 +37,8 @@ C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Cockpit\bin\Debug\W
 C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Cockpit\bin\Debug\Wetr.DAL.Common.pdb
 C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Cockpit\obj\Debug\View\MainWindow.g.cs
 C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Cockpit\obj\Debug\View\MainWindow.baml
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Cockpit\obj\Debug\View\AddStation.g.cs
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Cockpit\obj\Debug\View\EditStation.g.cs
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Cockpit\obj\Debug\Wetr.Cockpit_MarkupCompile.lref
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Cockpit\obj\Debug\View\AddStation.baml
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Cockpit\obj\Debug\View\EditStation.baml

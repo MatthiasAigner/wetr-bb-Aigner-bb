@@ -16,7 +16,7 @@ namespace Wetr.WebService.Controllers
 
 
         public IStationsServer stationServer = new StationsServer();
-
+        public IMeasurementsServer measurementsServer = new MeasurementsServer();
 
 
         [HttpGet]
@@ -84,6 +84,21 @@ namespace Wetr.WebService.Controllers
             {
                 stationServer.DeleteStation(station);
                 return StatusCode(HttpStatusCode.NoContent);
+            }
+            catch (Exception)
+            {
+                return BadRequest();
+            }
+        }
+
+        [HttpPost]
+        [Route("InsertMeasurements")]
+        public IHttpActionResult InsertMeasurments([FromBody] List<Measurements> measurments)
+        {
+            try
+            {
+                measurementsServer.InsertMeasurements(measurments);
+                return Created("/api/InsertMeasurements", measurments);
             }
             catch (Exception)
             {
