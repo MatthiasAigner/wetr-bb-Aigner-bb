@@ -12,7 +12,7 @@ namespace Wetr.DAL.Dao
 {
     public class AdoDistrictDao : IDistrictDao
     {
-        
+
         public static readonly RowMapper<Districts> districtMapper =
             row => new Districts
             {
@@ -27,7 +27,10 @@ namespace Wetr.DAL.Dao
             this.template = new AdoTemplate(connectionFactory);
         }
 
-        
+        public IEnumerable<Districts> FindAllDistricts()
+        {
+            return template.Query("select * from District", districtMapper);
+        }
 
         public IEnumerable<Districts> FindDistrictsByProvince(string province)
         {
@@ -39,6 +42,5 @@ namespace Wetr.DAL.Dao
             }
         }
 
-        
     }
 }

@@ -5,6 +5,7 @@ namespace Wetr.BL.Server
 {
     public interface IDistrictServer
     {
-        IEnumerable<Districts> FindDistrictsByProvince(string province);        
+        IEnumerable<Districts> FindDistrictsByProvince(string province);
+        IEnumerable<Districts> FindAllDistricts();
     }
 } 

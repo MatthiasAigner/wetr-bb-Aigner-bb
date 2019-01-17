@@ -34,6 +34,16 @@ namespace Wetr.BL.Server
             return measurementsDao.FindAllMeasurementsByStationInTimeInterval(station, begin, end);
         }
 
+        public IEnumerable<Measurements> FindAllMeasurementsByStationsInTimeInterval(IEnumerable<Stations> stations, DateTime begin, DateTime end)
+        {
+            List<Measurements> result = new List<Measurements>();
+            foreach(Stations station in stations)
+            {
+                result.AddRange(measurementsDao.FindAllMeasurementsByStationInTimeInterval(station, begin, end));
+            }
+            return result;
+        }
+
         public IEnumerable<Measurements> FindAllMeasurementsInTimeInterval(DateTime begin, DateTime end)
         {
             return measurementsDao.FindAllMeasurementsInTimeInterval(begin, end);

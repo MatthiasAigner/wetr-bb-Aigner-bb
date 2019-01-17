@@ -11,6 +11,7 @@ namespace Wetr.BL.Server
         IEnumerable<Measurements> FindAllMeasurementsByStation(string station);
         Measurements FindMeasurementById(int id);
         IEnumerable<Measurements> FindAllMeasurementsByStationInTimeInterval(Stations station, DateTime begin, DateTime end);
+        IEnumerable<Measurements> FindAllMeasurementsByStationsInTimeInterval(IEnumerable<Stations> stations, DateTime begin, DateTime end);
         IEnumerable<Measurements> FindAllMeasurementsInTimeInterval(DateTime begin, DateTime end);
         double FindMaxTempByStationInTimeInterval(Stations station, DateTime begin, DateTime end);
         double FindMinTempByStationInTimeInterval(Stations station, DateTime begin, DateTime end);

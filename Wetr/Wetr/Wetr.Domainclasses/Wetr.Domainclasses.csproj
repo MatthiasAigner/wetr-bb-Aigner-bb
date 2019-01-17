@@ -45,6 +45,7 @@
     <Compile Include="Communities.cs" />
     <Compile Include="Measurements.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Provinces.cs" />
     <Compile Include="Stations.cs" />
     <Compile Include="Districts.cs" />
     <Compile Include="Users.cs" />

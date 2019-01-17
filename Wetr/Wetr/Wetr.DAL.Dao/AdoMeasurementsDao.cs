@@ -86,11 +86,11 @@ namespace Wetr.DAL.Dao
 
         public IEnumerable<Measurements> FindAllMeasurementsByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
         {
-            return template.Query("select * from Measurements where Station=@station, Timestamp>=@begin, Timestamp<=@end",
+            return template.Query("select * from Measurements where Station=@station and Timestamp>=@begin and Timestamp<=@end",
                 measurementMapper,
                 new[]
                 {
-                    new SqlParameter("@station", station),
+                    new SqlParameter("@station", station.Station),
                     new SqlParameter("@begin", begin),
                     new SqlParameter("@end", end)
                 });
@@ -98,7 +98,7 @@ namespace Wetr.DAL.Dao
 
         public IEnumerable<Measurements> FindAllMeasurementsInTimeInterval(DateTime begin, DateTime end)
         {
-            return template.Query("select * from Measurements where Timestamp>=@begin, Timestamp<=@end",
+            return template.Query("select * from Measurements where Timestamp>=@begin and Timestamp<=@end",
                 measurementMapper,
                 new[]
                 {
@@ -109,11 +109,11 @@ namespace Wetr.DAL.Dao
 
         public double FindMaxTempByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
         {
-            var result = template.Query("select MAX(Temperatures) from Measurements where Station=@station, Timestamp>=@begin, Timestamp<=@end",
+            var result = template.Query("select MAX(Temperatures) from Measurements where Station=@station and Timestamp>=@begin and Timestamp<=@end",
                 measurementMapper,
                 new[]
                 {
-                    new SqlParameter("@station", station),
+                    new SqlParameter("@station", station.Station),
                     new SqlParameter("@begin", begin),
                     new SqlParameter("@end", end)
                 }).SingleOrDefault();
@@ -123,11 +123,11 @@ namespace Wetr.DAL.Dao
 
         public double FindMinTempByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
         {
-            var result = template.Query("select MIN(Temperatures) from Measurements where Station=@station, Timestamp>=@begin, Timestamp<=@end",
+            var result = template.Query("select MIN(Temperatures) from Measurements where Station=@station and Timestamp>=@begin and Timestamp<=@end",
                 measurementMapper,
                 new[]
                 {
-                    new SqlParameter("@station", station),
+                    new SqlParameter("@station", station.Station),
                     new SqlParameter("@begin", begin),
                     new SqlParameter("@end", end)
                 }).SingleOrDefault();
@@ -136,11 +136,11 @@ namespace Wetr.DAL.Dao
 
         public double FindAvgTempByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
         {
-            var result = template.Query("select MAX(Temperatures) from Measurements where Station=@station, Timestamp>=@begin, Timestamp<=@end",
+            var result = template.Query("select MAX(Temperatures) from Measurements where Station=@station and Timestamp>=@begin and Timestamp<=@end",
                 measurementMapper,
                 new[]
                 {
-                    new SqlParameter("@station", station),
+                    new SqlParameter("@station", station.Station),
                     new SqlParameter("@begin", begin),
                     new SqlParameter("@end", end)
                 }).SingleOrDefault();
@@ -149,11 +149,11 @@ namespace Wetr.DAL.Dao
 
         public double FindMaxRainfallByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
         {
-            var result = template.Query("select AVG(Rainfall) from Measurements where Station=@station, Timestamp>=@begin, Timestamp<=@end",
+            var result = template.Query("select AVG(Rainfall) from Measurements where Station=@station and Timestamp>=@begin and Timestamp<=@end",
                 measurementMapper,
                 new[]
                 {
-                    new SqlParameter("@station", station),
+                    new SqlParameter("@station", station.Station),
                     new SqlParameter("@begin", begin),
                     new SqlParameter("@end", end)
                 }).SingleOrDefault();
@@ -162,11 +162,11 @@ namespace Wetr.DAL.Dao
 
         public double FindMinRainfallByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
         {
-            var result = template.Query("select MIN(Rainfall) from Measurements where Station=@station, Timestamp>=@begin, Timestamp<=@end",
+            var result = template.Query("select MIN(Rainfall) from Measurements where Station=@station and Timestamp>=@begin and Timestamp<=@end",
                 measurementMapper,
                 new[]
                 {
-                    new SqlParameter("@station", station),
+                    new SqlParameter("@station", station.Station),
                     new SqlParameter("@begin", begin),
                     new SqlParameter("@end", end)
                 }).SingleOrDefault();
@@ -175,11 +175,11 @@ namespace Wetr.DAL.Dao
 
         public double FindAvgRainfallByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
         {
-            var result = template.Query("select AVG(Rainfall) from Measurements where Station=@station, Timestamp>=@begin, Timestamp<=@end",
+            var result = template.Query("select AVG(Rainfall) from Measurements where Station=@station and Timestamp>=@begin and Timestamp<=@end",
                 measurementMapper,
                 new[]
                 {
-                    new SqlParameter("@station", station),
+                    new SqlParameter("@station", station.Station),
                     new SqlParameter("@begin", begin),
                     new SqlParameter("@end", end)
                 }).SingleOrDefault();
@@ -188,11 +188,11 @@ namespace Wetr.DAL.Dao
 
         public double FindSumRainfallByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
         {
-            var result = template.Query("select SUM(Rainfall) from Measurements where Station=@station, Timestamp>=@begin, Timestamp<=@end",
+            var result = template.Query("select SUM(Rainfall) from Measurements where Station=@station and Timestamp>=@begin and Timestamp<=@end",
                 measurementMapper,
                 new[]
                 {
-                    new SqlParameter("@station", station),
+                    new SqlParameter("@station", station.Station),
                     new SqlParameter("@begin", begin),
                     new SqlParameter("@end", end)
                 }).SingleOrDefault();
@@ -201,11 +201,11 @@ namespace Wetr.DAL.Dao
 
         public double FindMaxWindspeedByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
         {
-            var result = template.Query("select MAX(Windspeed) from Measurements where Station=@station, Timestamp>=@begin, Timestamp<=@end",
+            var result = template.Query("select MAX(Windspeed) from Measurements where Station=@station and Timestamp>=@begin and Timestamp<=@end",
                 measurementMapper,
                 new[]
                 {
-                    new SqlParameter("@station", station),
+                    new SqlParameter("@station", station.Station),
                     new SqlParameter("@begin", begin),
                     new SqlParameter("@end", end)
                 }).SingleOrDefault();
@@ -214,11 +214,11 @@ namespace Wetr.DAL.Dao
 
         public double FindMinWindspeedByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
         {
-            var result = template.Query("select MIN(Windspeed) from Measurements where Station=@station, Timestamp>=@begin, Timestamp<=@end",
+            var result = template.Query("select MIN(Windspeed) from Measurements where Station=@station and Timestamp>=@begin and Timestamp<=@end",
                 measurementMapper,
                 new[]
                 {
-                    new SqlParameter("@station", station),
+                    new SqlParameter("@station", station.Station),
                     new SqlParameter("@begin", begin),
                     new SqlParameter("@end", end)
                 }).SingleOrDefault();
@@ -227,11 +227,11 @@ namespace Wetr.DAL.Dao
 
         public double FindAvgWindspeedByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
         {
-            var result = template.Query("select AVG(Windspeed) from Measurements where Station=@station, Timestamp>=@begin, Timestamp<=@end",
+            var result = template.Query("select AVG(Windspeed) from Measurements where Station=@station and Timestamp>=@begin and Timestamp<=@end",
                 measurementMapper,
                 new[]
                 {
-                    new SqlParameter("@station", station),
+                    new SqlParameter("@station", station.Station),
                     new SqlParameter("@begin", begin),
                     new SqlParameter("@end", end)
                 }).SingleOrDefault();

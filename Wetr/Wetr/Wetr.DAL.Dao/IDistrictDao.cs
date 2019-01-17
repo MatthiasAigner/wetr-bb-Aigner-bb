@@ -11,6 +11,6 @@ namespace Wetr.DAL.Dao
     public interface IDistrictDao
     {
         IEnumerable<Districts> FindDistrictsByProvince(string province);
-        
+        IEnumerable<Districts> FindAllDistricts();
     }
 } 

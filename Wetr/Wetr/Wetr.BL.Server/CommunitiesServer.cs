@@ -5,7 +5,7 @@ using Wetr.DAL.Common;
 
 namespace Wetr.BL.Server
 {
-    class CommunitiesServer : ICommunitiesServer
+    public class CommunitiesServer : ICommunitiesServer
     {
         private static readonly IConnectionFactory connectionFactory = new DefaultConnectionFactory();
         private ICommunitiesDao communityDao = new AdoCommunitiesDao(connectionFactory);
