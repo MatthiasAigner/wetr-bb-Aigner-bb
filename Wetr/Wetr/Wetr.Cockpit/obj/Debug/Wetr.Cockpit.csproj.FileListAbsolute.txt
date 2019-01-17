@@ -42,3 +42,5 @@ C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Cockpit\obj\Debug\V
 C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Cockpit\obj\Debug\Wetr.Cockpit_MarkupCompile.lref
 C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Cockpit\obj\Debug\View\AddStation.baml
 C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Cockpit\obj\Debug\View\EditStation.baml
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Cockpit\obj\Debug\GeneratedInternalTypeHelper.g.cs
+C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Cockpit\obj\Debug\Themes\Generic.baml

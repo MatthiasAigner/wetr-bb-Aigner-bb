@@ -33,59 +33,59 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-                    <Button Name="btAddStation" Content="Station hinzufügen" HorizontalAlignment="Stretch" 
+                    <Button Name="btAddStation" Content="Station hinzufügen" HorizontalAlignment="Left" Width="150"
                 Margin="20,20,20,80" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" Click="BtAddStation_Click"
                 />
-                    <Button Name="btEditStation" Content="Station ändern" HorizontalAlignment="Stretch" 
-                Margin="20,20,20,50" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" 
+                    <Button Name="btEditStation" Content="Station ändern" HorizontalAlignment="Left" Width="150" 
+                Margin="20,20,20,50" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" Click="BtEditStation_Click" 
                 />
-                    <Button Name="btDeleteStation" Content="Station löschen" HorizontalAlignment="Stretch" 
-                Margin="20,20,20,20" VerticalAlignment="Bottom" HorizontalContentAlignment="Center"
+                    <Button Name="btDeleteStation" Content="Station löschen" HorizontalAlignment="Left" Width="150" 
+                Margin="20,20,20,20" VerticalAlignment="Bottom" HorizontalContentAlignment="Center" Click="BtDeleteStation_Click"
                 />
                 </Grid>
             </TabItem>
             <TabItem Header="Analyse von Wetterdaten">
                 <Grid>
                     <Label Name="lbStartDate"  Grid.Column="1" Content="Startdatum:" 
-               HorizontalAlignment="Left" Margin="20,50,0,0" VerticalAlignment="Top"
+               HorizontalAlignment="Left" Margin="20,20,0,0" VerticalAlignment="Top"
                />
                     <DatePicker Name="dpStartDate" Grid.Column="1" SelectedDateFormat="Short" 
                     IsTodayHighlighted="True"  Width="100" Height="25" HorizontalAlignment="Left" 
-                    Margin="20,80,0,0" VerticalAlignment="Top" FirstDayOfWeek="Monday" 
-                    SelectedDate="{x:Static sys:DateTime.Today}"
+                    Margin="20,45,0,0" VerticalAlignment="Top" FirstDayOfWeek="Monday" 
+                    SelectedDate="{x:Static sys:DateTime.Today}" SelectedDateChanged="DpStartDate_SelectedDateChanged"
                     />
                     <Label Name="lbEndDate"  Grid.Column="1" Content="Enddatum:"
-               HorizontalAlignment="Left" Margin="20,130,0,0" VerticalAlignment="Top"
+               HorizontalAlignment="Left" Margin="20,90,0,0" VerticalAlignment="Top"
                />
                     <DatePicker Name="dpEndDate" Grid.Column="1" SelectedDateFormat="Short" 
                     IsTodayHighlighted="True"  Width="100" Height="25" HorizontalAlignment="Left" 
-                    Margin="20,160,0,0" VerticalAlignment="Top" FirstDayOfWeek="Monday" 
-                    SelectedDate="{x:Static sys:DateTime.Today}" 
+                    Margin="20,115,0,0" VerticalAlignment="Top" FirstDayOfWeek="Monday" 
+                    SelectedDate="{x:Static sys:DateTime.Today}" SelectedDateChanged="DpEndDate_SelectedDateChanged"
                     />
                     <Label Name="lbStartTime"  Grid.Column="1" Content="Startzeit:" 
-               HorizontalAlignment="Left" Margin="150,50,0,0" VerticalAlignment="Top"
+               HorizontalAlignment="Left" Margin="150,20,0,0" VerticalAlignment="Top"
                />
                     <xctk:TimePicker Name="tpStartTime" Grid.Column="1"   Width="100" Height="25"
-                  HorizontalAlignment="Left" Margin="150,80,0,0" VerticalAlignment="Top"
-                  DefaultValue="00:00" DisplayDefaultValueOnEmptyText="True"
+                  HorizontalAlignment="Left" Margin="150,45,0,0" VerticalAlignment="Top"
+                  DefaultValue="00:00" DisplayDefaultValueOnEmptyText="True" ValueChanged="TpStartTime_ValueChanged"
                   />
                     <Label Name="lbEndTime"  Grid.Column="1" Content="Endzeit:" 
-               HorizontalAlignment="Left" Margin="150,130,0,0" VerticalAlignment="Top"
+               HorizontalAlignment="Left" Margin="150,90,0,0" VerticalAlignment="Top"
                />
                     <xctk:TimePicker Name="tpEndTime" Grid.Column="1"   Width="100" Height="25"
-                  HorizontalAlignment="Left" Margin="150,160,0,0" VerticalAlignment="Top"
-                  DefaultValue="00:00" DisplayDefaultValueOnEmptyText="True"
+                  HorizontalAlignment="Left" Margin="150,115,0,0" VerticalAlignment="Top"
+                  DefaultValue="00:00" DisplayDefaultValueOnEmptyText="True" ValueChanged="TpEndTime_ValueChanged"
                   />
                     <DataGrid Name ="dgMeasurements" Grid.Column="1" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" 
-                  Margin="20,240,20,20" VerticalAlignment="Top" ItemsSource="{Binding Measurements}" >
+                  Margin="20,250,20,20" VerticalAlignment="Top" ItemsSource="{Binding Measurements}" >
 
                     </DataGrid>
                     <Label Name="lbFilter" Grid.Column="1" Content="Filtern nach:" 
-               HorizontalAlignment="Left" Margin="280,50,0,0" VerticalAlignment="Top" 
+               HorizontalAlignment="Left" Margin="280,20,0,0" VerticalAlignment="Top" 
                />
                     <ComboBox  Name="cbFilter" Grid.Column="1" HorizontalAlignment="Left" 
-                   Height="25" Margin="280,80,0,0"  VerticalAlignment="Top" 
-                   Width="200" >
+                   Height="25" Margin="280,45,0,0"  VerticalAlignment="Top" 
+                   Width="200" SelectionChanged="CbFilter_SelectionChanged">
                         <ComboBoxItem Content="Wetterstation" IsSelected="True"/>
                         <ComboBoxItem Content="Region"/>
                         <ComboBoxItem Content="Gemeinde"/>
@@ -93,16 +93,32 @@
                         <ComboBoxItem Content="Bundesland"/>
                     </ComboBox>
 
-                    <Label Name="lbRadius" Content="Radius:" Grid.Column="1" 
-               HorizontalAlignment="Left" Margin="490,50,0,0" VerticalAlignment="Top" 
+                    <Label Name="lbRadius" Content="Radius:" 
+               HorizontalAlignment="Left" Margin="400,90,0,0" VerticalAlignment="Top" 
                IsEnabled="False"/>
 
-                    <xctk:DoubleUpDown Name="dudRadius" Grid.Column="1" HorizontalAlignment="Left" Height="25"
-                           Margin="490,80,0,0"  VerticalAlignment="Top" Width="55"
+                    <xctk:DoubleUpDown Name="dudRadius" HorizontalAlignment="Left" Height="25"
+                           Margin="400,115,0,0"  VerticalAlignment="Top" Width="55"
+                           IsEnabled="False"
+                                       />
+                    <Label Name="lbLongitude" Content="Längengrad:" 
+               HorizontalAlignment="Left" Margin="280,90,0,0" VerticalAlignment="Top" 
+               IsEnabled="False"/>
+
+                    <xctk:DoubleUpDown Name="dudLongitude"  HorizontalAlignment="Left" Height="25"
+                           Margin="280,115,0,0"  VerticalAlignment="Top" Width="100"
+                           IsEnabled="False"
+                                       />
+                    <Label Name="lbLatitude" Content="Breitengrad:"  
+               HorizontalAlignment="Left" Margin="280,140,0,0" VerticalAlignment="Top" 
+               IsEnabled="False"/>
+
+                    <xctk:DoubleUpDown Name="dudLatitude"  HorizontalAlignment="Left" Height="25"
+                           Margin="280,165,0,0"  VerticalAlignment="Top" Width="100"
                            IsEnabled="False"/>
 
                     <ListBox Name="lbFilters" Grid.Column="1" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top"
-                 ItemsSource="{Binding Stations}" Margin="280,120,0,130" SelectedIndex="0" Height="150"
+                 ItemsSource="{Binding Stations}" Margin="280,80,0,130" SelectedIndex="0" Height="150"
                  SelectionChanged="LbFilters_SelectionChanged">
 
                         <ListBox.ItemTemplate>
@@ -113,6 +129,42 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
+
+                    <Label Name="lbMeasurement" Content="Messwert:" 
+               HorizontalAlignment="Left" Margin="510,20,0,0" VerticalAlignment="Top"
+               />
+                    <ComboBox  Name="cbMeasurement" HorizontalAlignment="Left" 
+                   Height="25" Margin="510,45,0,0"  VerticalAlignment="Top" 
+                   Width="200" SelectionChanged="CbMeasurement_SelectionChanged">
+                        <ComboBoxItem Content="Lufttemperatur" IsSelected="True"/>
+                        <ComboBoxItem Content="Luftdruck"/>
+                        <ComboBoxItem Content="Regenmenge"/>
+                        <ComboBoxItem Content="Luftfeuchtigkeit"/>
+                        <ComboBoxItem Content="Windgeschwindigkeit"/>
+                    </ComboBox>
+
+                    <RadioButton Name="rbMin" Content="Minimum" 
+                     HorizontalAlignment="Left" Margin="510,100,0,0" VerticalAlignment="Top"
+                     />
+                    <RadioButton Name="rbMax" Content="Maximum" 
+                     HorizontalAlignment="Left" Margin="510,125,0,0" VerticalAlignment="Top"
+                     />
+                    <RadioButton Name="rbAvg" Content="Durchschnitt" 
+                     HorizontalAlignment="Left" Margin="510,150,0,0" VerticalAlignment="Top"
+                     />
+                    <RadioButton Name="rbSum" Content="Summe" 
+                     HorizontalAlignment="Left" Margin="510,175,0,0" VerticalAlignment="Top"
+                     />
+                    <Label Name="lbResult" Content="Ergebnis:" FontSize="16" FontWeight="Bold"
+               HorizontalAlignment="Left" Margin="620,110,0,0" VerticalAlignment="Top"
+               />
+                    <TextBox Name="tbResult" HorizontalAlignment="Left" VerticalAlignment="Top"
+                             Width="100" Margin="620,140,0,0" Height="30" IsReadOnly="True"></TextBox>
+                    <Label Name="lbUnit" Content="{Binding ValueRangeUnit}"
+               HorizontalAlignment="Left" Margin="730,150,0,0" VerticalAlignment="Top"
+               />
+                    
+
 
                     <!--<DataGrid Name ="dgResults" Grid.Column="1" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" 
                   Margin="292,122,0,0" VerticalAlignment="Top" Width="274"  >

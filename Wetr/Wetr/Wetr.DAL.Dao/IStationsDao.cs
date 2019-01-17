@@ -15,6 +15,7 @@ namespace Wetr.DAL.Dao
         Stations FindStationById(int id);
         IEnumerable<Stations> FindStationByPostalcode(int postalcode);
         bool InsertStation(Stations station);
+        bool EditStation(Stations station);
         bool DeleteStation(string station);
     }
 } 

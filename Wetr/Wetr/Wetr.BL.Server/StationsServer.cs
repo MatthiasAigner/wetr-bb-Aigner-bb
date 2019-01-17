@@ -20,7 +20,7 @@ namespace Wetr.BL.Server
         public bool DeleteStation(string station)
         {
             return stationsDao.DeleteStation(station);
-        }
+        }        
 
         public IEnumerable<Stations> FindAllStations()
         {
@@ -93,6 +93,11 @@ namespace Wetr.BL.Server
         public bool InsertStation(Stations station)
         {
             return stationsDao.InsertStation(station);
+        }
+
+        public bool EditStation(Stations station)
+        {
+            return stationsDao.EditStation(station);
         }
     }
 }

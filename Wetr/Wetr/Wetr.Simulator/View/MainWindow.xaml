@@ -122,7 +122,7 @@
             
             <DataGrid Name ="dgMeasurements" Grid.Row="2"
                 HorizontalAlignment="Left" HorizontalContentAlignment="Stretch"
-                Margin="10,10,10,10" VerticalAlignment="Top"
+                Margin="10,10,10,10" VerticalAlignment="Top" IsReadOnly="True"
                 />
 
         </Grid>

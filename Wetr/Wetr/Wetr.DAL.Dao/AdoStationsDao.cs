@@ -86,5 +86,19 @@ namespace Wetr.DAL.Dao
                     new SqlParameter("@station", station)
                 }) == 1;
         }
+
+        public bool EditStation(Stations station)
+        {
+            return template.Execute(
+                "update Stations set Station=@station, StationTyp=@stationTyp, CoordinatesLon=@coordinatesLongitude, CoordinatesLat=@coordinatesLatitude, Postalcode=@postalcode where Station=@station",
+                new[]
+                {
+                    new SqlParameter("@station", station.Station),
+                    new SqlParameter("@stationTyp", station.StationTyp),
+                    new SqlParameter("@coordinatesLongitude", station.CoordinatesLongitude),
+                    new SqlParameter("@coordinatesLatitude", station.CoordinatesLatitude),
+                    new SqlParameter("@postalcode", station.Postalcode)
+                }) == 1;
+        }
     }
 }

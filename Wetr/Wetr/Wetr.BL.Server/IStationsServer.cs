@@ -13,6 +13,7 @@ namespace Wetr.BL.Server
         IEnumerable<Stations> FindStationByDistrict(string district);
         IEnumerable<Stations> FindStationByProvince(string province);
         bool InsertStation(Stations station);
+        bool EditStation(Stations station);
         bool DeleteStation(string station);
     }
 } 

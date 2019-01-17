@@ -11,6 +11,8 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Wetr.BL.Server;
+using Wetr.Domainclasses;
 
 namespace Wetr.Cockpit.View
 {
@@ -20,6 +22,7 @@ namespace Wetr.Cockpit.View
     public partial class AddStation : Window
     {
         private MainWindow mainWindow;
+        private IStationsServer stationServer = new StationsServer();
 
         public AddStation(MainWindow mainWindow)
         {
@@ -28,6 +31,27 @@ namespace Wetr.Cockpit.View
             InitializeComponent();
         }
 
-        
+        private void BtCancel_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
+        }
+
+        private void BtAdd_Click(object sender, RoutedEventArgs e)
+        {
+            try {
+                stationServer.InsertStation(new Stations(tbStationname.Text, tbStationtype.Text, double.Parse(tbLongitude.Text), double.Parse(tbLatitude.Text), int.Parse(tbPostalcode.Text)));
+                mainWindow.lbStations.ItemsSource = stationServer.FindAllStations();
+                this.Close();
+            }catch(Exception)
+            {
+                MessageBox.Show("Hinzufügen fehlgeschlgen! \nPrüfen Sie ob die Postleitzahl und der Stationstyp existieren.", "Error", MessageBoxButton.OKCancel);
+            }
+        }
+
+
+        private void TbPostalcode_Error(object sender, ValidationErrorEventArgs e)
+        {
+
+        }
     }
 }
