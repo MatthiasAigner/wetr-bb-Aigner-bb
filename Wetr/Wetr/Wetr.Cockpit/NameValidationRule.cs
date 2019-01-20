@@ -15,7 +15,7 @@ namespace Wetr.Cockpit
             if (value == null || value.ToString().Length < 1)
                 return new ValidationResult(false, "Feld darf nicht leer sein");
             else
-            {                
+            {
                 if (value.ToString().Length >= 3)
                     return new ValidationResult(true, null);
                 else

@@ -38,9 +38,7 @@ namespace Wetr.Simulator.View
             InitializeComponent();
         }
 
-
         public NotifyTaskCompletion<List<Stations>> GetAllStationsAsync { get; set; }
-
 
         private void BtCancel_Click(object sender, RoutedEventArgs e)
         {
@@ -49,7 +47,7 @@ namespace Wetr.Simulator.View
 
         private void BtAdd_Click(object sender, RoutedEventArgs e)
         {
-            if(lbAllStations.SelectedItem != null)
+            if (lbAllStations.SelectedItem != null)
                 mainWindow.AddSimulatedStations((Stations)lbAllStations.SelectedItem);
             this.Close();
         }

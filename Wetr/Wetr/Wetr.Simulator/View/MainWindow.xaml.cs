@@ -298,8 +298,6 @@ namespace Wetr.Simulator
             dgMeasurements.ItemsSource = RoundedMeasurementsCollection;
         }
 
-
-
         private void BtStopSimulator_Click(object sender, RoutedEventArgs e)
         {
             dt.Stop();
@@ -545,8 +543,7 @@ namespace Wetr.Simulator
             switch (cbMeasurement.SelectedIndex)
             {
 
-                case 0: //Lufttemperatur 
-                    //airTemp = Math.Round((lastMeasurement.Airtemperature + (random.NextDouble() - 0.5) * generateTimeInterval * 0.5 / 60), 1);
+                case 0: //Lufttemperatur                     
                     switch (cbStrategy.SelectedIndex)
                     {
                         case 0: //Linear
@@ -732,7 +729,6 @@ namespace Wetr.Simulator
                     }
                     break;
             }
-
 
             Stations station = (Stations)lbStations?.SelectedItem;
             Measurements res = new Measurements(station?.Station, currentTime, airTemp, airpressure, rainfall, humidity, windspeed, windDirection);

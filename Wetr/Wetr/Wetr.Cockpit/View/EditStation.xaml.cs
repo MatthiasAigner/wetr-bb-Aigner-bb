@@ -51,12 +51,12 @@ namespace Wetr.Cockpit.View
                 stationServer.EditStation(new Stations(tbStationname.Text, tbStationtype.Text, double.Parse(tbLongitude.Text), double.Parse(tbLatitude.Text), int.Parse(tbPostalcode.Text)));
                 mainWindow.lbStations.ItemsSource = stationServer.FindAllStations();
                 this.Close();
-        }
+            }
             catch (Exception)
             {
                 MessageBox.Show("Ändern fehlgeschlgen! \nPrüfen Sie ob die Postleitzahl und der Stationstyp existieren.", "Error", MessageBoxButton.OKCancel);
             }
-}
+        }
 
         private void BtCancel_Click(object sender, RoutedEventArgs e)
         {

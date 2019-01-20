@@ -8,13 +8,10 @@ using Wetr.BL.Server;
 using Wetr.Domainclasses;
 
 namespace Wetr.WebService.Controllers
-{
-    //[Filters.ValidationActionFilter]
+{    
     [RoutePrefix("api")]
     public class WetrController : ApiController
     {
-
-
         public IStationsServer stationServer = new StationsServer();
         public IMeasurementsServer measurementsServer = new MeasurementsServer();
         public IUsersServer usersServer = new UsersServer();
@@ -114,7 +111,7 @@ namespace Wetr.WebService.Controllers
         }
 
         [HttpGet]
-        [Route("GetAllUsers)")]
+        [Route("GetAllUsers")]
         IEnumerable<Users> GetAllUsers()
         {
             return usersServer.FindAllUsers();

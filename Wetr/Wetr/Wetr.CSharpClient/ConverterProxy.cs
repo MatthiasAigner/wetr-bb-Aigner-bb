@@ -9,53 +9,53 @@ namespace Wetr.Proxy
     //#pragma warning disable // Disable all warnings
 
     [System.CodeDom.Compiler.GeneratedCode("NSwag", "12.0.7.0 (NJsonSchema v9.13.4.0 (Newtonsoft.Json v11.0.0.0))")]
-    public partial class ConverterProxy 
+    public partial class ConverterProxy
     {
         private string _baseUrl = "http://localhost:5000";
         private System.Net.Http.HttpClient _httpClient;
         private System.Lazy<Newtonsoft.Json.JsonSerializerSettings> _settings;
-    
+
         public ConverterProxy(System.Net.Http.HttpClient httpClient)
         {
-            _httpClient = httpClient; 
-            _settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(() => 
+            _httpClient = httpClient;
+            _settings = new System.Lazy<Newtonsoft.Json.JsonSerializerSettings>(() =>
             {
                 var settings = new Newtonsoft.Json.JsonSerializerSettings();
                 UpdateJsonSerializerSettings(settings);
                 return settings;
             });
         }
-    
-        public string BaseUrl 
+
+        public string BaseUrl
         {
             get { return _baseUrl; }
             set { _baseUrl = value; }
         }
-    
+
         protected Newtonsoft.Json.JsonSerializerSettings JsonSerializerSettings { get { return _settings.Value; } }
-    
+
         partial void UpdateJsonSerializerSettings(Newtonsoft.Json.JsonSerializerSettings settings);
         partial void PrepareRequest(System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request, string url);
         partial void PrepareRequest(System.Net.Http.HttpClient client, System.Net.Http.HttpRequestMessage request, System.Text.StringBuilder urlBuilder);
         partial void ProcessResponse(System.Net.Http.HttpClient client, System.Net.Http.HttpResponseMessage response);
-    
+
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<SwaggerResponse<CurrencyData>> GetBySymbolAsync(string symbol)
         {
             return GetBySymbolAsync(symbol, System.Threading.CancellationToken.None);
         }
-    
+
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         public async System.Threading.Tasks.Task<SwaggerResponse<CurrencyData>> GetBySymbolAsync(string symbol, System.Threading.CancellationToken cancellationToken)
         {
             if (symbol == null)
                 throw new System.ArgumentNullException("symbol");
-    
+
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/currencies/{symbol}");
             urlBuilder_.Replace("{symbol}", System.Uri.EscapeDataString(ConvertToString(symbol, System.Globalization.CultureInfo.InvariantCulture)));
-    
+
             var client_ = _httpClient;
             try
             {
@@ -63,12 +63,12 @@ namespace Wetr.Proxy
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -78,20 +78,20 @@ namespace Wetr.Proxy
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
-                            var result_ = default(CurrencyData); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            var result_ = default(CurrencyData);
                             try
                             {
                                 result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<CurrencyData>(responseData_, _settings.Value);
-                                return new SwaggerResponse<CurrencyData>((int)response_.StatusCode, headers_, result_); 
-                            } 
-                            catch (System.Exception exception_) 
+                                return new SwaggerResponse<CurrencyData>((int)response_.StatusCode, headers_, result_);
+                            }
+                            catch (System.Exception exception_)
                             {
                                 throw new SwaggerException("Could not deserialize the response body.", (int)response_.StatusCode, responseData_, headers_, exception_);
                             }
@@ -99,11 +99,11 @@ namespace Wetr.Proxy
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new SwaggerException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
-                        return new SwaggerResponse<CurrencyData>((int)response_.StatusCode, headers_, default(CurrencyData)); 
+
+                        return new SwaggerResponse<CurrencyData>((int)response_.StatusCode, headers_, default(CurrencyData));
                     }
                     finally
                     {
@@ -116,20 +116,20 @@ namespace Wetr.Proxy
             {
             }
         }
-    
+
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<SwaggerResponse<System.Collections.Generic.ICollection<CurrencyData>>> GetAllAsync()
         {
             return GetAllAsync(System.Threading.CancellationToken.None);
         }
-    
+
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         public async System.Threading.Tasks.Task<SwaggerResponse<System.Collections.Generic.ICollection<CurrencyData>>> GetAllAsync(System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/currencies");
-    
+
             var client_ = _httpClient;
             try
             {
@@ -137,12 +137,12 @@ namespace Wetr.Proxy
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -152,20 +152,20 @@ namespace Wetr.Proxy
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
-                            var result_ = default(System.Collections.Generic.ICollection<CurrencyData>); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            var result_ = default(System.Collections.Generic.ICollection<CurrencyData>);
                             try
                             {
                                 result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<System.Collections.Generic.ICollection<CurrencyData>>(responseData_, _settings.Value);
-                                return new SwaggerResponse<System.Collections.Generic.ICollection<CurrencyData>>((int)response_.StatusCode, headers_, result_); 
-                            } 
-                            catch (System.Exception exception_) 
+                                return new SwaggerResponse<System.Collections.Generic.ICollection<CurrencyData>>((int)response_.StatusCode, headers_, result_);
+                            }
+                            catch (System.Exception exception_)
                             {
                                 throw new SwaggerException("Could not deserialize the response body.", (int)response_.StatusCode, responseData_, headers_, exception_);
                             }
@@ -173,11 +173,11 @@ namespace Wetr.Proxy
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new SwaggerException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
-                        return new SwaggerResponse<System.Collections.Generic.ICollection<CurrencyData>>((int)response_.StatusCode, headers_, default(System.Collections.Generic.ICollection<CurrencyData>)); 
+
+                        return new SwaggerResponse<System.Collections.Generic.ICollection<CurrencyData>>((int)response_.StatusCode, headers_, default(System.Collections.Generic.ICollection<CurrencyData>));
                     }
                     finally
                     {
@@ -190,20 +190,20 @@ namespace Wetr.Proxy
             {
             }
         }
-    
+
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<SwaggerResponse> UpdateAsync(CurrencyData data)
         {
             return UpdateAsync(data, System.Threading.CancellationToken.None);
         }
-    
+
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         public async System.Threading.Tasks.Task<SwaggerResponse> UpdateAsync(CurrencyData data, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/currencies");
-    
+
             var client_ = _httpClient;
             try
             {
@@ -213,12 +213,12 @@ namespace Wetr.Proxy
                     content_.Headers.ContentType = System.Net.Http.Headers.MediaTypeHeaderValue.Parse("application/json");
                     request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("PUT");
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -228,22 +228,22 @@ namespace Wetr.Proxy
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "204") 
+                        if (status_ == "204")
                         {
                             return new SwaggerResponse((int)response_.StatusCode, headers_);
                         }
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new SwaggerException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-    
-                        return new SwaggerResponse((int)response_.StatusCode, headers_); 
+
+                        return new SwaggerResponse((int)response_.StatusCode, headers_);
                     }
                     finally
                     {
@@ -256,20 +256,20 @@ namespace Wetr.Proxy
             {
             }
         }
-    
+
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<FileResponse> InsertAsync(CurrencyData data)
         {
             return InsertAsync(data, System.Threading.CancellationToken.None);
         }
-    
+
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         public async System.Threading.Tasks.Task<FileResponse> InsertAsync(CurrencyData data, System.Threading.CancellationToken cancellationToken)
         {
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/currencies");
-    
+
             var client_ = _httpClient;
             try
             {
@@ -280,12 +280,12 @@ namespace Wetr.Proxy
                     request_.Content = content_;
                     request_.Method = new System.Net.Http.HttpMethod("POST");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -295,24 +295,24 @@ namespace Wetr.Proxy
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200" || status_ == "206") 
+                        if (status_ == "200" || status_ == "206")
                         {
                             var responseStream_ = response_.Content == null ? System.IO.Stream.Null : await response_.Content.ReadAsStreamAsync().ConfigureAwait(false);
-                            var fileResponse_ = new FileResponse((int)response_.StatusCode, headers_, responseStream_, null, response_); 
+                            var fileResponse_ = new FileResponse((int)response_.StatusCode, headers_, responseStream_, null, response_);
                             client_ = null; response_ = null; // response and client are disposed by FileResponse
                             return fileResponse_;
                         }
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new SwaggerException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
+
                         return default(FileResponse);
                     }
                     finally
@@ -326,28 +326,28 @@ namespace Wetr.Proxy
             {
             }
         }
-    
+
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         public System.Threading.Tasks.Task<SwaggerResponse<double>> RateOfExchangeAsync(string srcSymbol, string targSymbol)
         {
             return RateOfExchangeAsync(srcSymbol, targSymbol, System.Threading.CancellationToken.None);
         }
-    
+
         /// <exception cref="SwaggerException">A server side error occurred.</exception>
         /// <param name="cancellationToken">A cancellation token that can be used by other objects or threads to receive notice of cancellation.</param>
         public async System.Threading.Tasks.Task<SwaggerResponse<double>> RateOfExchangeAsync(string srcSymbol, string targSymbol, System.Threading.CancellationToken cancellationToken)
         {
             if (srcSymbol == null)
                 throw new System.ArgumentNullException("srcSymbol");
-    
+
             if (targSymbol == null)
                 throw new System.ArgumentNullException("targSymbol");
-    
+
             var urlBuilder_ = new System.Text.StringBuilder();
             urlBuilder_.Append(BaseUrl != null ? BaseUrl.TrimEnd('/') : "").Append("/api/currencies/{srcSymbol}/rates/{targSymbol}");
             urlBuilder_.Replace("{srcSymbol}", System.Uri.EscapeDataString(ConvertToString(srcSymbol, System.Globalization.CultureInfo.InvariantCulture)));
             urlBuilder_.Replace("{targSymbol}", System.Uri.EscapeDataString(ConvertToString(targSymbol, System.Globalization.CultureInfo.InvariantCulture)));
-    
+
             var client_ = _httpClient;
             try
             {
@@ -355,12 +355,12 @@ namespace Wetr.Proxy
                 {
                     request_.Method = new System.Net.Http.HttpMethod("GET");
                     request_.Headers.Accept.Add(System.Net.Http.Headers.MediaTypeWithQualityHeaderValue.Parse("application/json"));
-    
+
                     PrepareRequest(client_, request_, urlBuilder_);
                     var url_ = urlBuilder_.ToString();
                     request_.RequestUri = new System.Uri(url_, System.UriKind.RelativeOrAbsolute);
                     PrepareRequest(client_, request_, url_);
-    
+
                     var response_ = await client_.SendAsync(request_, System.Net.Http.HttpCompletionOption.ResponseHeadersRead, cancellationToken).ConfigureAwait(false);
                     try
                     {
@@ -370,20 +370,20 @@ namespace Wetr.Proxy
                             foreach (var item_ in response_.Content.Headers)
                                 headers_[item_.Key] = item_.Value;
                         }
-    
+
                         ProcessResponse(client_, response_);
-    
+
                         var status_ = ((int)response_.StatusCode).ToString();
-                        if (status_ == "200") 
+                        if (status_ == "200")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
-                            var result_ = default(double); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
+                            var result_ = default(double);
                             try
                             {
                                 result_ = Newtonsoft.Json.JsonConvert.DeserializeObject<double>(responseData_, _settings.Value);
-                                return new SwaggerResponse<double>((int)response_.StatusCode, headers_, result_); 
-                            } 
-                            catch (System.Exception exception_) 
+                                return new SwaggerResponse<double>((int)response_.StatusCode, headers_, result_);
+                            }
+                            catch (System.Exception exception_)
                             {
                                 throw new SwaggerException("Could not deserialize the response body.", (int)response_.StatusCode, responseData_, headers_, exception_);
                             }
@@ -391,11 +391,11 @@ namespace Wetr.Proxy
                         else
                         if (status_ != "200" && status_ != "204")
                         {
-                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false); 
+                            var responseData_ = response_.Content == null ? null : await response_.Content.ReadAsStringAsync().ConfigureAwait(false);
                             throw new SwaggerException("The HTTP status code of the response was not expected (" + (int)response_.StatusCode + ").", (int)response_.StatusCode, responseData_, headers_, null);
                         }
-            
-                        return new SwaggerResponse<double>((int)response_.StatusCode, headers_, default(double)); 
+
+                        return new SwaggerResponse<double>((int)response_.StatusCode, headers_, default(double));
                     }
                     finally
                     {
@@ -408,7 +408,7 @@ namespace Wetr.Proxy
             {
             }
         }
-    
+
         private string ConvertToString(object value, System.Globalization.CultureInfo cultureInfo)
         {
             if (value is System.Enum)
@@ -419,7 +419,7 @@ namespace Wetr.Proxy
                     var field = System.Reflection.IntrospectionExtensions.GetTypeInfo(value.GetType()).GetDeclaredField(name);
                     if (field != null)
                     {
-                        var attribute = System.Reflection.CustomAttributeExtensions.GetCustomAttribute(field, typeof(System.Runtime.Serialization.EnumMemberAttribute)) 
+                        var attribute = System.Reflection.CustomAttributeExtensions.GetCustomAttribute(field, typeof(System.Runtime.Serialization.EnumMemberAttribute))
                             as System.Runtime.Serialization.EnumMemberAttribute;
                         if (attribute != null)
                         {
@@ -428,59 +428,60 @@ namespace Wetr.Proxy
                     }
                 }
             }
-            else if (value is bool) {
+            else if (value is bool)
+            {
                 return System.Convert.ToString(value, cultureInfo).ToLowerInvariant();
             }
             else if (value is byte[])
             {
-                return System.Convert.ToBase64String((byte[]) value);
+                return System.Convert.ToBase64String((byte[])value);
             }
             else if (value != null && value.GetType().IsArray)
             {
-                var array = System.Linq.Enumerable.OfType<object>((System.Array) value);
+                var array = System.Linq.Enumerable.OfType<object>((System.Array)value);
                 return string.Join(",", System.Linq.Enumerable.Select(array, o => ConvertToString(o, cultureInfo)));
             }
-        
+
             return System.Convert.ToString(value, cultureInfo);
         }
     }
-    
-    
+
+
 
     [System.CodeDom.Compiler.GeneratedCode("NJsonSchema", "9.13.4.0 (Newtonsoft.Json v11.0.0.0)")]
-    public partial class CurrencyData 
+    public partial class CurrencyData
     {
         [Newtonsoft.Json.JsonProperty("Symbol", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
         public string Symbol { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("Name", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
         public string Name { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("Country", Required = Newtonsoft.Json.Required.Always)]
         [System.ComponentModel.DataAnnotations.Required]
         public string Country { get; set; }
-    
+
         [Newtonsoft.Json.JsonProperty("EuroRate", Required = Newtonsoft.Json.Required.Always)]
         public double EuroRate { get; set; }
-    
-        public string ToJson() 
+
+        public string ToJson()
         {
             return Newtonsoft.Json.JsonConvert.SerializeObject(this);
         }
-        
+
         public static CurrencyData FromJson(string data)
         {
             return Newtonsoft.Json.JsonConvert.DeserializeObject<CurrencyData>(data);
         }
-    
+
     }
 
     public partial class FileResponse : System.IDisposable
     {
-        private System.IDisposable _client; 
-        private System.IDisposable _response; 
+        private System.IDisposable _client;
+        private System.IDisposable _response;
 
         public int StatusCode { get; private set; }
 
@@ -495,14 +496,14 @@ namespace Wetr.Proxy
 
         public FileResponse(int statusCode, System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>> headers, System.IO.Stream stream, System.IDisposable client, System.IDisposable response)
         {
-            StatusCode = statusCode; 
-            Headers = headers; 
-            Stream = stream; 
-            _client = client; 
+            StatusCode = statusCode;
+            Headers = headers;
+            Stream = stream;
+            _client = client;
             _response = response;
         }
 
-        public void Dispose() 
+        public void Dispose()
         {
             if (Stream != null)
                 Stream.Dispose();
@@ -519,10 +520,10 @@ namespace Wetr.Proxy
         public int StatusCode { get; private set; }
 
         public System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>> Headers { get; private set; }
-        
-        public SwaggerResponse(int statusCode, System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>> headers) 
+
+        public SwaggerResponse(int statusCode, System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>> headers)
         {
-            StatusCode = statusCode; 
+            StatusCode = statusCode;
             Headers = headers;
         }
     }
@@ -531,8 +532,8 @@ namespace Wetr.Proxy
     public partial class SwaggerResponse<TResult> : SwaggerResponse
     {
         public TResult Result { get; private set; }
-        
-        public SwaggerResponse(int statusCode, System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>> headers, TResult result) 
+
+        public SwaggerResponse(int statusCode, System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>> headers, TResult result)
             : base(statusCode, headers)
         {
             Result = result;
@@ -548,11 +549,11 @@ namespace Wetr.Proxy
 
         public System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>> Headers { get; private set; }
 
-        public SwaggerException(string message, int statusCode, string response, System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>> headers, System.Exception innerException) 
+        public SwaggerException(string message, int statusCode, string response, System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>> headers, System.Exception innerException)
             : base(message + "\n\nStatus: " + statusCode + "\nResponse: \n" + response.Substring(0, response.Length >= 512 ? 512 : response.Length), innerException)
         {
             StatusCode = statusCode;
-            Response = response; 
+            Response = response;
             Headers = headers;
         }
 
@@ -567,12 +568,12 @@ namespace Wetr.Proxy
     {
         public TResult Result { get; private set; }
 
-        public SwaggerException(string message, int statusCode, string response, System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>> headers, TResult result, System.Exception innerException) 
+        public SwaggerException(string message, int statusCode, string response, System.Collections.Generic.Dictionary<string, System.Collections.Generic.IEnumerable<string>> headers, TResult result, System.Exception innerException)
             : base(message, statusCode, response, headers, innerException)
         {
             Result = result;
         }
     }
 
-    #pragma warning restore
+#pragma warning restore
 }

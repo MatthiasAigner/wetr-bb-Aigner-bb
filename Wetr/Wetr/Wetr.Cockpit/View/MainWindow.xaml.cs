@@ -64,33 +64,10 @@ namespace Wetr.Cockpit
             set { }
         }
 
-        //public AddStations(MainWindow mainWindow)
-        //{
-        //    GetAllStations = new NotifyTaskCompletion<List<Stations>>(client.GetAllStations(new System.Net.Http.HttpClient()));
-        //    this.mainWindow = mainWindow;
-        //    DataContext = this;
-        //    InitializeComponent();
-        //}
-
-
         public NotifyTaskCompletion<IEnumerable<Measurements>> GetAllMeasurmentsForDataGridAsync { get; set; }
-
-        //private IEnumerable<Measurements> Measurements
-        //{
-        //    get
-        //    {
-        //        Stations selectedStation = (Stations)lbFilters.SelectedItem;
-        //        //TODO 
-        //        //return measurementsServer.FindAllMeasurementsByStationInTimeInterval(selectedStation, DateTime.Now.AddYears(-2), DateTime.Now);
-        //        return measurementsServer.FindAllMeasurementsByStation(selectedStation.Station);
-        //    }
-        //    set { }
-        //}
 
         private void LbStations_SelectionChanged(object sender, SelectionChangedEventArgs e)
         {
-            //if(dgMeasurements != null)
-            //    dgMeasurements.ItemsSource = Measurements;
             if (lbStations.SelectedIndex >= 0)
             {
                 if (btEditStation != null && btDeleteStation != null)
@@ -108,8 +85,6 @@ namespace Wetr.Cockpit
                 }
             }
         }
-
-
 
         private void BtAddStation_Click(object sender, RoutedEventArgs e)
         {
@@ -144,8 +119,6 @@ namespace Wetr.Cockpit
                 else
                     MessageBox.Show("Löschen fehlgeschlgen! \nNur Stationen ohne Messdaten können gelöscht werden!", "Error", MessageBoxButton.OKCancel);
             }
-
-
         }
 
         private void CbMeasurement_SelectionChanged(object sender, SelectionChangedEventArgs e)
@@ -241,7 +214,7 @@ namespace Wetr.Cockpit
                         dudRadius.Visibility = Visibility.Hidden;
                         break;
                 }
-        }        
+        }
 
         private List<Stations> SelectedStations()
         {
@@ -263,7 +236,6 @@ namespace Wetr.Cockpit
                 case 4: //Bundesland
                     selectedStations.AddRange(stationServer.FindStationByProvince(((Provinces)lbFilterProvinces.SelectedItem).Province));
                     break;
-
             }
             return selectedStations;
         }
@@ -288,17 +260,11 @@ namespace Wetr.Cockpit
 
         private void UpdateDataGrid()
         {
-
             if (lbFilterStations != null && dgMeasurements != null)
             {
                 List<Stations> selectedStations = SelectedStations();
-
-
-
                 DateTime startDateTime = GetSelectedStartTime();
-
                 DateTime endDateTime = GetSelectedEndTime();
-
                 GetAllMeasurmentsForDataGridAsync = new NotifyTaskCompletion<IEnumerable<Measurements>>(measurementsServer.FindAllMeasurementsByStationsInTimeIntervalAsync(selectedStations, startDateTime, endDateTime));
                 dgMeasurements.ItemsSource = GetAllMeasurmentsForDataGridAsync.Result; //(List<Measurements>)measurementsServer.FindAllMeasurementsByStationsInTimeInterval(selectedStations, startDateTime, endDateTime);
             }
@@ -314,7 +280,6 @@ namespace Wetr.Cockpit
         {
             Stations selectedStations = (Stations)lbFilterStations.SelectedItem;
             DateTime startDateTime = GetSelectedStartTime();
-
             DateTime endDateTime = GetSelectedEndTime();
             double result = 0.0;
             if (rbMin != null && rbMax != null && rbSum != null && tbResult != null && cbMeasurement != null)
@@ -330,14 +295,13 @@ namespace Wetr.Cockpit
                             result = Math.Round(measurementsServer.FindAvgTempByStationInTimeInterval(selectedStations, startDateTime, endDateTime), 2);
                         break;
                     case 1://Luftdruck
-                           if ((bool)rbMin.IsChecked)
-                           result = measurementsServer.FindMinPressureByStationInTimeInterval(selectedStations, startDateTime, endDateTime);
+                        if ((bool)rbMin.IsChecked)
+                            result = measurementsServer.FindMinPressureByStationInTimeInterval(selectedStations, startDateTime, endDateTime);
                         if ((bool)rbMax.IsChecked)
                             result = measurementsServer.FindMaxPressureByStationInTimeInterval(selectedStations, startDateTime, endDateTime);
                         if ((bool)rbAvg.IsChecked)
                             result = Math.Round(measurementsServer.FindAvgPressureByStationInTimeInterval(selectedStations, startDateTime, endDateTime), 2);
                         break;
-
                     case 2: //Regenmenge
                         if ((bool)rbMin.IsChecked)
                         {
@@ -363,7 +327,6 @@ namespace Wetr.Cockpit
                             result = Math.Round(result * timeSpanHours, 2);
                         }
                         break;
-
                     case 3: //Luftfeuchtigkeit
                         if ((bool)rbMin.IsChecked)
                             result = measurementsServer.FindMinHumidityByStationInTimeInterval(selectedStations, startDateTime, endDateTime);
@@ -372,7 +335,6 @@ namespace Wetr.Cockpit
                         if ((bool)rbAvg.IsChecked)
                             result = Math.Round(measurementsServer.FindAvgHumidityByStationInTimeInterval(selectedStations, startDateTime, endDateTime), 2);
                         break;
-
                     case 4: //Windgeschwindigkeit
                         if ((bool)rbMin.IsChecked)
                             result = measurementsServer.FindMinWindspeedByStationInTimeInterval(selectedStations, startDateTime, endDateTime);
@@ -382,13 +344,12 @@ namespace Wetr.Cockpit
                             result = Math.Round(measurementsServer.FindAvgWindspeedByStationInTimeInterval(selectedStations, startDateTime, endDateTime), 2);
                         break;
                 }
-
                 if (result > -999.0)
                     tbResult.Text = result.ToString();
                 else
                     tbResult.Text = "kein Wert!";
             }
-        }        
+        }
 
         private void BtResult_Click(object sender, RoutedEventArgs e)
         {

@@ -106,7 +106,7 @@ namespace Wetr.BL.Server
 
         public double FindMaxWindspeedByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
         {
-            return FindMaxWindspeedByStationInTimeInterval(station, begin, end);
+            return measurementsDao.FindMaxWindspeedByStationInTimeInterval(station, begin, end);
         }
 
         public Measurements FindMeasurementById(int id)

@@ -35,9 +35,8 @@ namespace Wetr.DAL.Dao
 
         public IEnumerable<Stations> FindAllStations()
         {
-        return template.Query("select * from Stations", stationMapper).ToList();
-        }
-        
+            return template.Query("select * from Stations", stationMapper).ToList();
+        }        
 
         public Stations FindStationByName(string station)
         {

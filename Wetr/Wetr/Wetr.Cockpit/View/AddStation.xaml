@@ -14,18 +14,18 @@
                 <StackPanel Orientation="Horizontal" DockPanel.Dock="Bottom">
                     <Grid Width="12" Height="12">
                         <Ellipse Width="12" Height="12" Fill="Red" HorizontalAlignment="Center" VerticalAlignment="Center" />
-                         <TextBlock Foreground="White" FontWeight="Heavy" FontSize="8" HorizontalAlignment="Center" 
+                        <TextBlock Foreground="White" FontWeight="Heavy" FontSize="8" HorizontalAlignment="Center" 
                                  VerticalAlignment="Center" TextAlignment="Center" ToolTip="{Binding ElementName=ErrorAdorner, Path=AdornedElement.(Validation.Errors)[0].ErrorContent}">
                              X</TextBlock>
                     </Grid>
                     <TextBlock Foreground="Red" FontSize="10" Margin="2,0,0,0" Text="{Binding ElementName=ErrorAdorner, 
                             Path=AdornedElement.(Validation.Errors)[0].ErrorContent}" />
                 </StackPanel>
-                <AdornedElementPlaceholder x:Name="ErrorAdorner" /> 
+                <AdornedElementPlaceholder x:Name="ErrorAdorner" />
             </DockPanel>
         </ControlTemplate>
     </Window.Resources>
-    <Grid>        
+    <Grid>
         <Label Name="lbStationname" Content="Stationsname:" VerticalAlignment="Top"
                HorizontalAlignment="Left" Margin="20,20,20,20"
                />
@@ -42,7 +42,6 @@
                 </Binding>
             </TextBox.Text>
         </TextBox>
-
 
         <Label Name="lbStationtype" Content="Stationstyp:" VerticalAlignment="Top"
                HorizontalAlignment="Left" Margin="20,80,20,20"
@@ -134,12 +133,5 @@
         <Button Name ="btCancel" Grid.Row="1" Content="Abbrechen" HorizontalAlignment="Right"  
                 Margin="0,0,20,20"  VerticalAlignment="Bottom" Width="100"
                 Click="BtCancel_Click"/>
-        
-
-
-
     </Grid>
-    
 </Window>
-
-

@@ -6,12 +6,7 @@
        
         mc:Ignorable="d"
         Title="Station hinzufügen" Height="450" Width="400" MinHeight="150" MinWidth="250">
-    <Window.Resources>
-
-        
-
-    </Window.Resources>
-
+   
     <Grid>
         <Grid.RowDefinitions>
             <RowDefinition Height="*"/>
@@ -34,6 +29,5 @@
         <Button Name ="btCancel" Grid.Row="1" Content="Abbrechen" HorizontalAlignment="Right"  
                 Margin="0,0,20,20"  VerticalAlignment="Bottom" Width="100"
                 Click="BtCancel_Click"/>
-
     </Grid>
 </Window>

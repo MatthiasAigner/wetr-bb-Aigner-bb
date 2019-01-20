@@ -31,10 +31,7 @@ namespace Wetr.CSharpClient
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             HttpResponseMessage resp1 = await httpClient.GetAsync(CONVERTER_SERVICE_URI);
-            resp1.EnsureSuccessStatusCode();
-
-            //string body = await resp1.Content.ReadAsStringAsync();
-            //Console.WriteLine($"resp1.Content={body}");
+            resp1.EnsureSuccessStatusCode();            
 
             var stationsList = await resp1.Content.ReadAsAsync<List<Stations>>();
             
@@ -51,10 +48,7 @@ namespace Wetr.CSharpClient
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 
             HttpResponseMessage resp1 = await httpClient.GetAsync(CONVERTER_SERVICE_URI);
-            resp1.EnsureSuccessStatusCode();
-
-            //string body = await resp1.Content.ReadAsStringAsync();
-            //Console.WriteLine($"resp1.Content={body}");
+            resp1.EnsureSuccessStatusCode();                      
 
             var stationsList = await resp1.Content.ReadAsAsync<IEnumerable<Stations>>();
             foreach (var station in stationsList)
@@ -75,11 +69,7 @@ namespace Wetr.CSharpClient
                 {
                     Console.WriteLine(await resp2.Content.ReadAsAsync<Stations>());
                 }
-
-
             }
-
-
         }
 
         private async static Task SwaggerBasedClient(HttpClient httpClient)
@@ -109,10 +99,8 @@ namespace Wetr.CSharpClient
                 await HttpNetClient(httpClient);
                 //await GetAllStations(httpClient);
                 Console.WriteLine();
-
                 Console.WriteLine("============== SwaggerBasedClient ===============");
                 await SwaggerBasedClient(httpClient);
-
                 Console.ReadKey();
             }
         }

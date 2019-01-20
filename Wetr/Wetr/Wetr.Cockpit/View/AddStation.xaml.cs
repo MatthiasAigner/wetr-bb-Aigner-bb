@@ -38,20 +38,16 @@ namespace Wetr.Cockpit.View
 
         private void BtAdd_Click(object sender, RoutedEventArgs e)
         {
-            try {
+            try
+            {
                 stationServer.InsertStation(new Stations(tbStationname.Text, tbStationtype.Text, double.Parse(tbLongitude.Text), double.Parse(tbLatitude.Text), int.Parse(tbPostalcode.Text)));
                 mainWindow.lbStations.ItemsSource = stationServer.FindAllStations();
                 this.Close();
-            }catch(Exception)
+            }
+            catch (Exception)
             {
                 MessageBox.Show("Hinzufügen fehlgeschlgen! \nPrüfen Sie ob die Postleitzahl und der Stationstyp existieren.", "Error", MessageBoxButton.OKCancel);
             }
-        }
-
-
-        private void TbPostalcode_Error(object sender, ValidationErrorEventArgs e)
-        {
-
         }
     }
 }

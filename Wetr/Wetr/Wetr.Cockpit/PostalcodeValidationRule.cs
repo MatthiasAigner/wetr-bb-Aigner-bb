@@ -11,11 +11,11 @@ namespace Wetr.Cockpit
     public class PostalcodeValidationRule : ValidationRule
     {
         public override ValidationResult Validate(object value, CultureInfo cultureInfo)
-        {            
+        {
             if (value == null || value.ToString().Length < 1)
                 return new ValidationResult(false, "Feld darf nicht leer sein!");
             else
-            {                
+            {
                 int intVal = 0;
                 bool canConvert = false;
                 canConvert = int.TryParse(value.ToString(), out intVal);

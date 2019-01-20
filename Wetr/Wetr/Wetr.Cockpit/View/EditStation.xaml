@@ -32,8 +32,6 @@
         <TextBox Name="tbStationname" VerticalAlignment="Top" HorizontalAlignment="Stretch" 
                  HorizontalContentAlignment="Left" Margin="20,45,20,20" IsEnabled="False"
                  />
-
-
         <Label Name="lbStationtype" Content="Stationstyp:" VerticalAlignment="Top"
                HorizontalAlignment="Left" Margin="20,80,20,20"
                />
@@ -99,7 +97,6 @@
                 </Binding>
             </TextBox.Text>
         </TextBox>
-
         <Button Name="btEdit" Grid.Row="1" Content="Ändern" 
                 HorizontalAlignment="Left"  Margin="20,0,0,20"  VerticalAlignment="Bottom" 
                 Width="100" Click="BtEdit_Click">
@@ -124,12 +121,5 @@
         <Button Name ="btCancel" Grid.Row="1" Content="Abbrechen" HorizontalAlignment="Right"  
                 Margin="0,0,20,20"  VerticalAlignment="Bottom" Width="100"
                 Click="BtCancel_Click"/>
-
-
-
-
     </Grid>
-
 </Window>
-
-

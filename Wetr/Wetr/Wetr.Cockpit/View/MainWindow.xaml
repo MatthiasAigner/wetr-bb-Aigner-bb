@@ -7,6 +7,7 @@
         xmlns:xctk="http://schemas.xceed.com/wpf/xaml/toolkit"
         mc:Ignorable="d"
         Title="Cockpit" Height="650" Width="850" MinHeight="600" MinWidth="850">
+    
     <Window.Resources>
         <Style TargetType="{x:Type GridSplitter}">
             <Setter Property="Background" Value="RosyBrown"/>
@@ -20,7 +21,6 @@
                     <Label Name="lbStationsHeader" Content="Wetterstationen:" 
                HorizontalAlignment="Left" Margin="10,20,0,0" VerticalAlignment="Top" FontSize="14"
                />
-
                     <ListBox Name="lbStations" HorizontalContentAlignment="Stretch" 
                  ItemsSource="{Binding Stations}" Margin="0,50,0,130" SelectedIndex="0"
                  SelectionChanged="LbStations_SelectionChanged">
@@ -86,7 +86,6 @@
                     <Label Name="lbFilter" Grid.Column="1" Content="Filtern nach:" 
                HorizontalAlignment="Left" Margin="280,20,0,0" VerticalAlignment="Top" 
                />
-                    
                     <ComboBox  Name="cbFilter" Grid.Column="1" HorizontalAlignment="Left" 
                    Height="25" Margin="280,45,0,0"  VerticalAlignment="Top" 
                    Width="200" SelectionChanged="CbFilter_SelectionChanged">
@@ -103,7 +102,6 @@
                     <Label Name="lbRadiusUnit" Content="km" 
                HorizontalAlignment="Left" Margin="455,115,0,0" VerticalAlignment="Top" 
                />
-
                     <xctk:DoubleUpDown Name="dudRadius" HorizontalAlignment="Left" Height="25"
                            Margin="400,115,0,0"  VerticalAlignment="Top" Width="55"
                             Value="10"
@@ -111,7 +109,6 @@
                     <Label Name="lbLongitude" Content="Längengrad:" 
                HorizontalAlignment="Left" Margin="280,90,0,0" VerticalAlignment="Top" 
                />
-
                     <xctk:DoubleUpDown Name="dudLongitude"  HorizontalAlignment="Left" Height="25"
                            Margin="280,115,0,0"  VerticalAlignment="Top" Width="100" Value="14"
                            Visibility="Hidden"
@@ -126,7 +123,6 @@
 
                     <ListBox Name="lbFilterStations" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top"
                  ItemsSource="{Binding Stations}" Margin="280,80,0,130" SelectedIndex="0" Height="150">
-
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock FontSize="9pt">
@@ -135,11 +131,9 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-
                     <ListBox Name="lbFilterCommunities" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top"
                  ItemsSource="{Binding Communities}" Margin="280,80,0,130" SelectedIndex="0" Height="150"
                  Visibility="Hidden">
-
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock FontSize="9pt">
@@ -148,11 +142,9 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-
                     <ListBox Name="lbFilterDistricts" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top"
                  ItemsSource="{Binding Districts}" Margin="280,80,0,130" SelectedIndex="0" Height="150"
                  Visibility="Hidden">
-
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock FontSize="9pt">
@@ -161,11 +153,9 @@
                             </DataTemplate>
                         </ListBox.ItemTemplate>
                     </ListBox>
-
                     <ListBox Name="lbFilterProvinces" Width="200" HorizontalAlignment="Left" VerticalAlignment="Top"
                  ItemsSource="{Binding Provinces}" Margin="280,80,0,130" SelectedIndex="0" Height="150"
                  Visibility="Hidden">
-
                         <ListBox.ItemTemplate>
                             <DataTemplate>
                                 <TextBlock FontSize="9pt">
@@ -186,7 +176,6 @@
                         <ComboBoxItem Content="Luftfeuchtigkeit"/>
                         <ComboBoxItem Content="Windgeschwindigkeit"/>
                     </ComboBox>
-
                     <RadioButton Name="rbMin" Content="Minimum" IsChecked="True"
                      HorizontalAlignment="Left" Margin="510,100,0,0" VerticalAlignment="Top"
                      />
@@ -204,26 +193,13 @@
                     <Label Name="lbResult" Content="Ergebnis:" FontSize="16" FontWeight="Bold"
                HorizontalAlignment="Left" Margin="620,140,0,0" VerticalAlignment="Top"
                />
-                    <TextBox Name="tbResult" HorizontalAlignment="Left" VerticalAlignment="Top"
+                    <TextBox Name="tbResult" HorizontalAlignment="Left" VerticalAlignment="Top" FontSize="14"
                              Width="100" Margin="620,170,0,0" Height="30" IsReadOnly="True"></TextBox>
                     <Label Name="lbUnit" Content="°C"
                HorizontalAlignment="Left" Margin="720,175,0,0" VerticalAlignment="Top"
                />
-                    
-
-
-                    <!--<DataGrid Name ="dgResults" Grid.Column="1" HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" 
-                  Margin="292,122,0,0" VerticalAlignment="Top" Width="274"  >
-            <DataGridTextColumn Header="Messwert">
-            </DataGridTextColumn>
-            <DataGridTextColumn Header="Minimum"></DataGridTextColumn>
-            <DataGridTextColumn Header="Durchschnitt"></DataGridTextColumn>
-            <DataGridTextColumn Header="Maximum"></DataGridTextColumn>
-        </DataGrid>-->
                 </Grid>
             </TabItem>
-            
         </TabControl>
-
     </Grid>
 </Window>
