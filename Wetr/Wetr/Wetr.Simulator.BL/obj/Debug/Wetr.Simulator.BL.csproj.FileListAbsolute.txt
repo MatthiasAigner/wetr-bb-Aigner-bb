@@ -1,9 +1,0 @@
-C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Simulator.BL\bin\Debug\MediaAnnotator.BL.dll
-C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Simulator.BL\bin\Debug\MediaAnnotator.BL.pdb
-C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Simulator.BL\bin\Debug\MediaAnnotator.Domain.dll
-C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Simulator.BL\bin\Debug\MediaAnnotator.Domain.pdb
-C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Simulator.BL\obj\Debug\Wetr.Simulator.BL.csprojAssemblyReference.cache
-C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Simulator.BL\obj\Debug\Wetr.Simulator.BL.csproj.CoreCompileInputs.cache
-C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Simulator.BL\obj\Debug\Wetr.Simulator.BL.csproj.CopyComplete
-C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Simulator.BL\obj\Debug\MediaAnnotator.BL.dll
-C:\Users\aigne\source\repos\wetr-bb-Aigner-bb\Wetr\Wetr\Wetr.Simulator.BL\obj\Debug\MediaAnnotator.BL.pdb

@@ -1,9 +1,0 @@
-C:\Users\aigne\Desktop\Matthias\SWK5\Einheit6\Uebung06\MediaAnnotator\MediaAnnotator.BL\bin\Debug\MediaAnnotator.BL.dll
-C:\Users\aigne\Desktop\Matthias\SWK5\Einheit6\Uebung06\MediaAnnotator\MediaAnnotator.BL\bin\Debug\MediaAnnotator.BL.pdb
-C:\Users\aigne\Desktop\Matthias\SWK5\Einheit6\Uebung06\MediaAnnotator\MediaAnnotator.BL\bin\Debug\MediaAnnotator.Domain.dll
-C:\Users\aigne\Desktop\Matthias\SWK5\Einheit6\Uebung06\MediaAnnotator\MediaAnnotator.BL\bin\Debug\MediaAnnotator.Domain.pdb
-C:\Users\aigne\Desktop\Matthias\SWK5\Einheit6\Uebung06\MediaAnnotator\MediaAnnotator.BL\obj\Debug\MediaAnnotator.BL.csprojAssemblyReference.cache
-C:\Users\aigne\Desktop\Matthias\SWK5\Einheit6\Uebung06\MediaAnnotator\MediaAnnotator.BL\obj\Debug\MediaAnnotator.BL.csproj.CoreCompileInputs.cache
-C:\Users\aigne\Desktop\Matthias\SWK5\Einheit6\Uebung06\MediaAnnotator\MediaAnnotator.BL\obj\Debug\MediaAnnotator.BL.csproj.CopyComplete
-C:\Users\aigne\Desktop\Matthias\SWK5\Einheit6\Uebung06\MediaAnnotator\MediaAnnotator.BL\obj\Debug\MediaAnnotator.BL.dll
-C:\Users\aigne\Desktop\Matthias\SWK5\Einheit6\Uebung06\MediaAnnotator\MediaAnnotator.BL\obj\Debug\MediaAnnotator.BL.pdb
