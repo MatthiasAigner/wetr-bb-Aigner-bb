@@ -8,6 +8,10 @@ namespace Wetr.Domainclasses
 {
     public class Provinces
     {
+        public Provinces()
+        {
+            
+        }
         public Provinces(string province)
         {
             Province = province;

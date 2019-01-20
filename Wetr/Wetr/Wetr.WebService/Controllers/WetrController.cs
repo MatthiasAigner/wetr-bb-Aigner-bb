@@ -17,7 +17,7 @@ namespace Wetr.WebService.Controllers
 
         public IStationsServer stationServer = new StationsServer();
         public IMeasurementsServer measurementsServer = new MeasurementsServer();
-
+        public IUsersServer usersServer = new UsersServer();
 
         [HttpGet]
         [Route("GetAllStations", Name = "GetAllStations")]
@@ -106,10 +106,18 @@ namespace Wetr.WebService.Controllers
             }
         }
 
+        [HttpGet]
+        [Route("GetAllMeasurementsByStationInTimeInterval/{station}/{begin}/{end}")]
+        IEnumerable<Measurements> GetAllMeasurementsByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
+        {
+            return measurementsServer.FindAllMeasurementsByStationInTimeInterval(station, begin, end);
+        }
 
-
-
-
-
+        [HttpGet]
+        [Route("GetAllUsers)")]
+        IEnumerable<Users> GetAllUsers()
+        {
+            return usersServer.FindAllUsers();
+        }
     }
 }

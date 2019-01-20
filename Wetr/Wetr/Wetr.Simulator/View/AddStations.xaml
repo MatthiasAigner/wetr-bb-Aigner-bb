@@ -18,7 +18,7 @@
             <RowDefinition Height="50"/>            
         </Grid.RowDefinitions>
         <ListBox  Name="lbAllStations" Grid.Row="0" HorizontalContentAlignment="Stretch" 
-                  MinHeight="300" ItemsSource="{Binding GetAllStations.Result}" >
+                  MinHeight="300" ItemsSource="{Binding GetAllStationsAsync.Result}" >
 
             <ListBox.ItemTemplate>
                 <DataTemplate>

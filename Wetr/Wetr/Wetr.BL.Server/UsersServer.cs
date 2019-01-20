@@ -9,7 +9,7 @@ using Wetr.Domainclasses;
 
 namespace Wetr.BL.Server
 {
-    class UsersServer : IUsersServer
+    public class UsersServer : IUsersServer
     {
         private static readonly IConnectionFactory connectionFactory = new DefaultConnectionFactory();
         private IUsersDao usersDao = new AdoUsersDao(connectionFactory);

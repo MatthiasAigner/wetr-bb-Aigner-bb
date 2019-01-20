@@ -95,6 +95,7 @@
     </Compile>
     <Compile Include="DegreeValidationRule.cs" />
     <Compile Include="NameValidationRule.cs" />
+    <Compile Include="NotifyTaskCompletion.cs" />
     <Compile Include="PostalcodeValidationRule.cs" />
     <Compile Include="View\AddStation.xaml.cs">
       <DependentUpon>AddStation.xaml</DependentUpon>

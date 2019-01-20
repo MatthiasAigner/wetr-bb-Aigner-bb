@@ -44,9 +44,29 @@ namespace Wetr.BL.Server
             return result;
         }
 
+        public async Task<IEnumerable<Measurements>> FindAllMeasurementsByStationsInTimeIntervalAsync(IEnumerable<Stations> stations, DateTime begin, DateTime end)
+        {
+            List<Measurements> result = new List<Measurements>();
+            foreach(Stations station in stations)
+            {
+                result.AddRange(await measurementsDao.FindAllMeasurementsByStationInTimeIntervalAsync(station, begin, end));                
+            }
+            return  result;
+        }
+
         public IEnumerable<Measurements> FindAllMeasurementsInTimeInterval(DateTime begin, DateTime end)
         {
             return measurementsDao.FindAllMeasurementsInTimeInterval(begin, end);
+        }
+
+        public double FindAvgHumidityByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
+        {
+            return measurementsDao.FindAvgHumidityByStationInTimeInterval(station, begin, end);
+        }
+
+        public double FindAvgPressureByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
+        {
+            return measurementsDao.FindAvgPressureByStationInTimeInterval(station, begin, end);
         }
 
         public double FindAvgRainfallByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
@@ -62,6 +82,16 @@ namespace Wetr.BL.Server
         public double FindAvgWindspeedByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
         {
             return measurementsDao.FindAvgWindspeedByStationInTimeInterval(station, begin, end);
+        }
+
+        public double FindMaxHumidityByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
+        {
+            return measurementsDao.FindMaxHumidityByStationInTimeInterval(station, begin, end);
+        }
+
+        public double FindMaxPressureByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
+        {
+            return measurementsDao.FindMaxPressureByStationInTimeInterval(station, begin, end);
         }
 
         public double FindMaxRainfallByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
@@ -82,6 +112,16 @@ namespace Wetr.BL.Server
         public Measurements FindMeasurementById(int id)
         {
             return measurementsDao.FindMeasurementById(id);
+        }
+
+        public double FindMinHumidityByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
+        {
+            return measurementsDao.FindMinHumidityByStationInTimeInterval(station, begin, end);
+        }
+
+        public double FindMinPressureByStationInTimeInterval(Stations station, DateTime begin, DateTime end)
+        {
+            return measurementsDao.FindMinPressureByStationInTimeInterval(station, begin, end);
         }
 
         public double FindMinRainfallByStationInTimeInterval(Stations station, DateTime begin, DateTime end)

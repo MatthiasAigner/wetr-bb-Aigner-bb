@@ -45,12 +45,14 @@
     <Compile Include="AdoCommunitiesDao.cs" />
     <Compile Include="AdoMeasurementsDao.cs" />
     <Compile Include="AdoStationsDao.cs" />
+    <Compile Include="AdoProvincesDao.cs" />
     <Compile Include="AdoUsersDao.cs" />
     <Compile Include="AdoDistrictDao.cs" />
     <Compile Include="ICommunitiesDao.cs" />
     <Compile Include="IMeasurementsDao.cs" />
     <Compile Include="IStationsDao.cs" />
     <Compile Include="IDistrictDao.cs" />
+    <Compile Include="IProvincesDao.cs" />
     <Compile Include="IUsersDao.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
   </ItemGroup>

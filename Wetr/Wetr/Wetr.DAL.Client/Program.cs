@@ -73,7 +73,7 @@ namespace Wetr.DAL.Client
             PrintTitle("UsersDao.DeleteUser", 50);
             userTester.TestDeleteUser("User999");
 
-            //InsertALotOfMeasurments();
+            InsertALotOfMeasurments();
             Console.ReadKey();
         }
 

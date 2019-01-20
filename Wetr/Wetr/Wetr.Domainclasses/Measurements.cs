@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Threading.Tasks;
 using System.Web;
 
 namespace Wetr.Domainclasses
@@ -22,7 +23,7 @@ namespace Wetr.Domainclasses
             this.Humidity = humidity;
             this.WindSpeed = windSpeed;
             this.WindDirection = windDirection;            
-        }
+        }       
 
         //public int Id { get; set; }
         public string Station { get; set; }

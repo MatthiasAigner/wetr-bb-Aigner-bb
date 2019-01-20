@@ -52,7 +52,7 @@
                     <DatePicker Name="dpStartDate" Grid.Column="1" SelectedDateFormat="Short" 
                     IsTodayHighlighted="True"  Width="100" Height="25" HorizontalAlignment="Left" 
                     Margin="20,45,0,0" VerticalAlignment="Top" FirstDayOfWeek="Monday" 
-                    SelectedDate="{x:Static sys:DateTime.Today}" SelectedDateChanged="DpStartDate_SelectedDateChanged"
+                    SelectedDate="{x:Static sys:DateTime.Today}" 
                     />
                     <Label Name="lbEndDate"  Grid.Column="1" Content="Enddatum:"
                HorizontalAlignment="Left" Margin="20,90,0,0" VerticalAlignment="Top"
@@ -60,27 +60,27 @@
                     <DatePicker Name="dpEndDate" Grid.Column="1" SelectedDateFormat="Short" 
                     IsTodayHighlighted="True"  Width="100" Height="25" HorizontalAlignment="Left" 
                     Margin="20,115,0,0" VerticalAlignment="Top" FirstDayOfWeek="Monday" 
-                    SelectedDate="{x:Static sys:DateTime.Today}" SelectedDateChanged="DpEndDate_SelectedDateChanged"
+                    SelectedDate="{x:Static sys:DateTime.Today}" 
                     />
                     <Label Name="lbStartTime"  Grid.Column="1" Content="Startzeit:" 
                HorizontalAlignment="Left" Margin="150,20,0,0" VerticalAlignment="Top"
                />
                     <xctk:TimePicker Name="tpStartTime" Grid.Column="1"   Width="100" Height="25"
                   HorizontalAlignment="Left" Margin="150,45,0,0" VerticalAlignment="Top"
-                  DefaultValue="00:00" DisplayDefaultValueOnEmptyText="True" ValueChanged="TpStartTime_ValueChanged"
+                  DefaultValue="00:00" DisplayDefaultValueOnEmptyText="True" 
                   />
                     <Label Name="lbEndTime"  Grid.Column="1" Content="Endzeit:" 
                HorizontalAlignment="Left" Margin="150,90,0,0" VerticalAlignment="Top"
                />
                     <xctk:TimePicker Name="tpEndTime" Grid.Column="1"   Width="100" Height="25"
                   HorizontalAlignment="Left" Margin="150,115,0,0" VerticalAlignment="Top"
-                  DefaultValue="00:00" DisplayDefaultValueOnEmptyText="True" ValueChanged="TpEndTime_ValueChanged"
+                  DefaultValue="00:00" DisplayDefaultValueOnEmptyText="True" 
                   />
 
                     <Button Name="btFilter"  Content="Filter anwenden" Width="230" Height="30"
                             Margin="20,200,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="BtFilter_Click"/>
                     <DataGrid Name="dgMeasurements"  HorizontalAlignment="Left" HorizontalContentAlignment="Stretch" 
-                  Margin="20,250,20,20" VerticalAlignment="Top" IsReadOnly="True">
+                  Margin="20,250,20,20" VerticalAlignment="Top" IsReadOnly="True" ItemsSource="{Binding GetAllMeasurmentsForDataGridAsync.Result}" >
 
                     </DataGrid>
                     <Label Name="lbFilter" Grid.Column="1" Content="Filtern nach:" 
@@ -99,7 +99,10 @@
 
                     <Label Name="lbRadius" Content="Radius:" 
                HorizontalAlignment="Left" Margin="400,90,0,0" VerticalAlignment="Top" 
-               Visibility="Hidden"/>
+               />
+                    <Label Name="lbRadiusUnit" Content="km" 
+               HorizontalAlignment="Left" Margin="455,115,0,0" VerticalAlignment="Top" 
+               />
 
                     <xctk:DoubleUpDown Name="dudRadius" HorizontalAlignment="Left" Height="25"
                            Margin="400,115,0,0"  VerticalAlignment="Top" Width="55"
@@ -186,23 +189,25 @@
 
                     <RadioButton Name="rbMin" Content="Minimum" IsChecked="True"
                      HorizontalAlignment="Left" Margin="510,100,0,0" VerticalAlignment="Top"
-                     Checked="RbMin_Checked"/>
+                     />
                     <RadioButton Name="rbMax" Content="Maximum" 
                      HorizontalAlignment="Left" Margin="510,125,0,0" VerticalAlignment="Top"
-                     Checked="RbMax_Checked"/>
+                     />
                     <RadioButton Name="rbAvg" Content="Durchschnitt" 
                      HorizontalAlignment="Left" Margin="510,150,0,0" VerticalAlignment="Top"
-                     Checked="RbAvg_Checked"/>
+                     />
                     <RadioButton Name="rbSum" Content="Summe" IsEnabled="False"
                      HorizontalAlignment="Left" Margin="510,175,0,0" VerticalAlignment="Top"
-                     Checked="RbSum_Checked"/>
+                     />
+                    <Button Name="btResult"  Content="Berechnen" Width="100" Height="30"
+                            Margin="620,100,0,0" HorizontalAlignment="Left" VerticalAlignment="Top" Click="BtResult_Click"/>
                     <Label Name="lbResult" Content="Ergebnis:" FontSize="16" FontWeight="Bold"
-               HorizontalAlignment="Left" Margin="620,110,0,0" VerticalAlignment="Top"
+               HorizontalAlignment="Left" Margin="620,140,0,0" VerticalAlignment="Top"
                />
                     <TextBox Name="tbResult" HorizontalAlignment="Left" VerticalAlignment="Top"
-                             Width="100" Margin="620,140,0,0" Height="30" IsReadOnly="True"></TextBox>
-                    <Label Name="lbUnit" Content="{Binding ValueRangeUnit}"
-               HorizontalAlignment="Left" Margin="730,150,0,0" VerticalAlignment="Top"
+                             Width="100" Margin="620,170,0,0" Height="30" IsReadOnly="True"></TextBox>
+                    <Label Name="lbUnit" Content="°C"
+               HorizontalAlignment="Left" Margin="720,175,0,0" VerticalAlignment="Top"
                />
                     
 

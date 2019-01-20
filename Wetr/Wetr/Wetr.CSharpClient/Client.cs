@@ -26,7 +26,7 @@ namespace Wetr.CSharpClient
         private const string BASE_URI = "http://localhost:5000";
         private static readonly string CONVERTER_SERVICE_URI = $"{BASE_URI}/api/getallstations";
 
-        public async Task<List<Stations>> GetAllStations(HttpClient httpClient)
+        public async Task<List<Stations>> GetAllStationsAsync(HttpClient httpClient)
         {
             httpClient.DefaultRequestHeaders.Accept.Add(new MediaTypeWithQualityHeaderValue("application/json"));
 

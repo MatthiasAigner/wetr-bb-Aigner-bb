@@ -10,6 +10,7 @@ using System.Threading.Tasks;
 namespace Wetr.DAL.Common
 {
     public delegate T RowMapper<T>(IDataRecord row);
+    public delegate Task<T> RowMapperAsync<T>(IDataRecord row);
     public class AdoTemplate
     {
         private readonly IConnectionFactory connectionFactory;
@@ -45,6 +46,32 @@ namespace Wetr.DAL.Common
             }
         }
 
+        public async Task<IEnumerable<T>> QueryAsync<T>(string sql, RowMapper<T> rowMapper, SqlParameter[] parameters = null)
+        {
+            using (DbConnection connection = connectionFactory.CreateConnection())
+            {
+                using (DbCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = sql;
+
+                    if (parameters != null)
+                    {
+                        AddParameters(parameters, command);
+                    }
+
+                    var items = new List<T>();
+                    using (DbDataReader reader =  command.ExecuteReader())
+                    {
+                       while (reader.Read())
+                        {
+                            items.Add(rowMapper(reader));
+                        }
+                    }
+                    return items;
+                }
+            }
+        }
+
         private void AddParameters(SqlParameter[] parameters, DbCommand command)
         {
             foreach(var p in parameters)
@@ -68,8 +95,41 @@ namespace Wetr.DAL.Common
                     {
                         AddParameters(parameters, command);
                     }
-
+                   
                     return command.ExecuteNonQuery();
+                }
+            }
+        }
+
+        public double QueryAggregate(string sql,  SqlParameter[] parameters = null)
+        {
+            using (DbConnection connection = connectionFactory.CreateConnection())
+            {
+                using (DbCommand command = connection.CreateCommand())
+                {
+                    command.CommandText = sql;
+
+                    if (parameters != null)
+                    {
+                        AddParameters(parameters, command);
+                    }
+
+                    double items = 0.0;
+                    using (DbDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            try
+                            {
+                                items = reader.GetDouble(0);
+                            }
+                            catch(Exception)
+                            {
+                                return -1000.0; //if there are no values to read 
+                            }
+                        }
+                    }
+                    return items;
                 }
             }
         }

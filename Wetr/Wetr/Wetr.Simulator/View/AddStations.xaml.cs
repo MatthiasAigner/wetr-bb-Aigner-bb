@@ -32,14 +32,14 @@ namespace Wetr.Simulator.View
 
         public AddStations(MainWindow mainWindow)
         {
-            GetAllStations = new NotifyTaskCompletion<List<Stations>>(client.GetAllStations(new System.Net.Http.HttpClient()));
+            GetAllStationsAsync = new NotifyTaskCompletion<List<Stations>>(client.GetAllStationsAsync(new System.Net.Http.HttpClient()));
             this.mainWindow = mainWindow;
             DataContext = this;
             InitializeComponent();
         }
 
 
-        public NotifyTaskCompletion<List<Stations>> GetAllStations { get; set; }
+        public NotifyTaskCompletion<List<Stations>> GetAllStationsAsync { get; set; }
 
 
         private void BtCancel_Click(object sender, RoutedEventArgs e)

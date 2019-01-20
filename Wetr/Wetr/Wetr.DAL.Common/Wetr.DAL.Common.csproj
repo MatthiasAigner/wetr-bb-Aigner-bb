@@ -43,6 +43,7 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="AsyncAdoTemplate.cs" />
     <Compile Include="AdoTemplate.cs" />
     <Compile Include="DefaultConnectionFactory.cs" />
     <Compile Include="IConnectionFactory.cs" />
